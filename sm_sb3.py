@@ -24,11 +24,16 @@ if __name__ == "__main__":
     else:                  
         primitive_env = TaskPrimitive(gym.make(args.env), sb3=True)
         task_env_test = Task(gym.make(args.env), args.ltl) if args.ltl else None
+
+    env = gym.make(args.env, render_mode="rgb_array")
+    if "Task" in args.env: primitive_env = TaskPrimitive(env.environment, sb3=True); task_env_test = env
+    else:                  primitive_env = TaskPrimitive(env, sb3=True);             task_env_test = Task(env, args.ltl) if args.ltl else None
+    
     if args.load: primitive_env.goals.update(torch.load(sp_dir+"goals")) 
    
     # Initialise the skill primitives from the min ("0") and max ("1") WVFs, and the skill machine from the skill primitives
-    if args.algo=="dqn":   SP = {primitive: DQNAgent(primitive, primitive_env, sp_dir+"wvf_"+primitive, log_dir+"wvf_"+primitive, args.load) for primitive in ["0","1"]}
-    elif args.algo=="td3": SP = {primitive: TD3Agent(primitive, primitive_env, sp_dir+"wvf_"+primitive, log_dir+"wvf_"+primitive, args.load) for primitive in ["0","1"]}
+    if args.algo=="dqn":   SP = {primitive: DQNAgent("wvf_"+primitive, primitive_env, sp_dir, log_dir, args.load) for primitive in ["0","1"]}
+    elif args.algo=="td3": SP = {primitive: TD3Agent("wvf_"+primitive, primitive_env, sp_dir, log_dir, args.load) for primitive in ["0","1"]}
     SM = SkillMachine(primitive_env, SP, vectorised=True) 
 
     # Start Training

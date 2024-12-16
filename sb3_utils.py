@@ -129,8 +129,8 @@ class DQNAgent(BaseAgent):
                     exploration_fraction = 0.5, exploration_final_eps = 0.1,
                 )
 
-        if log_dir: self.model.set_logger(configure(log_dir, ["stdout", "csv", "tensorboard"]))
-        if load: self.model = self.model_class.load(save_dir, env=env)
+        if log_dir: self.model.set_logger(configure(log_dir+self.name, ["stdout", "csv", "tensorboard"]))
+        if load: self.model = self.model_class.load(save_dir+self.name, env=env)
         os.makedirs(save_dir, exist_ok=True)
 
     def get_action_value(self, obs):
@@ -156,8 +156,8 @@ class TD3Agent(BaseAgent):
                     learning_rate=1e-5, gamma=0.99, batch_size=32, learning_starts=1000, train_freq=50, gradient_steps=50,
                 )
 
-        if log_dir: self.model.set_logger(configure(log_dir, ["stdout", "csv", "tensorboard"]))
-        if load: self.model = self.model_class.load(save_dir, env=env)
+        if log_dir: self.model.set_logger(configure(log_dir+self.name, ["stdout", "csv", "tensorboard"]))
+        if load: self.model = self.model_class.load(save_dir+self.name, env=env)
         os.makedirs(save_dir, exist_ok=True)
     
     def get_action_value(self, states):

@@ -26,8 +26,8 @@ if __name__ == "__main__":
         task_env_test = Task(gym.make(args.env), args.ltl, test=True)
    
     # Initialise task specific skill
-    if args.algo=="dqn":   agent = DQNAgent("skill", task_env, skill_dir+"skill", log_dir+"skill", args.load, use_her=0)
-    elif args.algo=="td3": agent = TD3Agent("skill", task_env, skill_dir+"skill", log_dir+"skill", args.load, use_her=0)
+    if args.algo=="dqn":   agent = DQNAgent("skill", task_env, skill_dir, log_dir, args.load, use_her=0)
+    elif args.algo=="td3": agent = TD3Agent("skill", task_env, skill_dir, log_dir, args.load, use_her=0)
 
     # Start Training
     agent.model.learn(args.total_steps, EvaluateSaveCallback(None, task_env_test, None, agent, skill_dir))

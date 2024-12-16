@@ -13,7 +13,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument(
     '--env',
     default= "Office-Coffee-Task-v0",
-    help="path"
+    help="Environment"
 )
 parser.add_argument(
     '--exp',
@@ -21,14 +21,14 @@ parser.add_argument(
     help="Experiment. E.g office, office_iclr, movingtargets_iclr",
 )
 args = parser.parse_args()
-
+metric = "total reward"
 
 def plot_office_iclr():
-
+     
     num_runs = 25
     num_steps = 400000
     m = 4
-
+    
     labels = ['SM (Ours)','QL-SM (Ours)','CRM','CRM-RS','HRM','HRM-RS','QL',"QL-RS"]
     dirs = ['sm_ql/zeroshot','sm_ql/fewshot','crm','crm-rs','hrm','hrm-rs','rm-ql','rm-ql-rs']
 
@@ -36,14 +36,13 @@ def plot_office_iclr():
 
     for j in range(len(dirs)):
         dirr = f'data/logs/{dirs[j]}/{args.env}/'
-        if "rm" not in dirs[j]: filer = open(dirr+'0/progress.csv')
-        else:                   filer = open(dirr+'0/progress.csv'); m=40
+        filer = open(dirr+'0/progress.csv')
+        print(dirr+'0/progress.csv')
         csvreader = csv.reader(filer)
         all_data_pnts = [row for row in csvreader]
-        if "rm" not in dirs[j]: episodes, steps, performance = all_data_pnts[0].index("episodes"), all_data_pnts[0].index("steps"), all_data_pnts[0].index("eval total reward")
-        else:                   episodes, steps, performance = all_data_pnts[0].index("episodes"), all_data_pnts[0].index("steps"), all_data_pnts[0].index("total reward")
+        episodes, steps, performance = all_data_pnts[0].index("episodes"), all_data_pnts[0].index("steps"), all_data_pnts[0].index(f"eval {metric}")
         all_data_pnts = np.array(all_data_pnts[1:]).astype(np.float32)[:num_steps,:]
-        # print(all_data_pnts.shape)
+        print(all_data_pnts.shape)
         a = np.sum(all_data_pnts[:,episodes].reshape(-1, m), axis=1)
         b = np.sum(all_data_pnts[:,steps].reshape(-1, m), axis=1)
         c = np.sum(all_data_pnts[:,performance].reshape(-1, m), axis=1)
@@ -57,8 +56,7 @@ def plot_office_iclr():
                 csvreader = csv.reader(filer)
                 data_pnts = []
                 for row in csvreader: data_pnts.append(row)
-                if "rm" not in dirs[j]: episodes, steps, performance = data_pnts[0].index("episodes"), data_pnts[0].index("steps"), data_pnts[0].index("eval total reward")
-                else:               episodes, steps, performance = data_pnts[0].index("episodes"), data_pnts[0].index("steps"), data_pnts[0].index("total reward")
+                episodes, steps, performance = data_pnts[0].index("episodes"), data_pnts[0].index("steps"), data_pnts[0].index(f"eval {metric}")
                 data_pnts = np.array(data_pnts[1:]).astype(np.float32)[:num_steps,:]
                 a = np.sum(data_pnts[:,episodes].reshape(-1, m), axis=1)
                 b = np.sum(data_pnts[:,steps].reshape(-1, m), axis=1)
@@ -91,7 +89,7 @@ def plot_office_iclr():
     #plt.ylim(top=2)
     ax.xaxis.get_major_formatter().set_powerlimits((0, 1))
     fig.tight_layout()
-    fig.savefig(f"images/{args.env}.pdf", bbox_inches='tight')
+    fig.savefig(f"images/{args.env}_{metric}.pdf", bbox_inches='tight')
     plt.show()
 
 
@@ -111,7 +109,7 @@ def plot_office():
         filer = open(dirr+'0/progress.csv')
         csvreader = csv.reader(filer)
         all_data_pnts = [row for row in csvreader]
-        episodes, steps, performance = all_data_pnts[0].index("episodes"), all_data_pnts[0].index("steps"), all_data_pnts[0].index("eval successes")
+        episodes, steps, performance = all_data_pnts[0].index("episodes"), all_data_pnts[0].index("steps"), all_data_pnts[0].index(f"eval {metric}")
         all_data_pnts = np.array(all_data_pnts[1:]).astype(np.float32)[:num_steps,:]
         print(all_data_pnts.shape)
         a = np.sum(all_data_pnts[:,episodes].reshape(-1, m), axis=1)
@@ -127,7 +125,7 @@ def plot_office():
                 csvreader = csv.reader(filer)
                 data_pnts = []
                 for row in csvreader: data_pnts.append(row)
-                episodes, steps, performance = data_pnts[0].index("episodes"), data_pnts[0].index("steps"), data_pnts[0].index("eval successes")
+                episodes, steps, performance = data_pnts[0].index("episodes"), data_pnts[0].index("steps"), data_pnts[0].index(f"eval {metric}")
                 data_pnts = np.array(data_pnts[1:]).astype(np.float32)[:num_steps,:]
                 a = np.sum(data_pnts[:,episodes].reshape(-1, m), axis=1)
                 b = np.sum(data_pnts[:,steps].reshape(-1, m), axis=1)
@@ -161,10 +159,10 @@ def plot_office():
     ax.xaxis.get_major_formatter().set_powerlimits((0, 1))
     #ax.ticklabel_format(axis='y',style='scientific', useOffset=True)
     fig.tight_layout()
-    fig.savefig(f"images/{args.env}.pdf", bbox_inches='tight')
+    fig.savefig(f"images/{args.env}_{metric}.pdf", bbox_inches='tight')
     # plt.show()
 
 
-if args.exp=="office":
-    if   args.exp=="office":      plot_office()
-    elif args.exp=="office_iclr": plot_office_iclr()
+if   args.exp=="office":      plot_office()
+elif args.exp=="office_iclr": plot_office_iclr()
+else:                         print("invalid exp")

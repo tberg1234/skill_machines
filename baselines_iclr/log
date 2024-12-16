@@ -1,0 +1,1606 @@
+No protocol specified
+
+Logging to ../data/logs/rm-ql/Office-Coffee-Task-v0/4
+Training model
+env_type: GridWorld
+Training qlearning on GridWorld:Office-new-rm1-v0 with arguments 
+{'qinit': 0.001, 'epsilon': 0.5, 'print_freq': 10000, 'network': 'mlp', 'init_eval': True, 'beta': None, 'sp': None, 'use_spe': False, 'use_csm': False, 'use_rs': False, 'use_crm': False, 'gamma': 0.9}
+---------------------------
+| episodes     | 470      |
+| steps        | 1e+04    |
+| total reward | 3        |
+---------------------------
+----------------------------
+| episodes     | 836      |
+| steps        | 2e+04    |
+| total reward | 0        |
+-------------------------------------------------------
+| episodes     | 1.21e+03 |
+| steps        | 3e+04    |
+| total reward | 2        |
+------------------------------------------------------
+| episodes     | 1.86e+03 |
+| steps        | 4e+04    |
+| total reward | 22       |
+---------------------------
+---------------------------
+| episodes     | 2.4e+03  |
+| steps        | 5e+04    |
+| total reward | 24       |
+---------------------------
+---------------------------
+| episodes     | 2.93e+03 |
+| steps        | 6e+04    |
+| total reward | 19       |
+---------------------------
+---------------------------
+| episodes     | 3.42e+03 |
+| steps        | 7e+04    |
+| total reward | 12       |
+---------------------------
+---------------------------
+| episodes     | 3.9e+03  |
+| steps        | 8e+04    |
+| total reward | 12       |
+---------------------------
+---------------------------
+| episodes     | 4.44e+03 |
+| steps        | 9e+04    |
+| total reward | 17       |
+---------------------------
+----------------------------
+| episodes     | 4.77e+03 |
+| steps        | 1e+05    |
+| total reward | 21       |
+-------------------------------------------------------
+| episodes     | 5.37e+03 |
+| steps        | 1.1e+05  |
+| total reward | 47       |
+---------------------------
+---------------------------
+| episodes     | 5.96e+03 |
+| steps        | 1.2e+05  |
+| total reward | 69       |
+---------------------------
+---------------------------
+| episodes     | 6.58e+03 |
+| steps        | 1.3e+05  |
+| total reward | 109      |
+---------------------------
+---------------------------
+| episodes     | 7.31e+03 |
+| steps        | 1.4e+05  |
+| total reward | 141      |
+-------------------------------------------------------
+| episodes     | 7.97e+03 |
+| steps        | 1.5e+05  |
+| total reward | 139      |
+------------------------------------------------------
+| episodes     | 9.06e+03 |
+| steps        | 1.6e+05  |
+| total reward | 209      |
+---------------------------
+----------------------------
+| episodes     | 9.56e+03 |
+| steps        | 1.7e+05  |
+| total reward | 216      |
+-------------------------------------------------------
+| episodes     | 1.04e+04 |
+| steps        | 1.8e+05  |
+| total reward | 229      |
+------------------------------------------------------
+| episodes     | 1.14e+04 |
+| steps        | 1.9e+05  |
+| total reward | 240      |
+---------------------------
+---------------------------
+| episodes     | 1.22e+04 |
+| steps        | 2e+05    |
+| total reward | 253      |
+---------------------------
+---------------------------
+| episodes     | 1.31e+04 |
+| steps        | 2.1e+05  |
+| total reward | 264      |
+---------------------------
+---------------------------
+| episodes     | 1.39e+04 |
+| steps        | 2.2e+05  |
+| total reward | 260      |
+---------------------------
+---------------------------
+| episodes     | 1.49e+04 |
+| steps        | 2.3e+05  |
+| total reward | 320      |
+---------------------------
+---------------------------
+| episodes     | 1.58e+04 |
+| steps        | 2.4e+05  |
+| total reward | 295      |
+---------------------------
+---------------------------
+| episodes     | 1.67e+04 |
+| steps        | 2.5e+05  |
+| total reward | 296      |
+---------------------------
+---------------------------
+| episodes     | 1.77e+04 |
+| steps        | 2.6e+05  |
+| total reward | 303      |
+---------------------------
+---------------------------
+| episodes     | 1.86e+04 |
+| steps        | 2.7e+05  |
+| total reward | 319      |
+---------------------------
+---------------------------
+| episodes     | 1.95e+04 |
+| steps        | 2.8e+05  |
+| total reward | 314      |
+---------------------------
+---------------------------
+| episodes     | 2.04e+04 |
+| steps        | 2.9e+05  |
+| total reward | 321      |
+---------------------------
+---------------------------
+| episodes     | 2.14e+04 |
+| steps        | 3e+05    |
+| total reward | 333      |
+---------------------------
+---------------------------
+| episodes     | 2.23e+04 |
+| steps        | 3.1e+05  |
+| total reward | 354      |
+---------------------------
+---------------------------
+| episodes     | 2.32e+04 |
+| steps        | 3.2e+05  |
+| total reward | 330      |
+---------------------------
+---------------------------
+| episodes     | 2.42e+04 |
+| steps        | 3.3e+05  |
+| total reward | 350      |
+---------------------------
+---------------------------
+| episodes     | 2.51e+04 |
+| steps        | 3.4e+05  |
+| total reward | 343      |
+---------------------------
+---------------------------
+| episodes     | 2.6e+04  |
+| steps        | 3.5e+05  |
+| total reward | 356      |
+---------------------------
+---------------------------
+| episodes     | 2.69e+04 |
+| steps        | 3.6e+05  |
+| total reward | 375      |
+---------------------------
+---------------------------
+| episodes     | 2.79e+04 |
+| steps        | 3.7e+05  |
+| total reward | 385      |
+---------------------------
+---------------------------
+| episodes     | 2.89e+04 |
+| steps        | 3.8e+05  |
+| total reward | 380      |
+---------------------------
+---------------------------
+| episodes     | 2.99e+04 |
+| steps        | 3.9e+05  |
+| total reward | 446      |
+---------------------------
+---------------------------
+| episodes     | 3.08e+04 |
+| steps        | 4e+05    |
+| total reward | 355      |
+---------------------------
+Total time: 208.90515327453613 seconds
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:516: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint8 = np.dtype([("qint8", np.int8, 1)])
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:517: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_quint8 = np.dtype([("quint8", np.uint8, 1)])
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:518: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint16 = np.dtype([("qint16", np.int16, 1)])
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:519: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_quint16 = np.dtype([("quint16", np.uint16, 1)])
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:520: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint32 = np.dtype([("qint32", np.int32, 1)])
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:525: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  np_resource = np.dtype([("resource", np.ubyte, 1)])
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/gym/logger.py:30: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  warnings.warn(colorize('%s: %s'%('WARN', msg % args), 'yellow'))
+No protocol specified
+
+Logging to ../data/logs/rm-ql-rs/Office-Coffee-Task-v0/2
+Training model
+env_type: GridWorld
+Training qlearning on GridWorld:Office-new-rm1-v0 with arguments 
+{'qinit': 0.001, 'epsilon': 0.5, 'print_freq': 10000, 'network': 'mlp', 'init_eval': True, 'beta': None, 'sp': None, 'use_spe': False, 'use_csm': False, 'use_rs': True, 'use_crm': False, 'gamma': 0.9}
+---------------------------
+| episodes     | 364      |
+| steps        | 1e+04    |
+| total reward | 1        |
+---------------------------
+---------------------------
+| episodes     | 774      |
+| steps        | 2e+04    |
+| total reward | 0        |
+---------------------------
+---------------------------
+| episodes     | 1.22e+03 |
+| steps        | 3e+04    |
+| total reward | 4        |
+---------------------------
+---------------------------
+| episodes     | 1.66e+03 |
+| steps        | 4e+04    |
+| total reward | 9        |
+---------------------------
+---------------------------
+| episodes     | 2.15e+03 |
+| steps        | 5e+04    |
+| total reward | 15       |
+---------------------------
+---------------------------
+| episodes     | 2.64e+03 |
+| steps        | 6e+04    |
+| total reward | 29       |
+---------------------------
+---------------------------
+| episodes     | 3.2e+03  |
+| steps        | 7e+04    |
+| total reward | 60       |
+---------------------------
+-----------------------------
+| episodes     | 3.99e+03 |
+| steps        | 8e+04    |
+| total reward | 108      |
+-------------------------------------------------------
+| episodes     | 4.71e+03 |
+| steps        | 9e+04    |
+| total reward | 135      |
+-------------------------------------------------------
+| episodes     | 5.36e+03 |
+| steps        | 1e+05    |
+| total reward | 161      |
+---------------------------
+---------------------------
+| episodes     | 6.12e+03 |
+| steps        | 1.1e+05  |
+| total reward | 184      |
+---------------------------
+---------------------------
+| episodes     | 6.95e+03 |
+| steps        | 1.2e+05  |
+| total reward | 235      |
+---------------------------
+---------------------------
+| episodes     | 7.72e+03 |
+| steps        | 1.3e+05  |
+| total reward | 213      |
+---------------------------
+---------------------------
+| episodes     | 8.52e+03 |
+| steps        | 1.4e+05  |
+| total reward | 211      |
+---------------------------
+---------------------------
+| episodes     | 9.35e+03 |
+| steps        | 1.5e+05  |
+| total reward | 262      |
+---------------------------
+---------------------------
+| episodes     | 1.02e+04 |
+| steps        | 1.6e+05  |
+| total reward | 250      |
+---------------------------
+---------------------------
+| episodes     | 1.11e+04 |
+| steps        | 1.7e+05  |
+| total reward | 268      |
+---------------------------
+---------------------------
+| episodes     | 1.2e+04  |
+| steps        | 1.8e+05  |
+| total reward | 296      |
+---------------------------
+---------------------------
+| episodes     | 1.3e+04  |
+| steps        | 1.9e+05  |
+| total reward | 321      |
+---------------------------
+---------------------------
+| episodes     | 1.39e+04 |
+| steps        | 2e+05    |
+| total reward | 326      |
+---------------------------
+---------------------------
+| episodes     | 1.48e+04 |
+| steps        | 2.1e+05  |
+| total reward | 299      |
+---------------------------
+---------------------------
+| episodes     | 1.56e+04 |
+| steps        | 2.2e+05  |
+| total reward | 289      |
+---------------------------
+---------------------------
+| episodes     | 1.66e+04 |
+| steps        | 2.3e+05  |
+| total reward | 364      |
+---------------------------
+---------------------------
+| episodes     | 1.75e+04 |
+| steps        | 2.4e+05  |
+| total reward | 342      |
+---------------------------
+---------------------------
+| episodes     | 1.84e+04 |
+| steps        | 2.5e+05  |
+| total reward | 353      |
+---------------------------
+---------------------------
+| episodes     | 1.93e+04 |
+| steps        | 2.6e+05  |
+| total reward | 342      |
+---------------------------
+---------------------------
+| episodes     | 2.02e+04 |
+| steps        | 2.7e+05  |
+| total reward | 337      |
+---------------------------
+---------------------------
+| episodes     | 2.13e+04 |
+| steps        | 2.8e+05  |
+| total reward | 388      |
+---------------------------
+---------------------------
+| episodes     | 2.23e+04 |
+| steps        | 2.9e+05  |
+| total reward | 375      |
+---------------------------
+---------------------------
+| episodes     | 2.33e+04 |
+| steps        | 3e+05    |
+| total reward | 398      |
+---------------------------
+---------------------------
+| episodes     | 2.42e+04 |
+| steps        | 3.1e+05  |
+| total reward | 351      |
+---------------------------
+---------------------------
+| episodes     | 2.52e+04 |
+| steps        | 3.2e+05  |
+| total reward | 406      |
+-------------------------------------------------------
+| episodes     | 2.61e+04 |
+| steps        | 3.3e+05  |
+| total reward | 376      |
+-----------------------------------------------------
+| episodes     | 2.74e+04 |
+| steps        | 3.4e+05  |
+| total reward | 392      |
+---------------------------
+---------------------------
+| episodes     | 2.83e+04 |
+| steps        | 3.5e+05  |
+| total reward | 388      |
+---------------------------
+---------------------------
+| episodes     | 2.93e+04 |
+| steps        | 3.6e+05  |
+| total reward | 402      |
+---------------------------
+---------------------------
+| episodes     | 3.03e+04 |
+| steps        | 3.7e+05  |
+| total reward | 418      |
+---------------------------
+---------------------------
+| episodes     | 3.13e+04 |
+| steps        | 3.8e+05  |
+| total reward | 411      |
+---------------------------
+---------------------------
+| episodes     | 3.23e+04 |
+| steps        | 3.9e+05  |
+| total reward | 417      |
+---------------------------
+---------------------------
+| episodes     | 3.33e+04 |
+| steps        | 4e+05    |
+| total reward | 404      |
+---------------------------
+Total time: 185.45871782302856 seconds
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:516: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint8 = np.dtype([("qint8", np.int8, 1)])
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:517: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_quint8 = np.dtype([("quint8", np.uint8, 1)])
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:518: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint16 = np.dtype([("qint16", np.int16, 1)])
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:519: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_quint16 = np.dtype([("quint16", np.uint16, 1)])
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:520: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint32 = np.dtype([("qint32", np.int32, 1)])
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:525: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  np_resource = np.dtype([("resource", np.ubyte, 1)])
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/gym/logger.py:30: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  warnings.warn(colorize('%s: %s'%('WARN', msg % args), 'yellow'))
+No protocol specified
+
+Logging to ../data/logs/crm/Office-Coffee-Task-v0/2
+Training model
+env_type: GridWorld
+Training qlearning on GridWorld:Office-new-rm1-v0 with arguments 
+{'qinit': 0.001, 'epsilon': 0.5, 'print_freq': 10000, 'network': 'mlp', 'init_eval': True, 'beta': None, 'sp': None, 'use_spe': False, 'use_csm': False, 'use_rs': False, 'use_crm': True, 'gamma': 0.9}
+---------------------------
+| episodes     | 468      |
+| steps        | 1e+04    |
+| total reward | 6        |
+---------------------------
+---------------------------
+| episodes     | 900      |
+| steps        | 2e+04    |
+| total reward | 4        |
+---------------------------
+------------------------------
+| episodes     | 1.24e+03 |
+| steps        | 3e+04    |
+| total reward | 0        |
+----------------------------------------------------
+| episodes     | 1.81e+03 |
+| steps        | 4e+04    |
+| total reward | 0        |
+---------------------------
+---------------------------
+| episodes     | 2.27e+03 |
+| steps        | 5e+04    |
+| total reward | 5        |
+---------------------------
+---------------------------
+| episodes     | 2.76e+03 |
+| steps        | 6e+04    |
+| total reward | 12       |
+---------------------------
+---------------------------
+| episodes     | 3.23e+03 |
+| steps        | 7e+04    |
+| total reward | 33       |
+---------------------------
+---------------------------
+| episodes     | 3.78e+03 |
+| steps        | 8e+04    |
+| total reward | 66       |
+---------------------------
+---------------------------
+| episodes     | 4.42e+03 |
+| steps        | 9e+04    |
+| total reward | 102      |
+---------------------------
+---------------------------
+| episodes     | 5.13e+03 |
+| steps        | 1e+05    |
+| total reward | 146      |
+---------------------------
+---------------------------
+| episodes     | 5.86e+03 |
+| steps        | 1.1e+05  |
+| total reward | 183      |
+---------------------------
+---------------------------
+| episodes     | 6.69e+03 |
+| steps        | 1.2e+05  |
+| total reward | 261      |
+---------------------------
+---------------------------
+| episodes     | 7.62e+03 |
+| steps        | 1.3e+05  |
+| total reward | 285      |
+---------------------------
+---------------------------
+| episodes     | 8.58e+03 |
+| steps        | 1.4e+05  |
+| total reward | 330      |
+---------------------------
+---------------------------
+| episodes     | 9.51e+03 |
+| steps        | 1.5e+05  |
+| total reward | 345      |
+---------------------------
+---------------------------
+| episodes     | 1.05e+04 |
+| steps        | 1.6e+05  |
+| total reward | 388      |
+---------------------------
+---------------------------
+| episodes     | 1.14e+04 |
+| steps        | 1.7e+05  |
+| total reward | 409      |
+---------------------------
+---------------------------
+| episodes     | 1.25e+04 |
+| steps        | 1.8e+05  |
+| total reward | 433      |
+---------------------------
+---------------------------
+| episodes     | 1.35e+04 |
+| steps        | 1.9e+05  |
+| total reward | 468      |
+---------------------------
+---------------------------
+| episodes     | 1.45e+04 |
+| steps        | 2e+05    |
+| total reward | 422      |
+---------------------------
+---------------------------
+| episodes     | 1.55e+04 |
+| steps        | 2.1e+05  |
+| total reward | 415      |
+---------------------------
+---------------------------
+| episodes     | 1.65e+04 |
+| steps        | 2.2e+05  |
+| total reward | 459      |
+---------------------------
+---------------------------
+| episodes     | 1.75e+04 |
+| steps        | 2.3e+05  |
+| total reward | 444      |
+---------------------------
+---------------------------
+| episodes     | 1.85e+04 |
+| steps        | 2.4e+05  |
+| total reward | 418      |
+---------------------------
+---------------------------
+| episodes     | 1.95e+04 |
+| steps        | 2.5e+05  |
+| total reward | 413      |
+---------------------------
+---------------------------
+| episodes     | 2.05e+04 |
+| steps        | 2.6e+05  |
+| total reward | 461      |
+---------------------------
+---------------------------
+| episodes     | 2.15e+04 |
+| steps        | 2.7e+05  |
+| total reward | 422      |
+---------------------------
+---------------------------
+| episodes     | 2.25e+04 |
+| steps        | 2.8e+05  |
+| total reward | 435      |
+---------------------------
+---------------------------
+| episodes     | 2.35e+04 |
+| steps        | 2.9e+05  |
+| total reward | 422      |
+---------------------------
+---------------------------
+| episodes     | 2.45e+04 |
+| steps        | 3e+05    |
+| total reward | 420      |
+---------------------------
+---------------------------
+| episodes     | 2.54e+04 |
+| steps        | 3.1e+05  |
+| total reward | 420      |
+---------------------------
+---------------------------
+| episodes     | 2.64e+04 |
+| steps        | 3.2e+05  |
+| total reward | 430      |
+---------------------------
+---------------------------
+| episodes     | 2.74e+04 |
+| steps        | 3.3e+05  |
+| total reward | 449      |
+---------------------------
+---------------------------
+| episodes     | 2.84e+04 |
+| steps        | 3.4e+05  |
+| total reward | 434      |
+---------------------------
+---------------------------
+| episodes     | 2.94e+04 |
+| steps        | 3.5e+05  |
+| total reward | 443      |
+---------------------------
+---------------------------
+| episodes     | 3.04e+04 |
+| steps        | 3.6e+05  |
+| total reward | 411      |
+---------------------------
+---------------------------
+| episodes     | 3.14e+04 |
+| steps        | 3.7e+05  |
+| total reward | 430      |
+---------------------------
+---------------------------
+| episodes     | 3.23e+04 |
+| steps        | 3.8e+05  |
+| total reward | 416      |
+---------------------------
+---------------------------
+| episodes     | 3.33e+04 |
+| steps        | 3.9e+05  |
+| total reward | 435      |
+---------------------------
+---------------------------
+| episodes     | 3.43e+04 |
+| steps        | 4e+05    |
+| total reward | 418      |
+---------------------------
+Total time: 282.1971604824066 seconds
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:516: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint8 = np.dtype([("qint8", np.int8, 1)])
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:517: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_quint8 = np.dtype([("quint8", np.uint8, 1)])
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:518: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint16 = np.dtype([("qint16", np.int16, 1)])
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:519: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_quint16 = np.dtype([("quint16", np.uint16, 1)])
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:520: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint32 = np.dtype([("qint32", np.int32, 1)])
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:525: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  np_resource = np.dtype([("resource", np.ubyte, 1)])
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/gym/logger.py:30: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  warnings.warn(colorize('%s: %s'%('WARN', msg % args), 'yellow'))
+No protocol specified
+
+Logging to ../data/logs/crm-rs/Office-Coffee-Task-v0/2
+Training model
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:516: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint8 = np.dtype([("qint8", np.int8, 1)])
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:517: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_quint8 = np.dtype([("quint8", np.uint8, 1)])
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:518: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint16 = np.dtype([("qint16", np.int16, 1)])
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:519: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_quint16 = np.dtype([("quint16", np.uint16, 1)])
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:520: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint32 = np.dtype([("qint32", np.int32, 1)])
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:525: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  np_resource = np.dtype([("resource", np.ubyte, 1)])
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/gym/logger.py:30: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  warnings.warn(colorize('%s: %s'%('WARN', msg % args), 'yellow'))
+env_type: GridWorld
+Training qlearning on GridWorld:Office-new-rm1-v0 with arguments 
+{'qinit': 0.001, 'epsilon': 0.5, 'print_freq': 10000, 'network': 'mlp', 'init_eval': True, 'beta': None, 'sp': None, 'use_spe': False, 'use_csm': False, 'use_rs': True, 'use_crm': True, 'gamma': 0.9}
+Traceback (most recent call last):
+  File "run.py", line 289, in <module>
+    main(sys.argv)
+  File "run.py", line 233, in main
+    model, env = train(args, extra_args)
+  File "run.py", line 99, in train
+    **alg_kwargs
+  File "/mnt/data/home/geraud/skill_machines/iclr_baselines/rl_agents/qlearning/qlearning.py", line 117, in learn
+    logger.record_tabular("eval total reward", successes/nu)
+NameError: name 'nu' is not defined
+No protocol specified
+
+Logging to ../data/logs/hrm/Office-Coffee-Task-v0/2
+Training model
+env_type: GridWorld
+Training hrm on GridWorld:Office-new-rm1-v0 with arguments 
+{'qinit': 0.001, 'epsilon': 0.5, 'print_freq': 10000, 'network': 'mlp', 'init_eval': True, 'beta': None, 'sp': None, 'use_spe': False, 'use_csm': False, 'use_rs': False, 'use_crm': False, 'gamma': 0.9}
+---------------------------
+| episodes     | 426      |
+| steps        | 1e+04    |
+| total reward | 4        |
+---------------------------
+---------------------------
+| episodes     | 782      |
+| steps        | 2e+04    |
+| total reward | 0        |
+---------------------------
+---------------------------
+| episodes     | 1.24e+03 |
+| steps        | 3e+04    |
+| total reward | 0        |
+---------------------------
+---------------------------
+| episodes     | 1.67e+03 |
+| steps        | 4e+04    |
+| total reward | 1        |
+---------------------------
+---------------------------
+| episodes     | 2.15e+03 |
+| steps        | 5e+04    |
+| total reward | 7        |
+---------------------------
+----------------------------
+| episodes     | 2.79e+03 |
+| steps        | 6e+04    |
+| total reward | 56       |
+-------------------------------------------------------
+| episodes     | 3.4e+03  |
+| steps        | 7e+04    |
+| total reward | 90       |
+------------------------------------------------------
+| episodes     | 4.07e+03 |
+| steps        | 8e+04    |
+| total reward | 185      |
+---------------------------
+---------------------------
+| episodes     | 4.88e+03 |
+| steps        | 9e+04    |
+| total reward | 198      |
+---------------------------
+---------------------------
+| episodes     | 5.69e+03 |
+| steps        | 1e+05    |
+| total reward | 203      |
+---------------------------
+---------------------------
+| episodes     | 6.57e+03 |
+| steps        | 1.1e+05  |
+| total reward | 262      |
+---------------------------
+---------------------------
+| episodes     | 7.42e+03 |
+| steps        | 1.2e+05  |
+| total reward | 239      |
+---------------------------
+---------------------------
+| episodes     | 8.32e+03 |
+| steps        | 1.3e+05  |
+| total reward | 285      |
+---------------------------
+---------------------------
+| episodes     | 9.24e+03 |
+| steps        | 1.4e+05  |
+| total reward | 318      |
+---------------------------
+---------------------------
+| episodes     | 1.01e+04 |
+| steps        | 1.5e+05  |
+| total reward | 322      |
+---------------------------
+---------------------------
+| episodes     | 1.11e+04 |
+| steps        | 1.6e+05  |
+| total reward | 373      |
+---------------------------
+---------------------------
+| episodes     | 1.21e+04 |
+| steps        | 1.7e+05  |
+| total reward | 417      |
+---------------------------
+---------------------------
+| episodes     | 1.3e+04  |
+| steps        | 1.8e+05  |
+| total reward | 381      |
+---------------------------
+---------------------------
+| episodes     | 1.39e+04 |
+| steps        | 1.9e+05  |
+| total reward | 364      |
+---------------------------
+---------------------------
+| episodes     | 1.49e+04 |
+| steps        | 2e+05    |
+| total reward | 398      |
+---------------------------
+---------------------------
+| episodes     | 1.59e+04 |
+| steps        | 2.1e+05  |
+| total reward | 405      |
+---------------------------
+---------------------------
+| episodes     | 1.68e+04 |
+| steps        | 2.2e+05  |
+| total reward | 416      |
+---------------------------
+---------------------------
+| episodes     | 1.78e+04 |
+| steps        | 2.3e+05  |
+| total reward | 382      |
+---------------------------
+---------------------------
+| episodes     | 1.87e+04 |
+| steps        | 2.4e+05  |
+| total reward | 401      |
+---------------------------
+---------------------------
+| episodes     | 1.96e+04 |
+| steps        | 2.5e+05  |
+| total reward | 372      |
+---------------------------
+---------------------------
+| episodes     | 2.06e+04 |
+| steps        | 2.6e+05  |
+| total reward | 392      |
+---------------------------
+---------------------------
+| episodes     | 2.15e+04 |
+| steps        | 2.7e+05  |
+| total reward | 409      |
+---------------------------
+---------------------------
+| episodes     | 2.25e+04 |
+| steps        | 2.8e+05  |
+| total reward | 399      |
+---------------------------
+---------------------------
+| episodes     | 2.33e+04 |
+| steps        | 2.9e+05  |
+| total reward | 374      |
+---------------------------
+---------------------------
+| episodes     | 2.43e+04 |
+| steps        | 3e+05    |
+| total reward | 394      |
+---------------------------
+---------------------------
+| episodes     | 2.53e+04 |
+| steps        | 3.1e+05  |
+| total reward | 385      |
+---------------------------
+---------------------------
+| episodes     | 2.62e+04 |
+| steps        | 3.2e+05  |
+| total reward | 375      |
+---------------------------
+---------------------------
+| episodes     | 2.71e+04 |
+| steps        | 3.3e+05  |
+| total reward | 396      |
+---------------------------
+---------------------------
+| episodes     | 2.81e+04 |
+| steps        | 3.4e+05  |
+| total reward | 399      |
+---------------------------
+---------------------------
+| episodes     | 2.9e+04  |
+| steps        | 3.5e+05  |
+| total reward | 397      |
+---------------------------
+---------------------------
+| episodes     | 2.99e+04 |
+| steps        | 3.6e+05  |
+| total reward | 404      |
+---------------------------
+---------------------------
+| episodes     | 3.09e+04 |
+| steps        | 3.7e+05  |
+| total reward | 398      |
+---------------------------
+---------------------------
+| episodes     | 3.18e+04 |
+| steps        | 3.8e+05  |
+| total reward | 397      |
+---------------------------
+---------------------------
+| episodes     | 3.28e+04 |
+| steps        | 3.9e+05  |
+| total reward | 379      |
+---------------------------
+---------------------------
+| episodes     | 3.37e+04 |
+| steps        | 4e+05    |
+| total reward | 399      |
+---------------------------
+Total time: 172.78335618972778 seconds
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:516: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint8 = np.dtype([("qint8", np.int8, 1)])
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:517: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_quint8 = np.dtype([("quint8", np.uint8, 1)])
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:518: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint16 = np.dtype([("qint16", np.int16, 1)])
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:519: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_quint16 = np.dtype([("quint16", np.uint16, 1)])
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:520: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint32 = np.dtype([("qint32", np.int32, 1)])
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:525: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  np_resource = np.dtype([("resource", np.ubyte, 1)])
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/gym/logger.py:30: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  warnings.warn(colorize('%s: %s'%('WARN', msg % args), 'yellow'))
+No protocol specified
+
+Logging to ../data/logs/hrm-rs/Office-Coffee-Task-v0/2
+Training model
+env_type: GridWorld
+Training hrm on GridWorld:Office-new-rm1-v0 with arguments 
+{'qinit': 0.001, 'epsilon': 0.5, 'print_freq': 10000, 'network': 'mlp', 'init_eval': True, 'beta': None, 'sp': None, 'use_spe': False, 'use_csm': False, 'use_rs': True, 'use_crm': False, 'gamma': 0.9}
+--------------------------------
+| episodes          | 436      |
+| eval successes    | 0        |
+| eval total reward | 1        |
+| steps             | 1e+04    |
+--------------------------------
+--------------------------------
+| episodes          | 784      |
+| eval successes----------------------------------
+| episodes     | 1.31e+03 |
+| steps        | 3e+04    |
+| total reward | 0       --------------------------------
+| episodes          | 1.23e+03 |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| steps             | 3e+04    |---------------------------
+| epis--------------------------------
+| episodes          | 1.64e+03 |
+| eval successes    | 0        |
+| eval ----------------------------------
+| episodes     | 2.65e+03 |
+| steps        | 6e+04    |
+| total reward | 1        |
+-------------------------------------------------------
+| episodes     | 3.1e+03  |
+| steps        | 7e+04    |
+| total reward | 0        |
+-------------------------------------------------------
+| episodes     | 3.57e+03 |
+| steps        | 8e+04    |
+| total reward | 0        |
+-------------------------------------------------------
+| episodes     | 4.01e+03 |
+| steps        | 9e+04    |
+| total reward | 1        |
+------------------------------------------------
+| episodes     | 4.65e+03 |
+| steps        | 1e+05    |
+| total reward | 2        |
+---------------------------
+---------------------------
+| episodes     | 5.11e+03 |
+| steps        | 1.1e+05  |
+| total reward | 13       |
+---------------------------
+---------------------------
+| episodes     | 5.65e+03 |
+| steps        | 1.2e+05  |
+| total reward | 23       |
+---------------------------
+----------------------------------
+| episodes     | 6.12e+03 |
+| steps        | 1.3e+05  |
+| total reward | 47       |
+-------------------------------------------------------
+| episodes     | 6.77e+03 |
+| steps        | 1.4e+05  |
+| total reward | 135      |
+-------------------------------------------------------
+| episodes     | 7.4e+03  |
+| steps        | 1.5e+05  |
+| total reward | 146      |
+-------------------------------------------------------
+| episodes     | 8.07e+03 |
+| steps        | 1.6e+05  |
+| total reward | 177      |
+-------------------------------------------------------
+| episodes     | 8.79e+03 |
+| steps        | 1.7e+05  |
+| total reward | 171      |
+-------------------------------------------------------
+| episodes     | 9.51e+03 |
+| steps        | 1.8e+05  |
+| total reward | 188      |
+-------------------------------------------------------
+| episodes     | 1.04e+04 |
+| steps        | 1.9e+05  |
+| total reward | 211      |
+-------------------------------------------------------
+| episodes     | 1.12e+04 |
+| steps        | 2e+05    |
+| total reward | 260      |
+---------------------------
+---------------------------
+| episodes     | 1.22e+04 |
+| steps        | 2.1e+05  |
+| total reward | 321      |
+---------------------------
+---------------------------
+| episodes     | 1.31e+04 |
+| steps        | 2.2e+05  |
+| total reward | 279      |
+---------------------------
+---------------------------
+| episodes     | 1.41e+04 |
+| steps        | 2.3e+05  |
+| total reward | 378      |
+---------------------------
+---------------------------
+| episodes     | 1.5e+04  |
+| steps        | 2.4e+05  |
+| total reward | 370      |
+---------------------------
+---------------------------
+| episodes     | 1.6e+04  |
+| steps        | 2.5e+05  |
+| total reward | 414      |
+---------------------------
+---------------------------
+| episodes     | 1.7e+04  |
+| steps        | 2.6e+05  |
+| total reward | 412      |
+---------------------------
+---------------------------
+| episodes     | 1.79e+04 |
+| steps        | 2.7e+05  |
+| total reward | 378      |
+---------------------------
+---------------------------
+| episodes     | 1.89e+04 |
+| steps        | 2.8e+05  |
+| total reward | 414      |
+---------------------------
+---------------------------
+| episodes     | 1.98e+04 |
+| steps        | 2.9e+05  |
+| total reward | 384      |
+---------------------------
+---------------------------
+| episodes     | 2.08e+04 |
+| steps        | 3e+05    |
+| total reward | 403      |
+---------------------------
+---------------------------
+| episodes     | 2.17e+04 |
+| steps        | 3.1e+05  |
+| total reward | 403      |
+---------------------------
+---------------------------
+| episodes     | 2.27e+04 |
+| steps        | 3.2e+05  |
+| total reward | 398      |
+---------------------------
+---------------------------
+| episodes     | 2.36e+04 |
+| steps        | 3.3e+05  |
+| total reward | 394      |
+---------------------------
+---------------------------
+| episodes     | 2.46e+04 |
+| steps        | 3.4e+05  |
+| total reward | 403      |
+---------------------------
+---------------------------
+| episodes     | 2.55e+04 |
+| steps        | 3.5e+05  |
+| total reward | 394      |
+---------------------------
+---------------------------
+| episodes     | 2.64e+04 |
+| steps        | 3.6e+05  |
+| total reward | 390      |
+---------------------------
+---------------------------
+| episodes     | 2.74e+04 |
+| steps        | 3.7e+05  |
+| total reward | 419      |
+---------------------------
+---------------------------
+| episodes     | 2.83e+04 |
+| steps        | 3.8e+05  |
+| total reward | 388      |
+---------------------------
+---------------------------
+| episodes     | 2.93e+04 |
+| steps        | 3.9e+05  |
+| total reward | 381      |
+---------------------------
+---------------------------
+| episodes     | 3.02e+04 |
+| steps        | 4e+05    |
+| total reward | 401      |
+---------------------------
+Total time: 296.2983613014221 seconds
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:516: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint8 = np.dtype([("qint8", np.int8, 1)])
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:517: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_quint8 = np.dtype([("quint8", np.uint8, 1)])
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:518: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint16 = np.dtype([("qint16", np.int16, 1)])
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:519: Fut--------------------------------
+| episodes          | 2.5e+04  |
+| eval successes    | 0        |
+| eval total reward | 404      |
+| steps             | 3.5e+05  |
+--------------------------------
+--------------------------------
+| episodes          | 2.6e+04  |
+| eval successes    | 0        |
+| eval total reward | 378      |
+| steps             | 3.6e+05  |
+--------------------------------
+--------------------------------
+| episodes          | 2.69e+04 |
+| eval successes    | 0        |
+| eval total reward | 417      |
+| steps             | 3.7e+05  |
+--------------------------------
+--------------------------------
+| episodes          | 2.79e+04 |
+| eval successes    | 0        |
+| eval total reward | 396      |
+| steps             | 3.8e+05  |
+--------------------------------
+--------------------------------
+| episodes          | 2.89e+04 |
+| eval successes    | 0        |
+| eval total reward | 419      |
+| steps             | 3.9e+05  |
+--------------------------------
+--------------------------------
+| episodes          | 2.99e+04 |
+| eval successes    | 0        |
+| eval total reward | 379      |
+| steps             | 4e+05    |
+--------------------------------
+Total time: 293.68426609039307 seconds
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:516: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint8 = np.dtype([("qint8", np.int8, 1)])
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:517: FutureWarning: Passi--------------------------------
+| episodes          | 814      |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| steps             | 2e+04    |
+-----------------------------------------------------------------
+| episodes          | 1.27e+03 |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| steps             | 3e+04    |
+-----------------------------------------------------------------
+| episodes          | 1.73e+03 |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| steps             | 4e+04    |
+-----------------------------------------------------------------
+| episodes          | 2.21e+03 |
+| eval successes    | 0.00837  |
+| eval total reward | 2        |
+| steps             | 5e+04    |
+---------------------------------------------------------
+| episodes          | 2.47e+03 |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| steps             | 6e+04    |
+--------------------------------
+--------------------------------
+| episodes          | 2.98e+03 |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| steps             | 7e+04    |
+--------------------------------
+--------------------------------
+| episodes          | 3.52e+03 |
+| eval successes    | 0.0112   |
+| eval total reward | 3        |
+| steps             | 8e+04    |
+--------------------------------
+--------------------------------
+| episodes          | 3.98e+03 |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| steps             | 9e+04    |
+--------------------------------
+--------------------------------
+| episodes          | 4.45e+03 |
+| eval successes    | 0.021    |
+| eval total reward | 5        |
+| steps             | 1e+05    |
+--------------------------------
+--------------------------------
+| episodes          | 4.98e+03 |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| steps             | 1.1e+05  |
+--------------------------------
+--------------------------------
+| episodes          | 5.47e+03 |
+| eval successes    | 0.0163   |
+| eval total reward | 4        |
+| steps             | 1.2e+05  |
+--------------------------------
+--------------------------------
+| episodes          | 5.92e+03 |
+| eval successes    | 0.00877  |
+| eval total reward | 2        |
+| steps             | 1.3e+05  |
+--------------------------------
+--------------------------------
+| episodes          | 6.39e+03 |
+| eval successes    | 0.0383   |
+| eval total reward | 9        |
+| steps             | 1.4e+05  |
+--------------------------------
+--------------------------------
+| episodes          | 6.92e+03 |
+| eval successes    | 0.0113   |
+| eval total reward | 3        |
+| steps             | 1.5e+05  |
+--------------------------------
+--------------------------------
+| episodes          | 7.49e+03 |
+| eval successes    | 0.0319   |
+| eval total reward | 9        |
+| steps             | 1.6e+05  |
+--------------------------------
+--------------------------------
+| episodes          | 8.02e+03 |
+| eval successes    | 0.015    |
+| eval total reward | 4        |
+| steps             | 1.7e+05  |
+--------------------------------
+--------------------------------
+| episodes          | 8.51e+03 |
+| eval successes    | 0.0205   |
+| eval total reward | 5        |
+| steps             | 1.8e+05  |
+--------------------------------
+--------------------------------
+| episodes          | 9e+03    |
+| eval successes    | 0.0528   |
+| eval total reward | 13       |
+| steps             | 1.9e+05  |
+--------------------------------
+--------------------------------
+| episodes          | 9.46e+03 |
+| eval successes    | 0.0779   |
+| eval total reward | 18       |
+| steps             | 2e+05    |
+--------------------------------
+--------------------------------
+| episodes          | 9.98e+03 |
+| eval successes    | 0.0496   |
+| eval total reward | 13       |
+| steps             | 2.1e+05  |
+--------------------------------
+--------------------------------
+| episodes          | 1.05e+04 |
+| eval successes    | 0.0329   |
+| eval total reward | 8        |
+| steps             | 2.2e+05  |
+--------------------------------
+--------------------------------
+| episodes          | 1.11e+04 |
+| eval successes    | 0.0377   |
+| eval total reward | 11       |
+| steps             | 2.3e+05  |
+--------------------------------
+--------------------------------
+| episodes          | 1.16e+04 |
+| eval successes    | 0.0758   |
+| eval total reward | 20       |
+| steps             | 2.4e+05  |
+--------------------------------
+--------------------------------
+| episodes          | 1.21e+04 |
+| eval successes    | 0.0458   |
+| eval total reward | 12       |
+| steps             | 2.5e+05  |
+--------------------------------
+--------------------------------
+| episodes          | 1.26e+04 |
+| eval successes    | 0.0543   |
+| eval total reward | 14       |
+| steps             | 2.6e+05  |
+--------------------------------
+--------------------------------
+| episodes          | 1.31e+04 |
+| eval successes    | 0.0615   |
+| eval total reward | 16       |
+| steps             | 2.7e+05  |
+--------------------------------
+--------------------------------
+| episodes          | 1.37e+04 |
+| eval successes    | 0.0431   |
+| eval total reward | 11       |
+| steps             | 2.8e+05  |
+--------------------------------
+--------------------------------
+| episodes          | 1.41e+04 |
+| eval successes    | 0.0166   |
+| eval total reward | 4        |
+| steps             | 2.9e+05  |
+--------------------------------
+--------------------------------
+| episodes          | 1.46e+04 |
+| eval successes    | 0.0909   |
+| eval total reward | 23       |
+| steps             | 3e+05    |
+--------------------------------
+--------------------------------
+| episodes          | 1.52e+04 |
+| eval successes    | 0.063    |
+| eval total reward | 17       |
+| steps             | 3.1e+05  |
+--------------------------------
+--------------------------------
+| episodes          | 1.57e+04 |
+| eval successes    | 0.0662   |
+| eval total reward | 18       |
+| steps             | 3.2e+05  |
+--------------------------------
+--------------------------------
+| episodes          | 1.63e+04 |
+| eval successes    | 0.034    |
+| eval total reward | 9        |
+| steps             | 3.3e+05  |
+--------------------------------
+--------------------------------
+| episodes          | 1.68e+04 |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| steps             | 3.4e+05  |
+--------------------------------
+--------------------------------
+| episodes          | 1.74e+04 |
+| eval successes    | 0.0069   |
+| eval total reward | 2        |
+| steps             | 3.5e+05  |
+--------------------------------
+--------------------------------
+| episodes          | 1.79e+04 |
+| eval successes    | 0.0175   |
+| eval total reward | 5        |
+| steps             | 3.6e+05  |
+--------------------------------
+--------------------------------
+| episodes          | 1.86e+04 |
+| eval successes    | 0.0356   |
+| eval total reward | 11       |
+| steps             | 3.7e+05  |
+--------------------------------
+--------------------------------
+| episodes          | 1.91e+04 |
+| eval successes    | 0.13     |
+| eval total reward | 36       |
+| steps             | 3.8e+05  |
+--------------------------------
+--------------------------------
+| episodes          | 1.96e+04 |
+| eval successes    | 0.0551   |
+| eval total reward | 14       |
+| steps             | 3.9e+05  |
+--------------------------------
+--------------------------------
+| episodes          | 2.02e+04 |
+| eval successes    | 0.0382   |
+| eval total reward | 11       |
+| steps             | 4e+05    |
+--------------------------------
+Total time: 301.73890805244446 seconds
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:516: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint8 = np.dtype([("qint8", np.int8, 1)])
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:517: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_quint8 = np.dtype([("quint8", np.uint8, 1)])
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:518: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint16 = np.dtype([("qint16", np.int16, 1)])
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:519: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_quint16 = np.dtype([("quint16", np.uint1--------------------------------
+| episodes          | 1.78e+04 |
+| eval successes    | 0.0671   |
+| eval total reward | 20       |
+| steps             | 3.6e+05  |
+--------------------------------
+--------------------------------
+| episodes          | 1.84e+04 |
+| eval successes    | 0.0623   |
+| eval total reward | 18       |
+| steps             | 3.7e+05  |
+--------------------------------
+--------------------------------
+| episodes          | 1.9e+04  |
+| eval successes    | 0.0218   |
+| eval total reward | 7        |
+| steps             | 3.8e+05  |
+--------------------------------
+--------------------------------
+| episodes          | 1.96e+04 |
+| eval successes    | 0.208    |
+| eval total reward | 59       |
+| steps             | 3.9e+05  |
+--------------------------------
+--------------------------------
+| episodes          | 2.02e+04 |
+| eval successes    | 0.0951   |
+| eval total reward | 29       |
+| steps             | 4e+05    |
+--------------------------------
+Total time: 312.95410203933716 seconds
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:516: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint8 = np.dtype([("qint8", np.int8, 1)])
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:517: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_quint8 = np.dtype([("quint8", np.uint8, 1)])
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:518: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a --------------------------------
+| episodes          | 1.57e+03 |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| steps             | 4e+04    |
+--------------------------------
+--------------------------------
+| episodes          | 1.99e+03 |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| steps             | 5e+04    |
+--------------------------------
+-----------------------------------------
+| episodes          | 2.5e+03  |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| steps             | 6e+04    |
+-----------------------------------------------------------------
+| episodes          | 2.95e+03 |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| steps             | 7e+04    |
+-----------------------------------------------------------------
+| episodes          | 3.44e+03 |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| steps             | 8e+04    |
+-----------------------------------------------------------------
+| episodes          | 3.94e+03 |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| steps             | 9e+04    |
+-----------------------------------------------------------------
+| episodes          | 4.43e+03 |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| steps             | 1e+05    |
+-----------------------------------------------------------------
+| episodes          | 4.93e+03 |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| steps             | 1.1e+05  |
+-----------------------------------------------------------------
+| episodes          | 5.38e+03 |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| steps             | 1.2e+05  |
+-----------------------------------------------------------------
+| episodes          | 5.91e+03 |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| steps             | 1.3e+05  |
+-----------------------------------------------------------------
+| episodes          | 6.39e+03 |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| steps             | 1.4e+05  |
+-----------------------------------------------------------------
+| episodes          | 6.88e+03 |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| steps             | 1.5e+05  |
+-----------------------------------------------------------------
+| episodes          | 7.36e+03 |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| steps             | 1.6e+05  |
+-----------------------------------------------------------------
+| episodes          | 7.92e+03 |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| steps             | 1.7e+05  |
+-----------------------------------------------------------------
+| episodes          | 8.44e+03 |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| steps             | 1.8e+05  |
+----------------------------------------------------------------
+| episodes          | 8.85e+03 |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| steps             | 1.9e+05  |
+---------------------------------------------------------
+| episodes          | 9.34e+03 |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| steps             | 2e+05    |
+--------------------------------
+-----------------------------------------
+| episodes          | 9.93e+03 |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| steps             | 2.1e+05  |
+----------------------------------------------------------------
+| episodes          | 1.04e+04 |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| steps             | 2.2e+05  |
+-----------------------------------------------------------------
+| episodes          | 1.1e+04  |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| steps             | 2.3e+05  |
+-----------------------------------------------------------------
+| episodes          | 1.15e+04 |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| steps             | 2.4e+05  |
+-----------------------------------------------------------------
+| episodes          | 1.21e+04 |
+| eval successes    | 0.069    |
+| eval total reward | 18       |
+| steps             | 2.5e+05  |
+--------------------------------
+--------------------------------
+| episodes          | 1.26e+04 |
+| eval successes    | 0.0712   |
+| eval total reward | 20       |
+| steps             | 2.6e+05  |
+--------------------------------
+--------------------------------
+| episodes          | 1.32e+04 |
+| eval successes    | 0.0993   |
+| eval total reward | 29       |
+| steps             | 2.7e+05  |
+---------------------------------------------------------
+| episodes          | 1.38e+04 |
+| eval successes    | 0.155    |
+| eval total reward | 45       |
+| steps             | 2.8e+05  |
+--------------------------------
+--------
+------------------------
+| episodes          | 1.47e+04 |
+| eval successes    | 0.203    |
+| eval total reward | 56       |
+| steps             | 2.9e+05  |
+--------------------------------
+------
+---------------------------------
+| episodes          | 1.48e+04 |
+| eval successes    | 0.2      |
+| eval total reward | 54       |
+| steps             | 3e+05    |
+--------------------------------------------------------------
+| episodes          | 1.57e+04 |
+| eval successes    | 0.25     |
+| eval total reward | 72       |
+| steps             | 3.1e+05  |
+--------------------------------
+----------------------------------
+| episodes          | 1.6e+04  |
+| eval successes    | 0.23     |
+| eval total reward | 72       |
+| steps             | 3.2e+05  |
+--------------------------------------------------------
+| episodes          | 1.69e+04 |
+| eval successes    | 0.344    |
+| eval total reward | 110      |
+| steps             | 3.3e+05  |
+--------------------------------
+-------
+-------------------------------
+| episodes          | 1.72e+04 |
+| eval successes    | 0.341    |
+| eval total reward | 112      |
+| steps             | 3.4e+05  |
+--------------------------------
+-
+----------------------
+| episodes          | 1.74e+04 |
+| eval successes    | 0.419    |
+| eval total reward | 132      |
+| steps             | 3.5e+05  |
+--------------------------------
+--------------------------------
+| episodes          | 1.8e+04  |
+| eval successes    | 0.521    |
+| eval total reward | 175      |
+| steps             | 3.6e+05  |
+--------------------------------
+| 1.19e+04 |
+| eval successes    | 0.0674   |
+| eval total reward | 18       |
+| steps             | 2.5e+05  |
+--------------------------------
+--------------------------------
+| episodes          | 1.24e+04 |
+| eval successes    | 0.0717   |
+| eval total reward | 20       |
+| steps             | 2.6e+05  |
+--------------------------------

@@ -1,0 +1,182 @@
+# -ffi @ file:///C:/ci/cffi_1600699250966/work
+absl-py==0.9.0
+alabaster==0.7.12
+array2gif==1.0.4
+astor==0.8.1
+# astroid @ file:///C:/ci/astroid_1592481955828/work
+async-generator==1.10
+atari-py==0.2.6
+atomicwrites==1.4.0
+# attrs @ file:///tmp/build/80754af9/attrs_1600298409949/work
+Babel==2.8.0
+# -e git+https://github.com/vanyacohen/babyai@6a64e41d3f5d7cb593f8a2b80c2ff7746743dafd#egg=babyai
+backcall==0.2.0
+# -e git+https://github.com/openai/baselines.git@ea25b9e8b234e6ee1bca43083f8f3cf974143998#egg=baselines
+# bleach @ file:///tmp/build/80754af9/bleach_1600439572647/work
+blosc==1.7.0
+boolean.py==3.7
+brotlipy==0.7.0
+cachetools==4.1.1
+certifi==2021.10.8
+cffi==1.15.0
+chardet==3.0.4
+click==7.1.2
+cloudpickle==1.3.0
+colorama==0.4.3
+# cryptography @ file:///C:/ci/cryptography_1601046913206/work
+cycler==0.10.0
+Cython==0.29.30
+decorator==4.4.2
+# deepdish @ file:///home/conda/feedstock_root/build_artifacts/deepdish_1594193790041/work
+defusedxml==0.6.0
+dill==0.3.2
+distro==1.5.0
+docutils==0.16
+entrypoints==0.3
+fasteners==0.15
+filelock==3.0.12
+future==0.18.2
+gast==0.5.3
+glfw==1.12.0
+google-auth==1.19.1
+google-auth-oauthlib==0.4.1
+google-pasta==0.2.0
+grpcio==1.30.0
+gym==0.15.7
+# -e git+https://github.com/maximecb/gym-minigrid.git@8134a1671680d89ed27598ad042e3eb73626ede5#egg=gym_minigrid
+h5py==3.7.0
+huggingface-hub==0.5.1
+# idna @ file:///tmp/build/80754af9/idna_1593446292537/work
+imageio==2.19.3
+imagesize==1.2.0
+# importlib-metadata @ file:///C:/ci/importlib-metadata_1593446525189/work
+iniconfig==1.1.1
+# ipykernel @ file:///C:/ci/ipykernel_1596208728219/work/dist/ipykernel-5.3.4-py3-none-any.whl
+# ipython @ file:///C:/ci/ipython_1598883894321/work
+ipython-genutils==0.2.0
+# isort @ file:///C:/ci/isort_1601490271550/work
+# jedi @ file:///C:/ci/jedi_1596472767194/work
+Jinja2==2.11.2
+# joblib @ file:///tmp/build/80754af9/joblib_1601912903842/work
+# jsonschema @ file:///C:/ci/jsonschema_1594363671836/work
+# jupyter-client @ file:///tmp/build/80754af9/jupyter_client_1601311786391/work
+jupyter-core==4.6.3
+# jupyterlab-pygments @ file:///tmp/build/80754af9/jupyterlab_pygments_1601490720602/work
+Keras-Applications==1.0.8
+Keras-Preprocessing==1.1.2
+# keyring @ file:///C:/ci/keyring_1601488971022/work
+kiwisolver==1.2.0
+lazy-object-proxy==1.4.3
+Markdown==3.2.2
+# MarkupSafe @ file:///C:/ci/markupsafe_1594405949945/work
+matplotlib==3.1.1
+mccabe==0.6.1
+# mistune @ file:///C:/ci/mistune_1594373272338/work
+mkl-fft==1.2.0
+mkl-random==1.1.1
+mkl-service==2.3.0
+mock==4.0.2
+monotonic==1.6
+mpi4py==3.1.3
+mpmath==1.2.1
+# -e git+https://github.com/openai/mujoco-py.git@1fe312b09ae7365f0dd9d4d0e453f8da59fae0bf#egg=mujoco_py
+# nbclient @ file:///tmp/build/80754af9/nbclient_1601059699549/work
+# nbconvert @ file:///C:/ci/nbconvert_1601914921407/work
+nbformat==5.0.7
+# nest-asyncio @ file:///tmp/build/80754af9/nest-asyncio_1601499549014/work
+nlp==0.4.0
+numexpr==2.7.1
+numpy==1.21.6
+# numpydoc @ file:///tmp/build/80754af9/numpydoc_1594166760263/work
+oauthlib==3.1.0
+olefile==0.46
+opencv-python==4.5.1.48
+packaging==20.4
+pandas==1.1.3
+pandocfilters==1.4.2
+parso==0.7.0
+# pickleshare @ file:///C:/ci/pickleshare_1594374056827/work
+Pillow==9.1.1
+pluggy==1.0.0
+# prompt-toolkit @ file:///tmp/build/80754af9/prompt-toolkit_1598885458782/work
+protobuf==3.12.2
+# psutil @ file:///C:/ci/psutil_1598352273540/work
+py==1.11.0
+pyarrow==1.0.1
+pyasn1==0.4.8
+pyasn1-modules==0.2.8
+pybind11==2.5.0
+pycodestyle==2.6.0
+# pycparser @ file:///tmp/build/80754af9/pycparser_1594388511720/work
+pyflakes==2.2.0
+pyglet==1.5.0
+# Pygments @ file:///tmp/build/80754af9/pygments_1600458456400/work
+# pylint @ file:///C:/ci/pylint_1598605958085/work
+# pyOpenSSL @ file:///tmp/build/80754af9/pyopenssl_1594392929924/work
+pyparsing==2.4.7
+# pyrsistent @ file:///C:/ci/pyrsistent_1600123688363/work
+# PySocks @ file:///C:/ci/pysocks_1594394709107/work
+pytest==7.1.2
+python-dateutil==2.8.1
+pytz==2020.1
+pywin32==227
+# pywin32-ctypes @ file:///C:/ci/pywin32-ctypes_1594392691209/work
+PyYAML==6.0
+pyzmq==19.0.2
+QtAwesome==0.7.2
+# qtconsole @ file:///tmp/build/80754af9/qtconsole_1600870028330/work
+QtPy==1.9.0
+# regex @ file:///C:/ci/regex_1596827857056/work
+# requests @ file:///tmp/build/80754af9/requests_1592841827918/work
+requests-oauthlib==1.3.0
+rope==0.17.0
+rsa==4.6
+sacremoses==0.0.43
+scikit-build==0.11.1
+# scikit-learn @ file:///C:/ci/scikit-learn_1598376983131/work
+# scipy @ file:///C:/ci/scipy_1597686737426/work
+seaborn==0.8.1
+sentencepiece==0.1.91
+six==1.15.0
+snowballstemmer==2.0.0
+# Sphinx @ file:///tmp/build/80754af9/sphinx_1597428793432/work
+sphinxcontrib-applehelp==1.0.2
+sphinxcontrib-devhelp==1.0.2
+sphinxcontrib-htmlhelp==1.0.3
+sphinxcontrib-jsmath==1.0.1
+sphinxcontrib-qthelp==1.0.3
+sphinxcontrib-serializinghtml==1.1.4
+# -e git+https://github.com/openai/spinningup.git@038665d62d569055401d91856abb287263096178#egg=spinup
+spyder==3.3.6
+spyder-kernels==0.5.2
+stable-baselines==2.10.1
+sympy==1.8
+tables==3.6.1
+tensorboard==1.14.0
+tensorboard-plugin-wit==1.7.0
+tensorboardX==2.1
+tensorflow==1.14.0
+tensorflow-estimator==1.14.0
+termcolor==1.1.0
+testpath==0.4.4
+# threadpoolctl @ file:///tmp/tmp9twdgx9k/threadpoolctl-2.1.0-py3-none-any.whl
+tokenizers==0.12.1
+# toml @ file:///tmp/build/80754af9/toml_1592853716807/work
+tomli==2.0.1
+torch==1.5.1
+torchvision==0.6.1
+tornado==6.0.4
+# tqdm @ file:///tmp/build/80754af9/tqdm_1601923723745/work
+# traitlets @ file:///tmp/build/80754af9/traitlets_1600712679583/work
+transformers==4.18.0
+typed-ast==1.4.1
+typing-extensions==4.2.0
+# urllib3 @ file:///tmp/build/80754af9/urllib3_1597086586889/work
+# wcwidth @ file:///tmp/build/80754af9/wcwidth_1593447189090/work
+webencodings==0.5.1
+Werkzeug==1.0.1
+win-inet-pton==1.1.0
+wincertstore==0.2
+wrapt==1.11.2
+xxhash==2.0.0
+# zipp @ file:///tmp/build/80754af9/zipp_1602002379921/work

@@ -47,7 +47,7 @@ def learn(primitive_env, task_env, total_steps, fewshot=False, q_dir="vf", sp_di
 
     # Start Training
     logger = configure(log_dir, ["stdout", "csv", "tensorboard"])
-    reward_total, successes, eval_reward_total, eval_successes, step, num_episodes, start_time = 0, 0, 0, 0, 0, 1, time.time()
+    reward_total, successes, eval_reward_total, eval_successes, step, num_episodes, eval_episodes, start_time = 0, 0, 0, 0, 0, 0, 1, time.time()
     while step < total_steps:
         if fewshot:
             state, info = task_env.reset(seed=seed)   
@@ -88,15 +88,14 @@ def learn(primitive_env, task_env, total_steps, fewshot=False, q_dir="vf", sp_di
                     torch.save(primitive_env.goals, sp_dir+"goals") 
                 logger.record("steps", step); logger.record("episodes", num_episodes); 
                 logger.record("total reward", reward_total); logger.record("successes", successes/num_episodes)
-                logger.record("eval total reward", eval_reward_total); logger.record("eval successes", eval_successes/num_episodes)
+                logger.record("eval total reward", eval_reward_total); logger.record("eval successes", eval_successes/eval_episodes)
                 logger.record("goals", len(primitive_env.goals)); logger.record("time elapsed", time.time()-start_time); logger.dump(step)
-                reward_total, successes, eval_reward_total, eval_successes, num_episodes, start_time = 0, 0, 0, 0, 0, time.time()
-            if done or truncated:
-                num_episodes += 1; reward_total += reward; successes += reward>=primitive_env.rmax
+                reward_total, successes, eval_reward_total, eval_successes, num_episodes, eval_episodes, start_time = 0, 0, 0, 0, 0, 0, time.time()
+            if step%1000 == 0:
                 if fewshot:    eval_reward, eval_success = evaluate(task_env, SM=SM, skill=Q, episodes=1, epsilon=0.0, gamma=1, max_episode_steps=200, seed=seed)
                 elif task_env: eval_reward, eval_success = evaluate(task_env, SM=SM, episodes=1, epsilon=0.0, gamma=1, max_episode_steps=200, seed=seed)
-                if task_env: eval_reward_total += eval_reward; eval_successes += eval_success 
-                break
+                if task_env: eval_reward_total += eval_reward; eval_successes += eval_success; eval_episodes += 1 
+            if done or truncated: num_episodes += 1; reward_total += reward; successes += reward>=primitive_env.rmax; break
     return SP
 
 parser = argparse.ArgumentParser()

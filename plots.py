@@ -21,13 +21,15 @@ parser.add_argument(
     help="Experiment. E.g office, office_iclr, movingtargets_iclr",
 )
 args = parser.parse_args()
-metric = "successes"
+# metric = "successes"
+# m = 1
+metric = "total reward"
+m = 4
 
 def plot_office_iclr():
      
     num_runs = 25
     num_steps = 400000
-    m = 4
     
     labels = ['SM (Ours)','QL-SM (Ours)','CRM','CRM-RS','HRM','HRM-RS','QL',"QL-RS"]
     dirs = ['sm_ql/zeroshot','sm_ql/fewshot','crm','crm-rs','hrm','hrm-rs','rm-ql','rm-ql-rs']
@@ -97,7 +99,6 @@ def plot_office():
 
     num_runs = 25
     num_steps = 400000
-    m = 4
 
     labels = ['SM (Ours)','QL-SM (Ours)','QL']
     dirs = ['sm_ql/zeroshot','sm_ql/fewshot','ql']

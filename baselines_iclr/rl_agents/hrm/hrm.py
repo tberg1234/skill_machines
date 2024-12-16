@@ -130,6 +130,7 @@ def learn(env,
             if num_episodes % 2 == 1:
                 reward_total += r
                 successes += r>=1
+                if done: num_episodes += 1
             if num_episodes % 2 == 0:
                 step += 1
                 if step%print_freq == 0 or step == init_eval:
@@ -141,7 +142,6 @@ def learn(env,
                     reward_total = 0
                     successes = 0
                     pre_num_episodes = num_episodes
-            if done:
-                num_episodes += 1
-                break
+                if step%1000==0: num_episodes += 1; break
+            if done: break
             s = sn

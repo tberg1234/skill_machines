@@ -43,14 +43,13 @@ def plot_office_iclr():
         csvreader = csv.reader(filer)
         all_data_pnts = [row for row in csvreader]
         episodes, steps, performance = all_data_pnts[0].index("episodes"), all_data_pnts[0].index("steps"), all_data_pnts[0].index(f"eval {metric}")
-        # all_data_pnts[1][-2:]=["0","0"]
         all_data_pnts = np.array(all_data_pnts[1:]).astype(np.float32)[:num_steps,:]
+        task = all_data_pnts[:,steps]
         print(all_data_pnts.shape)
         a = np.sum(all_data_pnts[:,episodes].reshape(-1, m), axis=1)
         b = np.sum(all_data_pnts[:,steps].reshape(-1, m), axis=1)
         c = np.sum(all_data_pnts[:,performance].reshape(-1, m), axis=1)
         all_data_pnts = np.array([a,b,c]).T
-        task = all_data_pnts[:,1]
         print(all_data_pnts.shape)
 
         for i in range(num_runs):
@@ -114,14 +113,13 @@ def plot_office():
         csvreader = csv.reader(filer)
         all_data_pnts = [row for row in csvreader]
         episodes, steps, performance = all_data_pnts[0].index("episodes"), all_data_pnts[0].index("steps"), all_data_pnts[0].index(f"eval {metric}")
-        # all_data_pnts[1][-2:]=["0","0"]
         all_data_pnts = np.array(all_data_pnts[1:]).astype(np.float32)[:num_steps,:]
+        task = all_data_pnts[:,steps]
         print(all_data_pnts.shape)
         a = np.sum(all_data_pnts[:,episodes].reshape(-1, m), axis=1)
         b = np.sum(all_data_pnts[:,steps].reshape(-1, m), axis=1)
         c = np.sum(all_data_pnts[:,performance].reshape(-1, m), axis=1)
         all_data_pnts = np.array([a,b,c]).T
-        task = all_data_pnts[:,1]
         print(all_data_pnts.shape)
 
         for i in range(num_runs):

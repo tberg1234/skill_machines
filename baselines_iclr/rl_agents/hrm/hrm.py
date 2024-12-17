@@ -130,18 +130,17 @@ def learn(env,
             if num_episodes % 2 == 1:
                 reward_total += r
                 successes += r>=1
-                if done: num_episodes += 1
             if num_episodes % 2 == 0:
                 step += 1
-                if step%print_freq == 0 or step == init_eval:
+                if step%print_freq == 0:
                     logger.record_tabular("steps", step)
                     logger.record_tabular("episodes", num_episodes)
                     logger.record_tabular("eval total reward", reward_total)
-                    logger.record_tabular("eval successes", successes))
+                    logger.record_tabular("eval successes", successes/(num_episodes*0.5))
                     logger.dump_tabular()
                     reward_total = 0
                     successes = 0
-                    num_episodes += 1
-                    break
-            if done: break
+            if done: 
+                num_episodes += 1
+                break
             s = sn

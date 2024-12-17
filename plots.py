@@ -23,8 +23,8 @@ parser.add_argument(
 args = parser.parse_args()
 # metric = "successes"
 # m = 1
-metric = "successes"
-m = 40
+metric = "total reward"
+m = 4
 
 def plot_office_iclr():
      

@@ -98,7 +98,7 @@ def learn(env,
                 # Include only the current experience (standard q-learning)
                 experiences = [(s,a,r,sn,done)]
 
-            if num_episodes % 2 == 0 and step >= init_eval:
+            if num_episodes % 2 == 0:
                 for _s,_a,_r,_sn,_done in experiences:
                     if _s not in Q: Q[_s] = dict([(b,q_init) for b in actions])
                     if _done: _delta = _r - Q[_s][_a]
@@ -112,15 +112,15 @@ def learn(env,
                 if done: num_episodes += 1
             if num_episodes % 2 == 0:
                 step += 1
-                if step%print_freq == 0 or step == init_eval:
+                if step%print_freq == 0:
                     logger.record_tabular("steps", step)
                     logger.record_tabular("episodes", num_episodes)
                     logger.record_tabular("eval total reward", reward_total)
-                    logger.record_tabular("eval successes", successes/(num_episodes/2-pre_num_episodes/2))
+                    logger.record_tabular("eval successes", successes))
                     logger.dump_tabular()
                     reward_total = 0
                     successes = 0
-                    pre_num_episodes = num_episodes
-                if step%1000==0: num_episodes += 1; break
+                    num_episodes += 1
+                    break
             if done: break
             s = sn

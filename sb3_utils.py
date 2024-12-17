@@ -96,7 +96,7 @@ class UVFAFeaturesExtractor(BaseFeaturesExtractor):
 
 
 class EvaluateSaveCallback(BaseCallback):
-    def __init__(self, primitive_env, task_env, SM=None, skill=None, save_dir="", eval_steps=500, print_freq=1e4, seed=None, verbose=1):
+    def __init__(self, primitive_env, task_env, SM=None, skill=None, save_dir="", eval_steps=100, print_freq=1e4, seed=None, verbose=1):
         super().__init__(verbose)
         self.primitive_env, self.task_env, self.SM, self.skill, self.eval_steps, self.print_freq, self.save_dir, self.seed  = primitive_env, task_env, SM, skill, eval_steps, print_freq, save_dir, seed
         self.rewards, self.successes, self.best = 0, 0, 0
@@ -128,7 +128,6 @@ class DQNAgent(BaseAgent):
                     learning_rate = 1e-5, gamma = 0.99, learning_starts = 10000, target_update_interval = 1000, train_freq = 1,
                     exploration_fraction = 0.5, exploration_final_eps = 0.1,
                 )
-
         if log_dir: self.model.set_logger(configure(log_dir+self.name, ["stdout", "csv", "tensorboard"]))
         if load: self.model = self.model_class.load(save_dir+self.name, env=env)
         os.makedirs(save_dir, exist_ok=True)
@@ -155,7 +154,6 @@ class TD3Agent(BaseAgent):
                     action_noise = NormalActionNoise(mean=np.zeros(self.action_space.shape[-1]), sigma=0.2 * np.ones(self.action_space.shape[-1])),
                     learning_rate=1e-5, gamma=0.99, batch_size=32, learning_starts=1000, train_freq=50, gradient_steps=50,
                 )
-
         if log_dir: self.model.set_logger(configure(log_dir+self.name, ["stdout", "csv", "tensorboard"]))
         if load: self.model = self.model_class.load(save_dir+self.name, env=env)
         os.makedirs(save_dir, exist_ok=True)

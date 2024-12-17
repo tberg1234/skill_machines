@@ -34,7 +34,7 @@ class QLAgent(BaseAgent):
         else:    self.values[state][action] += self.lr * (reward + self.gamma*self.get_values(state_).max() - self.values[state][action])
 
 
-def learn(primitive_env, task_env, total_steps, fewshot=False, q_dir="vf", sp_dir="wvfs", log_dir="logs", load=False, gamma=0.9, lr=0.5, epsilon=0.5, qinit=0, print_freq=1000, seed=None):  
+def learn(primitive_env, task_env, total_steps, fewshot=False, q_dir="vf", sp_dir="wvfs", log_dir="logs", load=False, gamma=0.9, lr=0.5, epsilon=0.5, qinit=0, eval_episodes=1, print_freq=1000, seed=None):  
     """Q-Learning based method for solving temporal logic tasks zeroshot or fewshot using Skill Machines"""
 
     # Initialise the World Value Functions for the min ("0") and max ("1") WVFs
@@ -47,7 +47,7 @@ def learn(primitive_env, task_env, total_steps, fewshot=False, q_dir="vf", sp_di
 
     # Start Training
     logger = configure(log_dir, ["stdout", "csv", "tensorboard"])
-    reward_total, successes, eval_reward_total, step, eval_successes, num_episodes, start_time = 0, 0, 0, 0, 0, 1, time.time()
+    step, reward_total, successes, num_episodes, start_time = 0, 0, 0, 1, time.time()
     while step < total_steps:
         if fewshot:
             state, info = task_env.reset(seed=seed)   
@@ -85,18 +85,17 @@ def learn(primitive_env, task_env, total_steps, fewshot=False, q_dir="vf", sp_di
                 if fewshot: torch.save(Q, q_dir+"skill") 
                 elif not load: 
                     for primitive in SP: torch.save(SP[primitive].values, sp_dir+"wvf_"+primitive) 
-                    torch.save(primitive_env.goals, sp_dir+"goals") 
-                logger.record("steps", step); logger.record("episodes", num_episodes); 
+                    torch.save(primitive_env.goals, sp_dir+"goals")                
+                logger.record("steps", step); logger.record("episodes", num_episodes); logger.record("goals", len(primitive_env.goals));
                 logger.record("total reward", reward_total); logger.record("successes", successes/num_episodes)
-                logger.record("eval total reward", eval_reward_total); logger.record("eval successes", eval_successes/num_episodes)
-                logger.record("goals", len(primitive_env.goals)); logger.record("time elapsed", time.time()-start_time); logger.dump(step)
-                reward_total, successes, eval_reward_total, eval_successes, num_episodes, start_time = 0, 0, 0, 0, 0, time.time()
-            if done or truncated:
-                num_episodes += 1; reward_total += reward; successes += reward>=primitive_env.rmax
-                if fewshot:    eval_reward, eval_success = evaluate(task_env, SM=SM, skill=Q, episodes=1, epsilon=0.0, gamma=1, max_episode_steps=1000, seed=seed)
-                elif task_env: eval_reward, eval_success = evaluate(task_env, SM=SM, episodes=1, epsilon=0.0, gamma=1, max_episode_steps=1000, seed=seed)
-                if task_env: eval_reward_total += eval_reward; eval_successes += eval_success
-                break
+                logger.record("time elapsed", time.time()-start_time); logger.dump(step)
+                if task_env:
+                    if fewshot: eval_total_reward, eval_successes = evaluate(task_env, SM=SM, skill=Q, episodes=eval_episodes, epsilon=0.0, gamma=1, max_episode_steps=200, seed=seed)
+                    else:       eval_total_reward, eval_successes = evaluate(task_env, SM=SM, episodes=eval_episodes, epsilon=0.0, gamma=1, max_episode_steps=200, seed=seed)
+                    logger.record("eval total reward", eval_total_reward); logger.record("eval successes", eval_successes)
+                reward_total, successes, num_episodes, start_time = 0, 0, 0, time.time()
+            if done or truncated: num_episodes += 1; reward_total += reward; successes += reward>=primitive_env.rmax; break
+
     return SP
 
 parser = argparse.ArgumentParser()

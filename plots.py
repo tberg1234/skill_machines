@@ -112,6 +112,7 @@ def plot_office():
         csvreader = csv.reader(filer)
         all_data_pnts = [row for row in csvreader]
         episodes, steps, performance = all_data_pnts[0].index("episodes"), all_data_pnts[0].index("steps"), all_data_pnts[0].index(f"eval {metric}")
+        all_data_pnts[1][-2:]=["0","0"]
         all_data_pnts = np.array(all_data_pnts[1:]).astype(np.float32)[:num_steps,:]
         print(all_data_pnts.shape)
         a = np.sum(all_data_pnts[:,episodes].reshape(-1, m), axis=1)
@@ -127,6 +128,7 @@ def plot_office():
                 csvreader = csv.reader(filer)
                 data_pnts = []
                 for row in csvreader: data_pnts.append(row)
+                data_pnts[1][-2:]=["0","0"]
                 episodes, steps, performance = data_pnts[0].index("episodes"), data_pnts[0].index("steps"), data_pnts[0].index(f"eval {metric}")
                 data_pnts = np.array(data_pnts[1:]).astype(np.float32)[:num_steps,:]
                 a = np.sum(data_pnts[:,episodes].reshape(-1, m), axis=1)

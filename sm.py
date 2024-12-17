@@ -353,4 +353,4 @@ def evaluate(task_env, SM=None, skill=None, episodes=1, epsilon=0, gamma=1, max_
             rewards += (gamma**step)*reward; step += 1
             if done or (state["env_state"]==state_["env_state"]).all() or truncated or step>=max_episode_steps: successes += reward>=task_env.rm.rmax; break
             state = state_
-    return rewards/episodes, successes/episodes
+    return rewards, successes/episodes

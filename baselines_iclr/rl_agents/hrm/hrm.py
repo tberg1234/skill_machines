@@ -97,7 +97,7 @@ def learn(env,
             sn, r, done, info = env.step(a)
             sn = tuple(sn)
 
-            if num_episodes % 2 == 0 and step >= init_eval:
+            if num_episodes % 2 == 0:
 
                 # Saving the real reward that the option is getting
                 if use_rs:
@@ -137,11 +137,11 @@ def learn(env,
                     logger.record_tabular("steps", step)
                     logger.record_tabular("episodes", num_episodes)
                     logger.record_tabular("eval total reward", reward_total)
-                    logger.record_tabular("eval successes", successes/(num_episodes/2-pre_num_episodes/2))
+                    logger.record_tabular("eval successes", successes))
                     logger.dump_tabular()
                     reward_total = 0
                     successes = 0
-                    pre_num_episodes = num_episodes
-                if step%1000==0: num_episodes += 1; break
+                    num_episodes += 1
+                    break
             if done: break
             s = sn

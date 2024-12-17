@@ -64,7 +64,7 @@ def learn(primitive_env, task_env, total_steps, fewshot=False, q_dir="vf", sp_di
                 SM.step(task_env.rm, info["true_propositions"])
             else:
                 if random.random() < epsilon: action = primitive_env.environment.action_space.sample()
-                else:                         action = random.choice([action for action in range(primitive_env.action_space.n) if SP["1"].get_values(state)[action] == SP["1"].get_values(state).max()])
+                else:                         action = SP["1"].get_action_value(state)[0][0] # random.choice([action for action in range(primitive_env.action_space.n) if SP["1"].get_values(state)[action] == SP["1"].get_values(state).max()])
                 state_, reward, done, truncated, info = primitive_env.step(action)
             
             # Updating q-values

@@ -24,7 +24,7 @@ args = parser.parse_args()
 # metric = "successes"
 # m = 1
 metric = "total reward"
-m = 4
+m = 40
 
 def plot_office_iclr():
      
@@ -49,7 +49,7 @@ def plot_office_iclr():
         b = np.sum(all_data_pnts[:,steps].reshape(-1, m), axis=1)
         c = np.sum(all_data_pnts[:,performance].reshape(-1, m), axis=1)
         all_data_pnts = np.array([a,b,c]).T
-        task = all_data_pnts[:,1] # 0 for episodes and 1 for steps
+        task = all_data_pnts[:,1]
         print(all_data_pnts.shape)
 
         for i in range(num_runs):
@@ -108,6 +108,7 @@ def plot_office():
     for j in range(len(labels)):
         dirr = f'data/logs/{dirs[j]}/{args.env}/'
         filer = open(dirr+'0/progress.csv')
+        print(dirr+'0/progress.csv')
         csvreader = csv.reader(filer)
         all_data_pnts = [row for row in csvreader]
         episodes, steps, performance = all_data_pnts[0].index("episodes"), all_data_pnts[0].index("steps"), all_data_pnts[0].index(f"eval {metric}")
@@ -117,7 +118,7 @@ def plot_office():
         b = np.sum(all_data_pnts[:,steps].reshape(-1, m), axis=1)
         c = np.sum(all_data_pnts[:,performance].reshape(-1, m), axis=1)
         all_data_pnts = np.array([a,b,c]).T
-        task = all_data_pnts[:,1] # 0 for episodes and 1 for steps
+        task = all_data_pnts[:,1]
         print(all_data_pnts.shape)
 
         for i in range(num_runs):

@@ -34,7 +34,7 @@ class QLAgent(BaseAgent):
         else:    self.values[state][action] += self.lr * (reward + self.gamma*self.get_values(state_).max() - self.values[state][action])
 
 
-def learn(primitive_env, task_env, total_steps, fewshot=False, q_dir="vf", sp_dir="wvfs", log_dir="logs", load=False, gamma=0.9, lr=0.5, epsilon=0.5, qinit=0, print_freq=10000, seed=None):  
+def learn(primitive_env, task_env, total_steps, fewshot=False, q_dir="vf", sp_dir="wvfs", log_dir="logs", load=False, gamma=0.9, lr=0.5, epsilon=0.5, qinit=0, print_freq=1000, seed=None):  
     """Q-Learning based method for solving temporal logic tasks zeroshot or fewshot using Skill Machines"""
 
     # Initialise the World Value Functions for the min ("0") and max ("1") WVFs
@@ -47,7 +47,7 @@ def learn(primitive_env, task_env, total_steps, fewshot=False, q_dir="vf", sp_di
 
     # Start Training
     logger = configure(log_dir, ["stdout", "csv", "tensorboard"])
-    reward_total, successes, eval_reward_total, eval_successes, step, num_episodes, eval_episodes, start_time = 0, 0, 0, 0, 0, 0, 1, time.time()
+    reward_total, successes, eval_reward_total, step, eval_successes, num_episodes, start_time = 0, 0, 0, 0, 0, 1, time.time()
     while step < total_steps:
         if fewshot:
             state, info = task_env.reset(seed=seed)   
@@ -88,14 +88,15 @@ def learn(primitive_env, task_env, total_steps, fewshot=False, q_dir="vf", sp_di
                     torch.save(primitive_env.goals, sp_dir+"goals") 
                 logger.record("steps", step); logger.record("episodes", num_episodes); 
                 logger.record("total reward", reward_total); logger.record("successes", successes/num_episodes)
-                logger.record("eval total reward", eval_reward_total); logger.record("eval successes", eval_successes/eval_episodes)
+                logger.record("eval total reward", eval_reward_total); logger.record("eval successes", eval_successes/num_episodes)
                 logger.record("goals", len(primitive_env.goals)); logger.record("time elapsed", time.time()-start_time); logger.dump(step)
-                reward_total, successes, eval_reward_total, eval_successes, num_episodes, eval_episodes, start_time = 0, 0, 0, 0, 0, 0, time.time()
-            if step%1000 == 0:
-                if fewshot:    eval_reward, eval_success = evaluate(task_env, SM=SM, skill=Q, episodes=1, epsilon=0.0, gamma=1, max_episode_steps=200, seed=seed)
-                elif task_env: eval_reward, eval_success = evaluate(task_env, SM=SM, episodes=1, epsilon=0.0, gamma=1, max_episode_steps=200, seed=seed)
-                if task_env: eval_reward_total += eval_reward; eval_successes += eval_success; eval_episodes += 1 
-            if done or truncated: num_episodes += 1; reward_total += reward; successes += reward>=primitive_env.rmax; break
+                reward_total, successes, eval_reward_total, eval_successes, num_episodes, start_time = 0, 0, 0, 0, 0, time.time()
+            if done or truncated:
+                num_episodes += 1; reward_total += reward; successes += reward>=primitive_env.rmax
+                if fewshot:    eval_reward, eval_success = evaluate(task_env, SM=SM, skill=Q, episodes=1, epsilon=0.0, gamma=1, max_episode_steps=1000, seed=seed)
+                elif task_env: eval_reward, eval_success = evaluate(task_env, SM=SM, episodes=1, epsilon=0.0, gamma=1, max_episode_steps=1000, seed=seed)
+                if task_env: eval_reward_total += eval_reward; eval_successes += eval_success
+                break
     return SP
 
 parser = argparse.ArgumentParser()
@@ -121,10 +122,10 @@ if __name__ == "__main__":
     
     # Initialise MDP for the primitives (primitive_env), and MDP for the given temporal logic task (task_env)
     if "Task" in args.env: 
-        primitive_env = TaskPrimitive(gym.make(args.env).environment)
+        primitive_env = TaskPrimitive(gym.make(args.env).environment, max_episode_steps=1000)
         task_env = gym.make(args.env)
     else:                  
-        primitive_env = TaskPrimitive(gym.make(args.env))
+        primitive_env = TaskPrimitive(gym.make(args.env, max_episode_steps=1000))
         task_env = Task(gym.make(args.env), args.ltl) if args.ltl else None
 
     # Train primitive skill (skill_primitive), and optionally task specific skill fewshot

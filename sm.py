@@ -215,7 +215,7 @@ class ComposeSkillPrimitive(SkillPrimitive):
             else:           actions = np.where((abs(values - max_values) < abs(values - min_values))[:,np.newaxis], max_actions, min_actions)
         
         return actions, values
-  
+
 def value_iteration(delta_u, delta_r, gamma=0.9):
     """
     We use value iteration to compute the Q-function for a reward machine.
@@ -260,7 +260,7 @@ def exp_wvf(exp, skill_primitives):
 
 
 class SkillMachine():
-    def __init__(self, primitive_env, skill_primitives, vectorised=False, goal_directed=True, rebuild_onreset=True):
+    def __init__(self, primitive_env, skill_primitives, vectorised=False, goal_directed=False, rebuild_onreset=True):
         self.vectorised = vectorised # True if the learned policies can take a list of multiple states as input. E.g. When using a neural network
         self.rebuild_onreset = rebuild_onreset # Rebuild Skill Machine after each environment reset. Set to False for speed up when the tasks per episode don't change.
         self.goal_directed = goal_directed
@@ -339,7 +339,7 @@ def evaluate(task_env, SM=None, skill=None, episodes=1, epsilon=0, gamma=1, max_
 
     rewards, successes, episode, all_images = 0, 0, 0, []
     while episode<episodes:
-        episode += 1; step = 0; images=[]
+        episode += 1; step = 0
         state, info = task_env.reset(seed=seed)
         if SM: SM.reset(task_env.rm, info["true_propositions"])
         while True:

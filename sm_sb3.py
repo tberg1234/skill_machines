@@ -24,11 +24,6 @@ if __name__ == "__main__":
     else:                  
         primitive_env = TaskPrimitive(gym.make(args.env), sb3=True)
         task_env_test = Task(gym.make(args.env), args.ltl) if args.ltl else None
-
-    env = gym.make(args.env, render_mode="rgb_array")
-    if "Task" in args.env: primitive_env = TaskPrimitive(env.environment, sb3=True); task_env_test = env
-    else:                  primitive_env = TaskPrimitive(env, sb3=True);             task_env_test = Task(env, args.ltl) if args.ltl else None
-    
     if args.load: primitive_env.goals.update(torch.load(sp_dir+"goals")) 
    
     # Initialise the skill primitives from the min ("0") and max ("1") WVFs, and the skill machine from the skill primitives

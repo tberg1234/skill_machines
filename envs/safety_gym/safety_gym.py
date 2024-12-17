@@ -69,14 +69,12 @@ class SafetyEnv(gym.Env):
         'continue_goal': True,    
     }
 
-    def __init__(self, config={}, use_dense=False, max_episode_steps=100, render_mode="human"):
+    def __init__(self, config={}, use_dense=False, render_mode="human"):
         
         self.sensors = sorted(["hazards_lidar","goal_lidar","buttons_lidar"])
         self.predicates = sorted(["hazards","goal","buttons"])
         self.constraints = ["hazards"]
         self.threshold = 0.9
-        self.steps = 0
-        self.max_episode_steps = max_episode_steps
         self.use_dense = use_dense
         self.render_mode = render_mode
         self.render_params = dict(dpi=200, skill=None, state=None, title=None, task_title=None, skill_title=None)
@@ -97,9 +95,7 @@ class SafetyEnv(gym.Env):
     
     def reset(self, **kwargs):
         self.all_states, self.skill_title, self.skill_image = None, None, None
-        obs = self.env.reset()
-        self.steps = 0
-        return obs, {}
+        return self.env.reset(), {}
     
     def dist_xy(self, pos1, pos2):
         ''' Return the distance from the robot to an XY position '''
@@ -133,9 +129,7 @@ class SafetyEnv(gym.Env):
         obs, reward, done, info = self.env.step(action)
         self.agent_pos = self.env.world.robot_pos()[:2]
         reward = self.get_reward(info)
-        self.steps += 1
-        truncate = self.steps > self.max_episode_steps
-        return obs, reward, done, truncate, info
+        return obs, reward, done, False, info
     
     def render(self, *args, **kwargs):    
         if self.render_params["skill"]: return self.render_skill(self.render_params["skill"], self.render_params["state"], task_title=self.render_params["task_title"], skill_title=self.render_params["skill_title"], dpi=self.render_params["dpi"])

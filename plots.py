@@ -100,8 +100,8 @@ def plot_office():
     num_runs = 25
     num_steps = 400000
 
-    labels = ['SM (Ours)','QL-SM (Ours)','QL']
-    dirs = ['sm_ql/zeroshot','sm_ql/fewshot','ql']
+    labels = ['SM (Ours)','QL-SM (Ours)']
+    dirs = ['sm_ql/zeroshot','sm_ql/fewshot']
 
     data = []
 

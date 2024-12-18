@@ -62,7 +62,7 @@ def learn(env,
 
     # Running Q-Learning
     learning_epsilon = epsilon
-    init_eval = print_freq if init_eval else 0
+    init_eval = 1000
     step         = 0
     num_episodes = 0
     pre_num_episodes = 0
@@ -79,7 +79,7 @@ def learn(env,
         if num_episodes % 2 == 0:
             epsilon = learning_epsilon
         else:
-            epsilon = 0.0
+            epsilon = 0 
         
         s = tuple(env.reset())
         
@@ -97,7 +97,7 @@ def learn(env,
             sn, r, done, info = env.step(a)
             sn = tuple(sn)
 
-            if num_episodes % 2 == 0:
+            if num_episodes % 2 == 0 and step>=init_eval:
 
                 # Saving the real reward that the option is getting
                 if use_rs:

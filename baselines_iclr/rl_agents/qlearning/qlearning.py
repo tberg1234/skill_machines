@@ -60,7 +60,7 @@ def learn(env,
 
     # Running Q-Learning
     learning_epsilon = epsilon
-    init_eval = print_freq if init_eval else 0
+    init_eval = 1000
     reward_total = 0
     successes = 0
     step = 0
@@ -74,7 +74,7 @@ def learn(env,
         if num_episodes % 2 == 0:
             epsilon = learning_epsilon
         else:
-            epsilon = 0.0
+            epsilon = 0
         
         s = tuple(env.reset())
         if s not in Q: Q[s] = dict([(a,q_init) for a in actions])
@@ -98,7 +98,7 @@ def learn(env,
                 # Include only the current experience (standard q-learning)
                 experiences = [(s,a,r,sn,done)]
 
-            if num_episodes % 2 == 0:
+            if num_episodes % 2 == 0 and step>=init_eval:
                 for _s,_a,_r,_sn,_done in experiences:
                     if _s not in Q: Q[_s] = dict([(b,q_init) for b in actions])
                     if _done: _delta = _r - Q[_s][_a]

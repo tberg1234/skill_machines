@@ -60,7 +60,7 @@ def learn(env,
 
     # Running Q-Learning
     learning_epsilon = epsilon
-    init_eval = 1000
+    init_eval = 1000 if init_eval else 0
     reward_total = 0
     successes = 0
     step = 0

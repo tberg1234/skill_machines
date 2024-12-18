@@ -62,7 +62,7 @@ def learn(env,
 
     # Running Q-Learning
     learning_epsilon = epsilon
-    init_eval = 1000
+    init_eval = 1000 if init_eval else 0
     step         = 0
     num_episodes = 0
     pre_num_episodes = 0

@@ -1,1014 +1,394 @@
-Logging to data/logs/sp_ql/Office-v0/19/---------------------------------
-| episodes          | 1008     |
-| eval successes    | 0        |
-| eval total reward | 0        |
-| goals             | 20       |
-| steps             | 10000    |
-| successes         | 0.21     |
-| time elapsed      | 27.7     |
-| total reward      | 212      |
------------------------------------------------------------------
-| episodes          | 457      |
-| eval successes    | 0        |
-| eval total reward | 0        |
-| goals             | 22       |
-| steps             | 20000    |
-| successes         | 0.411    |
-| time elapsed      | 31.2     |
-| total reward      | 188      |
-----------------------------------------------------------------
-| episodes          | 305      |
-| eval successes    | 0        |
-| eval total reward | 0        |
-| goals             | 22       |
-| steps             | 30000    |
-| successes         | 0.551    |
-| time elapsed      | 34.2     |
-| total reward      | 168      |
---------------------------------
----------------------------------
-| episodes          | 292      |
-| eval successes    | 0        |
-| eval total reward | 0        |
-| goals             | 22       |
-| steps             | 40000    |
-| successes         | 0.64     |
-| time elapsed      | 33.9     |
-| total reward      | 187      |
------------------------------------------------------------------
-| episodes          | 319      |
-| eval successes    | 0        |
-| eval total reward | 0        |
-| goals             | 22       |
-| steps             | 50000    |
-| successes         | 0.618    |
-| time elapsed      | 29.1     |
-| total reward      | 197      |
------------------------------------------------------------------
-| episodes          | 300      |
-| eval successes    | 0        |
-| eval total reward | 0        |
-| goals             | 22       |
-| steps             | 60000    |
-| successes         | 0.603    |
-| time elapsed      | 32.1     |
-| total reward      | 181      |
------------------------------------------------------------------
-| episodes          | 318      |
-| eval successes    | 0        |
-| eval total reward | 0        |
-| goals             | 22       |
-| steps             | 70000    |
-| successes         | 0.632    |
-| time elapsed      | 31.9     |
-| total reward      | 201      |
------------------------------------------------------------------
-| episodes          | 284      |
-| eval successes    | 0        |
-| eval total reward | 0        |
-| goals             | 22       |
-| steps             | 80000    |
-| successes         | 0.613    |
-| time elapsed      | 28.2     |
-| total reward      | 174      |
------------------------------------------------------------------
-| episodes          | 257      |
-| eval successes    | 0        |
-| eval total reward | 0        |
-| goals             | 22       |
-| steps             | 90000    |
-| successes         | 0.591    |
-| time elapsed      | 26.2     |
-| total reward      | 152      |
------------------------------------------------------------------
-| episodes          | 294      |
-| eval successes    | 0        |
-| eval total reward | 0        |
-| goals             | 22       |
-| steps             | 100000   |
-| successes         | 0.588    |
-| time elapsed      | 26.2     |
-| total reward      | 173      |
---------------------------------
-/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:516: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
-  _np_qint8 = np.dtype([("qint8", np.int8, 1)])
-/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:517: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
-  _np_quint8 = np.dtype([("quint8", np.uint8, 1)])
-/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:518: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
-  _np_qint16 = np.dtype([("qint16", np.int16, 1)])
-/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:519: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
-  _np_quint16 = np.dtype([("quint16", np.uint16, 1)])
-/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:520: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
-  _np_qint32 = np.dtype([("qint32", np.int32, 1)])
-/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:525: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
-  np_resource = np.dtype([("resource", np.ubyte, 1)])
-Logging to data/logs/sp_ql/Office-Mod-v0/20----------------------------------
-| episodes          | 1006     |
+Logging to data/logs/sp_ql/Office-v0/20/---------------------------------
+| episodes          | 1011     |
 | eval successes    | 0        |
 | eval total reward | 0        |
 | goals             | 19       |
 | steps             | 10000    |
-| successes         | 0.19     |
-| time elapsed      | 26.8     |
-| total reward      | 191      |
+| successes         | 0.209    |
+| time elapsed      | 29.3     |
+| total reward      | 211      |
 -----------------------------------------------------------------
-| episodes          | 546      |
+| episodes          | 488      |
 | eval successes    | 0        |
 | eval total reward | 0        |
-| goals             | 22       |
+| goals             | 21       |
 | steps             | 20000    |
-| successes         | 0.37     |
-| time elapsed      | 20.8     |
-| total reward      | 202      |
+| successes         | 0.402    |
+| time elapsed      | 27.2     |
+| total reward      | 196      |
 -----------------------------------------------------------------
-| episodes          | 337      |
+| episodes          | 298      |
 | eval successes    | 0        |
 | eval total reward | 0        |
 | goals             | 22       |
 | steps             | 30000    |
-| successes         | 0.522    |
-| time elapsed      | 31       |
-| total reward      | 176      |
+| successes         | 0.544    |
+| time elapsed      | 26.7     |
+| total reward      | 162      |
 -----------------------------------------------------------------
-| episodes          | 384      |
+| episodes          | 329      |
 | eval successes    | 0        |
 | eval total reward | 0        |
 | goals             | 22       |
 | steps             | 40000    |
-| successes         | 0.612    |
-| time elapsed      | 31       |
-| total reward      | 235      |
------------------------------------------------------------------
-| episodes          | 347      |
+| successes         | 0.635    |
+| time elapsed      | 34.7     |
+| total reward      | 209      |
+----------------------------------------------------------------
+| episodes          | 316      |
 | eval successes    | 0        |
 | eval total reward | 0        |
 | goals             | 22       |
 | steps             | 50000    |
-| successes         | 0.614    |
-| time elapsed      | 33.3     |
-| total reward      | 213      |
------------------------------------------------------------------
-| episodes          | 309      |
+| successes         | 0.617    |
+| time elapsed      | 31.8     |
+| total reward      | 195      |
+--------------------------------
+---------------------------------
+| episodes          | 346      |
 | eval successes    | 0        |
 | eval total reward | 0        |
 | goals             | 22       |
 | steps             | 60000    |
-| successes         | 0.547    |
-| time elapsed      | 23.7     |
-| total reward      | 169      |
+| successes         | 0.572    |
+| time elapsed      | 34.8     |
+| total reward      | 198      |
 -----------------------------------------------------------------
-| episodes          | 301      |
+| episodes          | 325      |
 | eval successes    | 0        |
 | eval total reward | 0        |
 | goals             | 22       |
 | steps             | 70000    |
-| successes         | 0.538    |
-| time elapsed      | 33.8     |
-| total reward      | 162      |
+| successes         | 0.554    |
+| time elapsed      | 28.4     |
+| total reward      | 180      |
 -----------------------------------------------------------------
-| episodes          | 289      |
+| episodes          | 325      |
 | eval successes    | 0        |
 | eval total reward | 0        |
 | goals             | 22       |
 | steps             | 80000    |
-| successes         | 0.581    |
-| time elapsed      | 27.4     |
-| total reward      | 168      |
------------------------------------------------------------------
-| episodes          | 285      |
+| successes         | 0.646    |
+| time elapsed      | 35.2     |
+| total reward      | 210      |
+--------------------------------
+--------------------------------
+| episodes          | 299      |
 | eval successes    | 0        |
 | eval total reward | 0        |
 | goals             | 22       |
 | steps             | 90000    |
-| successes         | 0.6      |
-| time elapsed      | 30.9     |
-| total reward      | 171      |
+| successes         | 0.602    |
+| time elapsed      | 21.4     |
+| total reward      | 180      |
 -----------------------------------------------------------------
 | episodes          | 307      |
 | eval successes    | 0        |
 | eval total reward | 0        |
 | goals             | 22       |
 | steps             | 100000   |
-| successes         | 0.573    |
-| time elapsed      | 28.9     |
-| total reward      | 176      |
---------------------------------
-/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:516: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
-  _np_qint8 = np.dtype([("qint8", np.int8, 1)])
-/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:517: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
-  _np_quint8 = np.dtype([("quint8", np.uint8, 1)])
-/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:518: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
-  _np_qint16 = np.dtype([("qint16", np.int16, 1)])
-/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:519: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
-  _np_quint16 = np.dtype([("quint16", np.uint16, 1)])
-/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:520: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
-  _np_qint32 = np.dtype([("qint32", np.int32, 1)])
-/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:525: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
-  np_resource = np.dtype([("resource", np.ubyte, 1)])
-Logging to data/logs/sm_ql/zeroshot/Office-Coffee-Task-v0/11/
---------------------------------
-| episodes          | 140      |
-| eval successes    | 137      |
-| eval total reward | 137      |
-| goals             | 22       |
-| steps             | 10000    |
-| successes         | 0.629    |
-| time elapsed      | 25.1     |
-| total reward      | 88       |
---------------------------------
---------------------------------
-| episodes          | 145      |
-| eval successes    | 142      |
-| eval total reward | 142      |
-| goals             | 22       |
-| steps             | 20000    |
-| successes         | 0.648    |
-| time elapsed      | 21.1     |
-| total reward      | 94       |
---------------------------------
---------------------------------
-| episodes          | 114      |
-| eval successes    | 113      |
-| eval total reward | 113      |
-| goals             | 22       |
-| steps             | 30000    |
-| successes         | 0.632    |
-| time elapsed      | 19.3     |
-| total reward      | 72       |
---------------------------------
---------------------------------
-| episodes          | 104      |
-| eval successes    | 102      |
-| eval total reward | 102      |
-| goals             | 22       |
-| steps             | 40000    |
-| successes         | 0.635    |
-| time elapsed      | 12.4     |
-| total reward      | 66       |
---------------------------------
---------------------------------
-| episodes          | 102      |
-| eval successes    | 101      |
-| eval total reward | 101      |
-| goals             | 22       |
-| steps             | 50000    |
-| successes         | 0.647    |
-| time elapsed      | 11       |
-| total reward      | 66       |
---------------------------------
---------------------------------
-| episodes          | 127      |
-| eval successes    | 123      |
-| eval total reward | 123      |
-| goals             | 22       |
-| steps             | 60000    |
-| successes         | 0.677    |
-| time elapsed      | 14       |
-| total reward      | 86       |
---------------------------------
---------------------------------
-| episodes          | 106      |
-| eval successes    | 105      |
-| eval total reward | 105      |
-| goals             | 22       |
-| steps             | 70000    |
-| successes         | 0.613    |
-| time elapsed      | 12.5     |
-| total reward      | 65       |
---------------------------------
---------------------------------
-| episodes          | 99       |
-| eval successes    | 98       |
-| eval total reward | 98       |
-| goals             | 22       |
-| steps             | 80000    |
-| successes         | 0.616    |
-| time elapsed      | 15.2     |
-| total reward      | 61       |
---------------------------------
---------------------------------
-| episodes          | 94       |
-| eval successes    | 94       |
-| eval total reward | 94       |
-| goals             | 22       |
-| steps             | 90000    |
-| successes         | 0.649    |
-| time elapsed      | 10.8     |
-| total reward      | 61       |
---------------------------------
---------------------------------
-| episodes          | 83       |
-| eval successes    | 82       |
-| eval total reward | 82       |
-| goals             | 22       |
-| steps             | 100000   |
-| successes         | 0.578    |
-| time elapsed      | 9.18     |
-| total reward      | 48       |
---------------------------------
---------------------------------
-| episodes          | 121      |
-| eval successes    | 120      |
-| eval total reward | 120      |
-| goals             | 22       |
-| steps             | 110000   |
-| successes         | 0.62     |
-| time elapsed      | 15.3     |
-| total reward      | 75       |
---------------------------------
---------------------------------
-| episodes          | 122      |
-| eval successes    | 120      |
-| eval total reward | 120      |
-| goals             | 22       |
-| steps             | 120000   |
-| successes         | 0.689    |
-| time elapsed      | 19.6     |
-| total reward      | 84       |
---------------------------------
---------------------------------
-| episodes          | 67       |
-| eval successes    | 64       |
-| eval total reward | 64       |
-| goals             | 22       |
-| steps             | 130000   |
-| successes         | 0.627    |
-| time elapsed      | 7.19     |
-| total reward      | 42       |
---------------------------------
---------------------------------
-| episodes          | 80       |
-| eval successes    | 80       |
-| eval total reward | 80       |
-| goals             | 22       |
-| steps             | 140000   |
-| successes         | 0.588    |
-| time elapsed      | 9.35     |
-| total reward      | 47       |
---------------------------------
---------------------------------
-| episodes          | 90       |
-| eval successes    | 90       |
-| eval total reward | 90       |
-| goals             | 22       |
-| steps             | 150000   |
-| successes         | 0.556    |
-| time elapsed      | 11.3     |
-| total reward      | 50       |
---------------------------------
---------------------------------
-| episodes          | 63       |
-| eval successes    | 63       |
-| eval total reward | 63       |
-| goals             | 22       |
-| steps             | 160000   |
-| successes         | 0.524    |
-| time elapsed      | 11.9     |
-| total reward      | 33       |
---------------------------------
---------------------------------
-| episodes          | 90       |
-| eval successes    | 88       |
-| eval total reward | 88       |
-| goals             | 22       |
-| steps             | 170000   |
-| successes         | 0.556    |
-| time elapsed      | 17.7     |
-| total reward      | 50       |
---------------------------------
---------------------------------
-| episodes          | 131      |
-| eval successes    | 130      |
-| eval total reward | 130      |
-| goals             | 22       |
-| steps             | 180000   |
-| successes         | 0.595    |
-| time elapsed      | 18.6     |
-| total reward      | 78       |
---------------------------------
---------------------------------
-| episodes          | 91       |
-| eval successes    | 90       |
-| eval total reward | 90       |
-| goals             | 22       |
-| steps             | 190000   |
-| successes         | 0.571    |
-| time elapsed      | 11.9     |
-| total reward      | 52       |
---------------------------------
---------------------------------
-| episodes          | 104      |
-| eval successes    | 103      |
-| eval total reward | 103      |
-| goals             | 22       |
-| steps             | 200000   |
-| successes         | 0.663    |
-| time elapsed      | 18.1     |
-| total reward      | 69       |
---------------------------------
---------------------------------
-| episodes          | 74       |
-| eval successes    | 72       |
-| eval total reward | 72       |
-| goals             | 22       |
-| steps             | 210000   |
-| successes         | 0.568    |
-| time elapsed      | 14.3     |
-| total reward      | 42       |
---------------------------------
---------------------------------
-| episodes          | 164      |
-| eval successes    | 163      |
-| eval total reward | 163      |
-| goals             | 22       |
-| steps             | 220000   |
-| successes         | 0.659    |
-| time elapsed      | 17       |
-| total reward      | 108      |
---------------------------------
---------------------------------
-| episodes          | 118      |
-| eval successes    | 116      |
-| eval total reward | 116      |
-| goals             | 22       |
-| steps             | 230000   |
-| successes         | 0.661    |
-| time elapsed      | 12.9     |
-| total reward      | 78       |
---------------------------------
---------------------------------
-| episodes          | 223      |
-| eval successes    | 219      |
-| eval total reward | 219      |
-| goals             | 22       |
-| steps             | 240000   |
-| successes         | 0.709    |
-| time elapsed      | 26       |
-| total reward      | 158      |
---------------------------------
---------------------------------
-| episodes          | 100      |
-| eval successes    | 99       |
-| eval total reward | 99       |
-| goals             | 22       |
-| steps             | 250000   |
-| successes         | 0.6      |
-| time elapsed      | 11.9     |
-| total reward      | 60       |
---------------------------------
---------------------------------
-| episodes          | 98       |
-| eval successes    | 97       |
-| eval total reward | 97       |
-| goals             | 22       |
-| steps             | 260000   |
-| successes         | 0.531    |
-| time elapsed      | 11.3     |
-| total reward      | 52       |
---------------------------------
---------------------------------
-| episodes          | 77       |
-| eval successes    | 76       |
-| eval total reward | 76       |
-| goals             | 22       |
-| steps             | 270000   |
-| successes         | 0.558    |
-| time elapsed      | 11.9     |
-| total reward      | 43       |
---------------------------------
---------------------------------
-| episodes          | 104      |
-| eval successes    | 103      |
-| eval total reward | 103      |
-| goals             | 22       |
-| steps             | 280000   |
-| successes         | 0.673    |
-| time elapsed      | 15.4     |
-| total reward      | 70       |
---------------------------------
---------------------------------
-| episodes          | 114      |
-| eval successes    | 114      |
-| eval total reward | 114      |
-| goals             | 22       |
-| steps             | 290000   |
-| successes         | 0.605    |
-| time elapsed      | 11.7     |
-| total reward      | 69       |
---------------------------------
---------------------------------
-| episodes          | 116      |
-| eval successes    | 115      |
-| eval total reward | 115      |
-| goals             | 22       |
-| steps             | 300000   |
-| successes         | 0.534    |
-| time elapsed      | 14.1     |
-| total reward      | 62       |
---------------------------------
---------------------------------
-| episodes          | 59       |
-| eval successes    | 59       |
-| eval total reward | 59       |
-| goals             | 22       |
-| steps             | 310000   |
-| successes         | 0.542    |
-| time elapsed      | 7.31     |
-| total reward      | 32       |
---------------------------------
---------------------------------
-| episodes          | 95       |
-| eval successes    | 94       |
-| eval total reward | 94       |
-| goals             | 22       |
-| steps             | 320000   |
-| successes         | 0.653    |
-| time elapsed      | 13.1     |
-| total reward      | 62       |
---------------------------------
---------------------------------
-| episodes          | 110      |
-| eval successes    | 109      |
-| eval total reward | 109      |
-| goals             | 22       |
-| steps             | 330000   |
-| successes         | 0.6      |
-| time elapsed      | 15       |
-| total reward      | 66       |
---------------------------------
---------------------------------
-| episodes          | 147      |
-| eval successes    | 145      |
-| eval total reward | 145      |
-| goals             | 22       |
-| steps             | 340000   |
-| successes         | 0.646    |
-| time elapsed      | 21.8     |
-| total reward      | 95       |
---------------------------------
---------------------------------
-| episodes          | 112      |
-| eval successes    | 111      |
-| eval total reward | 111      |
-| goals             | 22       |
-| steps             | 350000   |
-| successes         | 0.625    |
-| time elapsed      | 17.1     |
-| total reward      | 70       |
---------------------------------
---------------------------------
-| episodes          | 96       |
-| eval successes    | 96       |
-| eval total reward | 96       |
-| goals             | 22       |
-| steps             | 360000   |
-| successes         | 0.583    |
-| time elapsed      | 10.8     |
-| total reward      | 56       |
---------------------------------
---------------------------------
-| episodes          | 129      |
-| eval successes    | 129      |
-| eval total reward | 129      |
-| goals             | 22       |
-| steps             | 370000   |
-| successes         | 0.566    |
-| time elapsed      | 19.6     |
-| total reward      | 73       |
---------------------------------
---------------------------------
-| episodes          | 54       |
-| eval successes    | 54       |
-| eval total reward | 54       |
-| goals             | 22       |
-| steps             | 380000   |
-| successes         | 0.537    |
-| time elapsed      | 6.69     |
-| total reward      | 29       |
---------------------------------
---------------------------------
-| episodes          | 163      |
-| eval successes    | 159      |
-| eval total reward | 159      |
-| goals             | 22       |
-| steps             | 390000   |
-| successes         | 0.632    |
-| time elapsed      | 19       |
-| total reward      | 103      |
---------------------------------
---------------------------------
-| episodes          | 118      |
-| eval successes    | 118      |
-| eval total reward | 118      |
-| goals             | 22       |
-| steps             | 400000   |
-| successes         | 0.627    |
-| time elapsed      | 14.4     |
-| total reward      | 74       |
---------------------------------
-/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:516: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
-  _np_qint8 = np.dtype([("qint8", np.int8, 1)])
-/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:517: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
-  _np_quint8 = np.dtype([("quint8", np.uint8, 1)])
-/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:518: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
-  _np_qint16 = np.dtype([("qint16", np.int16, 1)])
-/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:519: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
-  _np_quint16 = np.dtype([("quint16", np.uint16, 1)])
-/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:520: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
-  _np_qint32 = np.dtype([("qint32", np.int32, 1)])
-/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:525: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
-  np_resource = np.dtype([("resource", np.ubyte, 1)])
-Logging to data/logs/sm_ql/fewshot/Office-Coffee-Task-v0/------------------------------------
-| episodes          | 218      |
-| eval successes    | 214      |
-| eval total reward | 214      |
-| goals             | 22       |
-| steps             | 10000    |
-| successes         | 0        |
-| time elapsed      | 56.2     |
-| total reward      | 0        |
------------------------------------------------------------------
-| episodes          | 277      |
-| eval successes    | 277      |
-| eval total reward | 277      |
-| goals             | 22       |
-| steps             | 20000    |
-| successes         | 0        |
-| time elapsed      | 76.5     |
-| total reward      | 0        |
------------------------------------------------------------------
-| episodes          | 241      |
-| eval successes    | 241      |
-| eval total reward | 241      |
-| goals             | 22       |
-| steps             | 30000    |
-| successes         | 0        |
-| time elapsed      | 65       |
-| total reward      | 0        |
------------------------------------------------------------------
-| episodes          | 361      |
-| eval successes    | 357      |
-| eval total reward | 357      |
-| goals             | 22       |
-| steps             | 40000    |
-| successes         | 0.291    |
-| time elapsed      | 76       |
-| total reward      | 105      |
------------------------------------------------------------------
-| episodes          | 458      |
-| eval successes    | 449      |
-| eval total reward | 449      |
-| goals             | 22       |
-| steps             | 50000    |
-| successes         | 0.328    |
-| time elapsed      | 80.6     |
-| total reward      | 150      |
------------------------------------------------------------------
-| episodes          | 463      |
-| eval successes    | 454      |
-| eval total reward | 454      |
-| goals             | 22       |
-| steps             | 60000    |
-| successes         | 0.359    |
-| time elapsed      | 78.4     |
-| total reward      | 166      |
------------------------------------------------------------------
-| episodes          | 522      |
-| eval successes    | 508      |
-| eval total reward | 508      |
-| goals             | 22       |
-| steps             | 70000    |
-| successes         | 0.341    |
-| time elapsed      | 83.3     |
-| total reward      | 178      |
------------------------------------------------------------------
-| episodes          | 487      |
-| eval successes    | 476      |
-| eval total reward | 476      |
-| goals             | 22       |
-| steps             | 80000    |
-| successes         | 0.337    |
-| time elapsed      | 102      |
-| total reward      | 164      |
------------------------------------------------------------------
-| episodes          | 513      |
-| eval successes    | 501      |
-| eval total reward | 501      |
-| goals             | 22       |
-| steps             | 90000    |
-| successes         | 0.329    |
-| time elapsed      | 93.7     |
-| total reward      | 169      |
---------------------------------
---------------------------------
-| episodes          | 520      |
-| eval successes    | 511      |
-| eval total reward | 511      |
-| goals             | 22       |
-| steps             | 100000   |
-| successes         | 0.36     |
-| time elapsed      | 90       |
+| successes         | 0.609    |
+| time elapsed      | 31.6     |
 | total reward      | 187      |
---------------------------------
---------------------------------
-| episodes          | 506      |
-| eval successes    | 502      |
-| eval total reward | 502      |
+-----------------------------------------------------------------
+| episodes          | 278      |
+| eval successes    | 0        |
+| eval total reward | 0        |
 | goals             | 22       |
 | steps             | 110000   |
-| successes         | 0.34     |
-| time elapsed      | 91.8     |
-| total reward      | 172      |
---------------------------------
---------------------------------
-| episodes          | 478      |
-| eval successes    | 471      |
-| eval total reward | 471      |
-| goals             | 22       |
-| steps             | 120000   |
-| successes         | 0.349    |
-| time elapsed      | 66.5     |
-| total reward      | 167      |
---------------------------------
---------------------------------
-| episodes          | 448      |
-| eval successes    | 440      |
-| eval total reward | 440      |
-| goals             | 22       |
-| steps             | 130000   |
-| successes         | 0.321    |
-| time elapsed      | 89.2     |
-| total reward      | 144      |
---------------------------------
---------------------------------
-| episodes          | 502      |
-| eval successes    | 495      |
-| eval total reward | 495      |
-| goals             | 22       |
-| steps             | 140000   |
-| successes         | 0.359    |
-| time elapsed      | 112      |
-| total reward      | 180      |
---------------------------------
---------------------------------
-| episodes          | 513      |
-| eval successes    | 505      |
-| eval total reward | 505      |
-| goals             | 22       |
-| steps             | 150000   |
-| successes         | 0.353    |
-| time elapsed      | 109      |
-| total reward      | 181      |
---------------------------------
---------------------------------
-| episodes          | 482      |
-| eval successes    | 473      |
-| eval total reward | 473      |
-| goals             | 22       |
-| steps             | 160000   |
-| successes         | 0.334    |
-| time elapsed      | 74.4     |
-| total reward      | 161      |
---------------------------------
---------------------------------
-| episodes          | 484      |
-| eval successes    | 478      |
-| eval total reward | 478      |
-| goals             | 22       |
-| steps             | 170000   |
-| successes         | 0.36     |
-| time elapsed      | 78.8     |
-| total reward      | 174      |
---------------------------------
---------------------------------
-| episodes          | 492      |
-| eval successes    | 482      |
-| eval total reward | 482      |
-| goals             | 22       |
-| steps             | 180000   |
-| successes         | 0.325    |
-| time elapsed      | 85       |
-| total reward      | 160      |
---------------------------------
---------------------------------
-| episodes          | 519      |
-| eval successes    | 509      |
-| eval total reward | 509      |
-| goals             | 22       |
-| steps             | 190000   |
-| successes         | 0.331    |
-| time elapsed      | 80       |
-| total reward      | 172      |
---------------------------------
---------------------------------
-| episodes          | 486      |
-| eval successes    | 476      |
-| eval total reward | 476      |
-| goals             | 22       |
-| steps             | 200000   |
-| successes         | 0.333    |
-| time elapsed      | 70.9     |
-| total reward      | 162      |
---------------------------------
---------------------------------
-| episodes          | 462      |
-| eval successes    | 453      |
-| eval total reward | 453      |
-| goals             | 22       |
-| steps             | 210000   |
-| successes         | 0.348    |
-| time elapsed      | 98.1     |
-| total reward      | 161      |
---------------------------------
---------------------------------
-| episodes          | 511      |
-| eval successes    | 507      |
-| eval total reward | 507      |
-| goals             | 22       |
-| steps             | 220000   |
-| successes         | 0.35     |
-| time elapsed      | 71.4     |
-| total reward      | 179      |
---------------------------------
---------------------------------
-| episodes          | 503      |
-| eval successes    | 494      |
-| eval total reward | 494      |
-| goals             | 22       |
-| steps             | 230000   |
-| successes         | 0.358    |
-| time elapsed      | 76.2     |
-| total reward      | 180      |
---------------------------------
---------------------------------
-| episodes          | 502      |
-| eval successes    | 499      |
-| eval total reward | 499      |
-| goals             | 22       |
-| steps             | 240000   |
-| successes         | 0.337    |
-| time elapsed      | 81.5     |
-| total reward      | 169      |
---------------------------------
---------------------------------
-| episodes          | 486      |
-| eval successes    | 480      |
-| eval total reward | 480      |
-| goals             | 22       |
-| steps             | 250000   |
-| successes         | 0.331    |
-| time elapsed      | 83.7     |
-| total reward      | 161      |
---------------------------------
---------------------------------
-| episodes          | 479      |
-| eval successes    | 472      |
-| eval total reward | 472      |
-| goals             | 22       |
-| steps             | 260000   |
-| successes         | 0.376    |
-| time elapsed      | 97.4     |
-| total reward      | 180      |
---------------------------------
---------------------------------
-| episodes          | 508      |
-| eval successes    | 500      |
-| eval total reward | 500      |
-| goals             | 22       |
-| steps             | 270000   |
-| successes         | 0.325    |
-| time elapsed      | 100      |
+| successes         | 0.594    |
+| time elapsed      | 35.7     |
 | total reward      | 165      |
 --------------------------------
 --------------------------------
-| episodes          | 502      |
-| eval successes    | 491      |
-| eval total reward | 491      |
+| episodes          | 304      |
+| eval successes    | 0        |
+| eval total reward | 0        |
 | goals             | 22       |
-| steps             | 280000   |
-| successes         | 0.347    |
-| time elapsed      | 105      |
-| total reward      | 174      |
---------------------------------
---------------------------------
-| episodes          | 500      |
-| eval successes    | 492      |
-| eval total reward | 492      |
-| goals             | 22       |
-| steps             | 290000   |
-| successes         | 0.374    |
-| time elapsed      | 87.7     |
-| total reward      | 187      |
---------------------------------
---------------------------------
-| episodes          | 494      |
-| eval successes    | 483      |
-| eval total reward | 483      |
-| goals             | 22       |
-| steps             | 300000   |
-| successes         | 0.352    |
-| time elapsed      | 92.9     |
-| total reward      | 174      |
---------------------------------
---------------------------------
-| episodes          | 536      |
-| eval successes    | 524      |
-| eval total reward | 524      |
-| goals             | 22       |
-| steps             | 310000   |
-| successes         | 0.341    |
-| time elapsed      | 81.2     |
-| total reward      | 183      |
---------------------------------
---------------------------------
-| episodes          | 481      |
-| eval successes    | 476      |
-| eval total reward | 476      |
-| goals             | 22       |
-| steps             | 320000   |
-| successes         | 0.372    |
-| time elapsed      | 73.4     |
+| steps             | 120000   |
+| successes         | 0.589    |
+| time elapsed      | 37       |
 | total reward      | 179      |
 --------------------------------
 --------------------------------
-| episodes          | 482      |
-| eval successes    | 473      |
-| eval total reward | 473      |
+| episodes          | 299      |
+| eval successes    | 0        |
+| eval total reward | 0        |
 | goals             | 22       |
-| steps             | 330000   |
-| successes         | 0.38     |
-| time elapsed      | 70       |
-| total reward      | 183      |
---------------------------------
---------------------------------
-| episodes          | 486      |
-| eval successes    | 476      |
-| eval total reward | 476      |
-| goals             | 22       |
-| steps             | 340000   |
-| successes         | 0.333    |
-| time elapsed      | 101      |
-| total reward      | 162      |
---------------------------------
---------------------------------
-| episodes          | 497      |
-| eval successes    | 486      |
-| eval total reward | 486      |
-| goals             | 22       |
-| steps             | 350000   |
-| successes         | 0.34     |
-| time elapsed      | 92.3     |
-| total reward      | 169      |
---------------------------------
---------------------------------
-| episodes          | 490      |
-| eval successes    | 483      |
-| eval total reward | 483      |
-| goals             | 22       |
-| steps             | 360000   |
-| successes         | 0.365    |
-| time elapsed      | 92.8     |
-| total reward      | 179      |
---------------------------------
---------------------------------
-| episodes          | 534      |
-| eval successes    | 523      |
-| eval total reward | 523      |
-| goals             | 22       |
-| steps             | 370000   |
-| successes         | 0.339    |
-| time elapsed      | 72.2     |
-| total reward      | 181      |
---------------------------------
---------------------------------
-| episodes          | 502      |
-| eval successes    | 495      |
-| eval total reward | 495      |
-| goals             | 22       |
-| steps             | 380000   |
-| successes         | 0.347    |
-| time elapsed      | 65.6     |
-| total reward      | 174      |
---------------------------------
---------------------------------
-| episodes          | 508      |
-| eval successes    | 504      |
-| eval total reward | 504      |
-| goals             | 22       |
-| steps             | 390000   |
-| successes         | 0.37     |
-| time elapsed      | 64.8     |
+| steps             | 130000   |
+| successes         | 0.629    |
+| time elapsed      | 37       |
 | total reward      | 188      |
 --------------------------------
 --------------------------------
-| episodes          | 475      |
-| eval successes    | 462      |
-| eval total reward | 462      |
+| episodes          | 299      |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| goals             | 22       |
+| steps             | 140000   |
+| successes         | 0.602    |
+| time elapsed      | 35.6     |
+| total reward      | 180      |
+--------------------------------
+--------------------------------
+| episodes          | 247      |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| goals             | 22       |
+| steps             | 150000   |
+| successes         | 0.538    |
+| time elapsed      | 33.7     |
+| total reward      | 133      |
+--------------------------------
+--------------------------------
+| episodes          | 361      |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| goals             | 22       |
+| steps             | 160000   |
+| successes         | 0.637    |
+| time elapsed      | 28.9     |
+| total reward      | 230      |
+--------------------------------
+--------------------------------
+| episodes          | 333      |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| goals             | 22       |
+| steps             | 170000   |
+| successes         | 0.595    |
+| time elapsed      | 29.6     |
+| total reward      | 198      |
+--------------------------------
+--------------------------------
+| episodes          | 350      |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| goals             | 22       |
+| steps             | 180000   |
+| successes         | 0.634    |
+| time elapsed      | 27.9     |
+| total reward      | 222      |
+--------------------------------
+--------------------------------
+| episodes          | 274      |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| goals             | 22       |
+| steps             | 190000   |
+| successes         | 0.569    |
+| time elapsed      | 21.9     |
+| total reward      | 156      |
+--------------------------------
+--------------------------------
+| episodes          | 292      |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| goals             | 22       |
+| steps             | 200000   |
+| successes         | 0.606    |
+| time elapsed      | 23.7     |
+| total reward      | 177      |
+--------------------------------
+--------------------------------
+| episodes          | 327      |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| goals             | 22       |
+| steps             | 210000   |
+| successes         | 0.621    |
+| time elapsed      | 26.9     |
+| total reward      | 203      |
+--------------------------------
+--------------------------------
+| episodes          | 331      |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| goals             | 22       |
+| steps             | 220000   |
+| successes         | 0.607    |
+| time elapsed      | 25.3     |
+| total reward      | 201      |
+--------------------------------
+--------------------------------
+| episodes          | 338      |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| goals             | 22       |
+| steps             | 230000   |
+| successes         | 0.657    |
+| time elapsed      | 21.3     |
+| total reward      | 222      |
+--------------------------------
+--------------------------------
+| episodes          | 288      |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| goals             | 22       |
+| steps             | 240000   |
+| successes         | 0.635    |
+| time elapsed      | 20       |
+| total reward      | 183      |
+--------------------------------
+--------------------------------
+| episodes          | 283      |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| goals             | 22       |
+| steps             | 250000   |
+| successes         | 0.611    |
+| time elapsed      | 34.3     |
+| total reward      | 173      |
+--------------------------------
+--------------------------------
+| episodes          | 330      |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| goals             | 22       |
+| steps             | 260000   |
+| successes         | 0.579    |
+| time elapsed      | 36.7     |
+| total reward      | 191      |
+--------------------------------
+--------------------------------
+| episodes          | 344      |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| goals             | 22       |
+| steps             | 270000   |
+| successes         | 0.672    |
+| time elapsed      | 29.2     |
+| total reward      | 231      |
+--------------------------------
+--------------------------------
+| episodes          | 309      |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| goals             | 22       |
+| steps             | 280000   |
+| successes         | 0.579    |
+| time elapsed      | 26.9     |
+| total reward      | 179      |
+--------------------------------
+--------------------------------
+| episodes          | 307      |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| goals             | 22       |
+| steps             | 290000   |
+| successes         | 0.645    |
+| time elapsed      | 23.8     |
+| total reward      | 198      |
+--------------------------------
+--------------------------------
+| episodes          | 278      |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| goals             | 22       |
+| steps             | 300000   |
+| successes         | 0.604    |
+| time elapsed      | 21.8     |
+| total reward      | 168      |
+--------------------------------
+--------------------------------
+| episodes          | 299      |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| goals             | 22       |
+| steps             | 310000   |
+| successes         | 0.602    |
+| time elapsed      | 21.4     |
+| total reward      | 180      |
+--------------------------------
+--------------------------------
+| episodes          | 280      |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| goals             | 22       |
+| steps             | 320000   |
+| successes         | 0.561    |
+| time elapsed      | 32.2     |
+| total reward      | 157      |
+--------------------------------
+--------------------------------
+| episodes          | 311      |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| goals             | 22       |
+| steps             | 330000   |
+| successes         | 0.582    |
+| time elapsed      | 21.7     |
+| total reward      | 181      |
+--------------------------------
+--------------------------------
+| episodes          | 322      |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| goals             | 22       |
+| steps             | 340000   |
+| successes         | 0.602    |
+| time elapsed      | 21.7     |
+| total reward      | 194      |
+--------------------------------
+--------------------------------
+| episodes          | 277      |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| goals             | 22       |
+| steps             | 350000   |
+| successes         | 0.57     |
+| time elapsed      | 20.1     |
+| total reward      | 158      |
+--------------------------------
+--------------------------------
+| episodes          | 311      |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| goals             | 22       |
+| steps             | 360000   |
+| successes         | 0.63     |
+| time elapsed      | 23.6     |
+| total reward      | 196      |
+--------------------------------
+--------------------------------
+| episodes          | 305      |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| goals             | 22       |
+| steps             | 370000   |
+| successes         | 0.61     |
+| time elapsed      | 31.2     |
+| total reward      | 186      |
+--------------------------------
+--------------------------------
+| episodes          | 338      |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| goals             | 22       |
+| steps             | 380000   |
+| successes         | 0.645    |
+| time elapsed      | 25.5     |
+| total reward      | 218      |
+--------------------------------
+--------------------------------
+| episodes          | 293      |
+| eval successes    | 0        |
+| eval total reward | 0        |
+| goals             | 22       |
+| steps             | 390000   |
+| successes         | 0.635    |
+| time elapsed      | 23.6     |
+| total reward      | 186      |
+--------------------------------
+--------------------------------
+| episodes          | 283      |
+| eval successes    | 0        |
+| eval total reward | 0        |
 | goals             | 22       |
 | steps             | 400000   |
-| successes         | 0.389    |
-| time elapsed      | 59.8     |
-| total reward      | 185      |
+| successes         | 0.58     |
+| time elapsed      | 25       |
+| total reward      | 164      |
 --------------------------------
 /mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:516: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
   _np_qint8 = np.dtype([("qint8", np.int8, 1)])
@@ -1022,366 +402,1192 @@ Logging to data/logs/sm_ql/fewshot/Office-Coffee-Task-v0/-----------------------
   _np_qint32 = np.dtype([("qint32", np.int32, 1)])
 /mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:525: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
   np_resource = np.dtype([("resource", np.ubyte, 1)])
-Logging to data/logs/ql/Office-Coffee-Task-v0/11/
+Logging to data/logs/sm_ql/zeroshot/Office-Coffee-Task-v0/18/
 --------------------------------
-| episodes          | 306      |
-| eval successes    | 38       |
-| eval total reward | 38       |
+| episodes          | 52       |
+| eval successes    | 0.962    |
+| eval total reward | 50       |
+| goals             | 22       |
 | steps             | 10000    |
-| successes         | 0.118    |
-| time elapsed      | 1.37     |
+| successes         | 0.615    |
+| time elapsed      | 7.03     |
+| total reward      | 32       |
+--------------------------------
+--------------------------------
+| episodes          | 57       |
+| eval successes    | 1        |
+| eval total reward | 57       |
+| goals             | 22       |
+| steps             | 20000    |
+| successes         | 0.632    |
+| time elapsed      | 9.57     |
 | total reward      | 36       |
 --------------------------------
 --------------------------------
-| episodes          | 436      |
-| eval successes    | 339      |
-| eval total reward | 339      |
-| steps             | 20000    |
-| successes         | 0.287    |
-| time elapsed      | 1.16     |
-| total reward      | 125      |
---------------------------------
---------------------------------
-| episodes          | 476      |
-| eval successes    | 451      |
-| eval total reward | 451      |
+| episodes          | 59       |
+| eval successes    | 0.983    |
+| eval total reward | 58       |
+| goals             | 22       |
 | steps             | 30000    |
-| successes         | 0.363    |
-| time elapsed      | 1.15     |
-| total reward      | 173      |
+| successes         | 0.559    |
+| time elapsed      | 9.76     |
+| total reward      | 33       |
 --------------------------------
 --------------------------------
-| episodes          | 491      |
-| eval successes    | 491      |
-| eval total reward | 491      |
+| episodes          | 73       |
+| eval successes    | 0.973    |
+| eval total reward | 71       |
+| goals             | 22       |
 | steps             | 40000    |
-| successes         | 0.328    |
-| time elapsed      | 1.14     |
-| total reward      | 161      |
+| successes         | 0.575    |
+| time elapsed      | 9.3      |
+| total reward      | 42       |
 --------------------------------
 --------------------------------
-| episodes          | 508      |
-| eval successes    | 508      |
-| eval total reward | 508      |
+| episodes          | 132      |
+| eval successes    | 1        |
+| eval total reward | 132      |
+| goals             | 22       |
 | steps             | 50000    |
-| successes         | 0.354    |
-| time elapsed      | 1.15     |
-| total reward      | 180      |
+| successes         | 0.508    |
+| time elapsed      | 24.6     |
+| total reward      | 67       |
 --------------------------------
 --------------------------------
-| episodes          | 494      |
-| eval successes    | 494      |
-| eval total reward | 494      |
+| episodes          | 76       |
+| eval successes    | 1        |
+| eval total reward | 76       |
+| goals             | 22       |
 | steps             | 60000    |
-| successes         | 0.397    |
-| time elapsed      | 1.12     |
-| total reward      | 196      |
+| successes         | 0.671    |
+| time elapsed      | 10       |
+| total reward      | 51       |
 --------------------------------
 --------------------------------
-| episodes          | 519      |
-| eval successes    | 514      |
-| eval total reward | 514      |
+| episodes          | 87       |
+| eval successes    | 1        |
+| eval total reward | 87       |
+| goals             | 22       |
 | steps             | 70000    |
-| successes         | 0.364    |
-| time elapsed      | 1.17     |
-| total reward      | 189      |
+| successes         | 0.586    |
+| time elapsed      | 12.8     |
+| total reward      | 51       |
 --------------------------------
 --------------------------------
-| episodes          | 524      |
-| eval successes    | 520      |
-| eval total reward | 520      |
+| episodes          | 97       |
+| eval successes    | 1        |
+| eval total reward | 97       |
+| goals             | 22       |
 | steps             | 80000    |
-| successes         | 0.336    |
-| time elapsed      | 1.19     |
+| successes         | 0.608    |
+| time elapsed      | 17.2     |
+| total reward      | 59       |
+--------------------------------
+--------------------------------
+| episodes          | 76       |
+| eval successes    | 1        |
+| eval total reward | 76       |
+| goals             | 22       |
+| steps             | 90000    |
+| successes         | 0.592    |
+| time elapsed      | 8.94     |
+| total reward      | 45       |
+--------------------------------
+--------------------------------
+| episodes          | 101      |
+| eval successes    | 1        |
+| eval total reward | 101      |
+| goals             | 22       |
+| steps             | 100000   |
+| successes         | 0.545    |
+| time elapsed      | 12.3     |
+| total reward      | 55       |
+--------------------------------
+--------------------------------
+| episodes          | 112      |
+| eval successes    | 1        |
+| eval total reward | 112      |
+| goals             | 22       |
+| steps             | 110000   |
+| successes         | 0.598    |
+| time elapsed      | 13.9     |
+| total reward      | 67       |
+--------------------------------
+--------------------------------
+| episodes          | 109      |
+| eval successes    | 1        |
+| eval total reward | 109      |
+| goals             | 22       |
+| steps             | 120000   |
+| successes         | 0.661    |
+| time elapsed      | 14.9     |
+| total reward      | 72       |
+--------------------------------
+--------------------------------
+| episodes          | 88       |
+| eval successes    | 1        |
+| eval total reward | 88       |
+| goals             | 22       |
+| steps             | 130000   |
+| successes         | 0.534    |
+| time elapsed      | 16.2     |
+| total reward      | 47       |
+--------------------------------
+--------------------------------
+| episodes          | 109      |
+| eval successes    | 1        |
+| eval total reward | 109      |
+| goals             | 22       |
+| steps             | 140000   |
+| successes         | 0.596    |
+| time elapsed      | 12.2     |
+| total reward      | 65       |
+--------------------------------
+--------------------------------
+| episodes          | 161      |
+| eval successes    | 1        |
+| eval total reward | 161      |
+| goals             | 22       |
+| steps             | 150000   |
+| successes         | 0.578    |
+| time elapsed      | 19.5     |
+| total reward      | 93       |
+--------------------------------
+--------------------------------
+| episodes          | 84       |
+| eval successes    | 1        |
+| eval total reward | 84       |
+| goals             | 22       |
+| steps             | 160000   |
+| successes         | 0.56     |
+| time elapsed      | 10       |
+| total reward      | 47       |
+--------------------------------
+--------------------------------
+| episodes          | 147      |
+| eval successes    | 1        |
+| eval total reward | 147      |
+| goals             | 22       |
+| steps             | 170000   |
+| successes         | 0.673    |
+| time elapsed      | 17.8     |
+| total reward      | 99       |
+--------------------------------
+--------------------------------
+| episodes          | 110      |
+| eval successes    | 1        |
+| eval total reward | 110      |
+| goals             | 22       |
+| steps             | 180000   |
+| successes         | 0.618    |
+| time elapsed      | 16.9     |
+| total reward      | 68       |
+--------------------------------
+--------------------------------
+| episodes          | 146      |
+| eval successes    | 1        |
+| eval total reward | 146      |
+| goals             | 22       |
+| steps             | 190000   |
+| successes         | 0.555    |
+| time elapsed      | 25       |
+| total reward      | 81       |
+--------------------------------
+--------------------------------
+| episodes          | 181      |
+| eval successes    | 1        |
+| eval total reward | 181      |
+| goals             | 22       |
+| steps             | 200000   |
+| successes         | 0.663    |
+| time elapsed      | 24.5     |
+| total reward      | 120      |
+--------------------------------
+--------------------------------
+| episodes          | 76       |
+| eval successes    | 1        |
+| eval total reward | 76       |
+| goals             | 22       |
+| steps             | 210000   |
+| successes         | 0.632    |
+| time elapsed      | 16.9     |
+| total reward      | 48       |
+--------------------------------
+--------------------------------
+| episodes          | 128      |
+| eval successes    | 1        |
+| eval total reward | 128      |
+| goals             | 22       |
+| steps             | 220000   |
+| successes         | 0.672    |
+| time elapsed      | 15       |
+| total reward      | 86       |
+--------------------------------
+--------------------------------
+| episodes          | 101      |
+| eval successes    | 1        |
+| eval total reward | 101      |
+| goals             | 22       |
+| steps             | 230000   |
+| successes         | 0.594    |
+| time elapsed      | 12.6     |
+| total reward      | 60       |
+--------------------------------
+--------------------------------
+| episodes          | 105      |
+| eval successes    | 1        |
+| eval total reward | 105      |
+| goals             | 22       |
+| steps             | 240000   |
+| successes         | 0.667    |
+| time elapsed      | 15.5     |
+| total reward      | 70       |
+--------------------------------
+--------------------------------
+| episodes          | 102      |
+| eval successes    | 1        |
+| eval total reward | 102      |
+| goals             | 22       |
+| steps             | 250000   |
+| successes         | 0.618    |
+| time elapsed      | 17.4     |
+| total reward      | 63       |
+--------------------------------
+--------------------------------
+| episodes          | 142      |
+| eval successes    | 1        |
+| eval total reward | 142      |
+| goals             | 22       |
+| steps             | 260000   |
+| successes         | 0.662    |
+| time elapsed      | 21.7     |
+| total reward      | 94       |
+--------------------------------
+--------------------------------
+| episodes          | 78       |
+| eval successes    | 1        |
+| eval total reward | 78       |
+| goals             | 22       |
+| steps             | 270000   |
+| successes         | 0.603    |
+| time elapsed      | 10.3     |
+| total reward      | 47       |
+--------------------------------
+--------------------------------
+| episodes          | 122      |
+| eval successes    | 1        |
+| eval total reward | 122      |
+| goals             | 22       |
+| steps             | 280000   |
+| successes         | 0.672    |
+| time elapsed      | 19.5     |
+| total reward      | 82       |
+--------------------------------
+--------------------------------
+| episodes          | 95       |
+| eval successes    | 1        |
+| eval total reward | 95       |
+| goals             | 22       |
+| steps             | 290000   |
+| successes         | 0.589    |
+| time elapsed      | 12.3     |
+| total reward      | 56       |
+--------------------------------
+--------------------------------
+| episodes          | 100      |
+| eval successes    | 1        |
+| eval total reward | 100      |
+| goals             | 22       |
+| steps             | 300000   |
+| successes         | 0.64     |
+| time elapsed      | 21.2     |
+| total reward      | 64       |
+--------------------------------
+--------------------------------
+| episodes          | 106      |
+| eval successes    | 1        |
+| eval total reward | 106      |
+| goals             | 22       |
+| steps             | 310000   |
+| successes         | 0.547    |
+| time elapsed      | 14.5     |
+| total reward      | 58       |
+--------------------------------
+--------------------------------
+| episodes          | 63       |
+| eval successes    | 1        |
+| eval total reward | 63       |
+| goals             | 22       |
+| steps             | 320000   |
+| successes         | 0.587    |
+| time elapsed      | 9.13     |
+| total reward      | 37       |
+--------------------------------
+--------------------------------
+| episodes          | 79       |
+| eval successes    | 1        |
+| eval total reward | 79       |
+| goals             | 22       |
+| steps             | 330000   |
+| successes         | 0.62     |
+| time elapsed      | 12.8     |
+| total reward      | 49       |
+--------------------------------
+--------------------------------
+| episodes          | 97       |
+| eval successes    | 1        |
+| eval total reward | 97       |
+| goals             | 22       |
+| steps             | 340000   |
+| successes         | 0.598    |
+| time elapsed      | 18.6     |
+| total reward      | 58       |
+--------------------------------
+--------------------------------
+| episodes          | 86       |
+| eval successes    | 1        |
+| eval total reward | 86       |
+| goals             | 22       |
+| steps             | 350000   |
+| successes         | 0.605    |
+| time elapsed      | 17.6     |
+| total reward      | 52       |
+--------------------------------
+--------------------------------
+| episodes          | 69       |
+| eval successes    | 1        |
+| eval total reward | 69       |
+| goals             | 22       |
+| steps             | 360000   |
+| successes         | 0.507    |
+| time elapsed      | 13.7     |
+| total reward      | 35       |
+--------------------------------
+--------------------------------
+| episodes          | 84       |
+| eval successes    | 1        |
+| eval total reward | 84       |
+| goals             | 22       |
+| steps             | 370000   |
+| successes         | 0.536    |
+| time elapsed      | 13.6     |
+| total reward      | 45       |
+--------------------------------
+--------------------------------
+| episodes          | 77       |
+| eval successes    | 1        |
+| eval total reward | 77       |
+| goals             | 22       |
+| steps             | 380000   |
+| successes         | 0.636    |
+| time elapsed      | 9.09     |
+| total reward      | 49       |
+--------------------------------
+--------------------------------
+| episodes          | 91       |
+| eval successes    | 1        |
+| eval total reward | 91       |
+| goals             | 22       |
+| steps             | 390000   |
+| successes         | 0.648    |
+| time elapsed      | 12       |
+| total reward      | 59       |
+--------------------------------
+--------------------------------
+| episodes          | 112      |
+| eval successes    | 1        |
+| eval total reward | 112      |
+| goals             | 22       |
+| steps             | 400000   |
+| successes         | 0.652    |
+| time elapsed      | 21.5     |
+| total reward      | 73       |
+--------------------------------
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:516: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint8 = np.dtype([("qint8", np.int8, 1)])
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:517: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_quint8 = np.dtype([("quint8", np.uint8, 1)])
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:518: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint16 = np.dtype([("qint16", np.int16, 1)])
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:519: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_quint16 = np.dtype([("quint16", np.uint16, 1)])
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:520: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint32 = np.dtype([("qint32", np.int32, 1)])
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:525: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  np_resource = np.dtype([("resource", np.ubyte, 1)])
+Logging to data/logs/sm_ql/fewshot/Office-Coffee-Task-v0/12/
+--------------------------------
+| episodes          | 211      |
+| eval successes    | 0.995    |
+| eval total reward | 210      |
+| goals             | 22       |
+| steps             | 10000    |
+| successes         | 0        |
+| time elapsed      | 64       |
+| total reward      | 0        |
+--------------------------------
+--------------------------------
+| episodes          | 279      |
+| eval successes    | 1        |
+| eval total reward | 279      |
+| goals             | 22       |
+| steps             | 20000    |
+| successes         | 0        |
+| time elapsed      | 63.3     |
+| total reward      | 0        |
+--------------------------------
+--------------------------------
+| episodes          | 263      |
+| eval successes    | 1        |
+| eval total reward | 263      |
+| goals             | 22       |
+| steps             | 30000    |
+| successes         | 0.0038   |
+| time elapsed      | 53.6     |
+| total reward      | 1        |
+--------------------------------
+--------------------------------
+| episodes          | 333      |
+| eval successes    | 0.997    |
+| eval total reward | 332      |
+| goals             | 22       |
+| steps             | 40000    |
+| successes         | 0.216    |
+| time elapsed      | 81.8     |
+| total reward      | 72       |
+--------------------------------
+--------------------------------
+| episodes          | 446      |
+| eval successes    | 0.989    |
+| eval total reward | 441      |
+| goals             | 22       |
+| steps             | 50000    |
+| successes         | 0.339    |
+| time elapsed      | 76.2     |
+| total reward      | 151      |
+--------------------------------
+--------------------------------
+| episodes          | 461      |
+| eval successes    | 0.991    |
+| eval total reward | 457      |
+| goals             | 22       |
+| steps             | 60000    |
+| successes         | 0.358    |
+| time elapsed      | 75.2     |
+| total reward      | 165      |
+--------------------------------
+--------------------------------
+| episodes          | 464      |
+| eval successes    | 0.994    |
+| eval total reward | 461      |
+| goals             | 22       |
+| steps             | 70000    |
+| successes         | 0.379    |
+| time elapsed      | 77.4     |
 | total reward      | 176      |
 --------------------------------
 --------------------------------
-| episodes          | 540      |
-| eval successes    | 537      |
-| eval total reward | 537      |
+| episodes          | 475      |
+| eval successes    | 0.989    |
+| eval total reward | 470      |
+| goals             | 22       |
+| steps             | 80000    |
+| successes         | 0.333    |
+| time elapsed      | 82.4     |
+| total reward      | 158      |
+--------------------------------
+--------------------------------
+| episodes          | 471      |
+| eval successes    | 0.987    |
+| eval total reward | 465      |
+| goals             | 22       |
 | steps             | 90000    |
-| successes         | 0.37     |
-| time elapsed      | 1.19     |
-| total reward      | 200      |
+| successes         | 0.389    |
+| time elapsed      | 72.1     |
+| total reward      | 183      |
 --------------------------------
 --------------------------------
-| episodes          | 493      |
-| eval successes    | 485      |
-| eval total reward | 485      |
+| episodes          | 503      |
+| eval successes    | 0.99     |
+| eval total reward | 498      |
+| goals             | 22       |
 | steps             | 100000   |
-| successes         | 0.325    |
-| time elapsed      | 1.14     |
-| total reward      | 160      |
+| successes         | 0.35     |
+| time elapsed      | 70.6     |
+| total reward      | 176      |
 --------------------------------
 --------------------------------
-| episodes          | 535      |
-| eval successes    | 528      |
-| eval total reward | 528      |
+| episodes          | 502      |
+| eval successes    | 0.986    |
+| eval total reward | 495      |
+| goals             | 22       |
 | steps             | 110000   |
-| successes         | 0.325    |
-| time elapsed      | 1.17     |
-| total reward      | 174      |
---------------------------------
---------------------------------
-| episodes          | 484      |
-| eval successes    | 479      |
-| eval total reward | 479      |
-| steps             | 120000   |
-| successes         | 0.351    |
-| time elapsed      | 1.12     |
+| successes         | 0.339    |
+| time elapsed      | 68.9     |
 | total reward      | 170      |
 --------------------------------
 --------------------------------
-| episodes          | 527      |
-| eval successes    | 518      |
-| eval total reward | 518      |
-| steps             | 130000   |
-| successes         | 0.296    |
-| time elapsed      | 1.16     |
-| total reward      | 156      |
---------------------------------
---------------------------------
-| episodes          | 517      |
-| eval successes    | 511      |
+| episodes          | 518      |
+| eval successes    | 0.986    |
 | eval total reward | 511      |
-| steps             | 140000   |
-| successes         | 0.352    |
-| time elapsed      | 1.16     |
-| total reward      | 182      |
---------------------------------
---------------------------------
-| episodes          | 486      |
-| eval successes    | 483      |
-| eval total reward | 483      |
-| steps             | 150000   |
-| successes         | 0.407    |
-| time elapsed      | 1.1      |
-| total reward      | 198      |
---------------------------------
---------------------------------
-| episodes          | 520      |
-| eval successes    | 514      |
-| eval total reward | 514      |
-| steps             | 160000   |
-| successes         | 0.367    |
-| time elapsed      | 1.15     |
-| total reward      | 191      |
+| goals             | 22       |
+| steps             | 120000   |
+| successes         | 0.322    |
+| time elapsed      | 78.9     |
+| total reward      | 167      |
 --------------------------------
 --------------------------------
 | episodes          | 505      |
-| eval successes    | 501      |
-| eval total reward | 501      |
-| steps             | 170000   |
-| successes         | 0.345    |
-| time elapsed      | 1.13     |
-| total reward      | 174      |
---------------------------------
---------------------------------
-| episodes          | 499      |
-| eval successes    | 493      |
-| eval total reward | 493      |
-| steps             | 180000   |
-| successes         | 0.371    |
-| time elapsed      | 1.14     |
+| eval successes    | 0.988    |
+| eval total reward | 499      |
+| goals             | 22       |
+| steps             | 130000   |
+| successes         | 0.366    |
+| time elapsed      | 89.8     |
 | total reward      | 185      |
 --------------------------------
 --------------------------------
-| episodes          | 498      |
-| eval successes    | 493      |
-| eval total reward | 493      |
+| episodes          | 478      |
+| eval successes    | 0.994    |
+| eval total reward | 475      |
+| goals             | 22       |
+| steps             | 140000   |
+| successes         | 0.385    |
+| time elapsed      | 91.7     |
+| total reward      | 184      |
+--------------------------------
+--------------------------------
+| episodes          | 519      |
+| eval successes    | 0.99     |
+| eval total reward | 514      |
+| goals             | 22       |
+| steps             | 150000   |
+| successes         | 0.326    |
+| time elapsed      | 95.1     |
+| total reward      | 169      |
+--------------------------------
+--------------------------------
+| episodes          | 499      |
+| eval successes    | 0.992    |
+| eval total reward | 495      |
+| goals             | 22       |
+| steps             | 160000   |
+| successes         | 0.379    |
+| time elapsed      | 69.2     |
+| total reward      | 189      |
+--------------------------------
+--------------------------------
+| episodes          | 505      |
+| eval successes    | 0.992    |
+| eval total reward | 501      |
+| goals             | 22       |
+| steps             | 170000   |
+| successes         | 0.378    |
+| time elapsed      | 98       |
+| total reward      | 191      |
+--------------------------------
+--------------------------------
+| episodes          | 493      |
+| eval successes    | 0.994    |
+| eval total reward | 490      |
+| goals             | 22       |
+| steps             | 180000   |
+| successes         | 0.343    |
+| time elapsed      | 73       |
+| total reward      | 169      |
+--------------------------------
+--------------------------------
+| episodes          | 511      |
+| eval successes    | 0.994    |
+| eval total reward | 508      |
+| goals             | 22       |
 | steps             | 190000   |
-| successes         | 0.349    |
-| time elapsed      | 1.14     |
+| successes         | 0.368    |
+| time elapsed      | 85       |
+| total reward      | 188      |
+--------------------------------
+--------------------------------
+| episodes          | 494      |
+| eval successes    | 0.994    |
+| eval total reward | 491      |
+| goals             | 22       |
+| steps             | 200000   |
+| successes         | 0.374    |
+| time elapsed      | 83.4     |
+| total reward      | 185      |
+--------------------------------
+--------------------------------
+| episodes          | 474      |
+| eval successes    | 0.998    |
+| eval total reward | 473      |
+| goals             | 22       |
+| steps             | 210000   |
+| successes         | 0.378    |
+| time elapsed      | 77.4     |
+| total reward      | 179      |
+--------------------------------
+--------------------------------
+| episodes          | 492      |
+| eval successes    | 0.99     |
+| eval total reward | 487      |
+| goals             | 22       |
+| steps             | 220000   |
+| successes         | 0.339    |
+| time elapsed      | 97.4     |
+| total reward      | 167      |
+--------------------------------
+--------------------------------
+| episodes          | 512      |
+| eval successes    | 0.982    |
+| eval total reward | 503      |
+| goals             | 22       |
+| steps             | 230000   |
+| successes         | 0.312    |
+| time elapsed      | 76.3     |
+| total reward      | 160      |
+--------------------------------
+--------------------------------
+| episodes          | 506      |
+| eval successes    | 0.984    |
+| eval total reward | 498      |
+| goals             | 22       |
+| steps             | 240000   |
+| successes         | 0.344    |
+| time elapsed      | 85.8     |
 | total reward      | 174      |
 --------------------------------
 --------------------------------
-| episodes          | 483      |
-| eval successes    | 479      |
-| eval total reward | 479      |
-| steps             | 200000   |
-| successes         | 0.391    |
-| time elapsed      | 1.12     |
+| episodes          | 529      |
+| eval successes    | 0.992    |
+| eval total reward | 525      |
+| goals             | 22       |
+| steps             | 250000   |
+| successes         | 0.335    |
+| time elapsed      | 80.8     |
+| total reward      | 177      |
+--------------------------------
+--------------------------------
+| episodes          | 538      |
+| eval successes    | 0.985    |
+| eval total reward | 530      |
+| goals             | 22       |
+| steps             | 260000   |
+| successes         | 0.34     |
+| time elapsed      | 93.6     |
+| total reward      | 183      |
+--------------------------------
+--------------------------------
+| episodes          | 501      |
+| eval successes    | 0.992    |
+| eval total reward | 497      |
+| goals             | 22       |
+| steps             | 270000   |
+| successes         | 0.319    |
+| time elapsed      | 87.6     |
+| total reward      | 160      |
+--------------------------------
+--------------------------------
+| episodes          | 472      |
+| eval successes    | 0.996    |
+| eval total reward | 470      |
+| goals             | 22       |
+| steps             | 280000   |
+| successes         | 0.352    |
+| time elapsed      | 84.9     |
+| total reward      | 166      |
+--------------------------------
+--------------------------------
+| episodes          | 487      |
+| eval successes    | 0.986    |
+| eval total reward | 480      |
+| goals             | 22       |
+| steps             | 290000   |
+| successes         | 0.376    |
+| time elapsed      | 71.6     |
+| total reward      | 183      |
+--------------------------------
+--------------------------------
+| episodes          | 509      |
+| eval successes    | 0.99     |
+| eval total reward | 504      |
+| goals             | 22       |
+| steps             | 300000   |
+| successes         | 0.334    |
+| time elapsed      | 82.8     |
+| total reward      | 170      |
+--------------------------------
+--------------------------------
+| episodes          | 522      |
+| eval successes    | 0.994    |
+| eval total reward | 519      |
+| goals             | 22       |
+| steps             | 310000   |
+| successes         | 0.349    |
+| time elapsed      | 91.5     |
+| total reward      | 182      |
+--------------------------------
+--------------------------------
+| episodes          | 516      |
+| eval successes    | 0.998    |
+| eval total reward | 515      |
+| goals             | 22       |
+| steps             | 320000   |
+| successes         | 0.326    |
+| time elapsed      | 113      |
+| total reward      | 168      |
+--------------------------------
+--------------------------------
+| episodes          | 529      |
+| eval successes    | 0.994    |
+| eval total reward | 526      |
+| goals             | 22       |
+| steps             | 330000   |
+| successes         | 0.333    |
+| time elapsed      | 82.1     |
+| total reward      | 176      |
+--------------------------------
+--------------------------------
+| episodes          | 507      |
+| eval successes    | 0.99     |
+| eval total reward | 502      |
+| goals             | 22       |
+| steps             | 340000   |
+| successes         | 0.353    |
+| time elapsed      | 76.5     |
+| total reward      | 179      |
+--------------------------------
+--------------------------------
+| episodes          | 496      |
+| eval successes    | 0.994    |
+| eval total reward | 493      |
+| goals             | 22       |
+| steps             | 350000   |
+| successes         | 0.329    |
+| time elapsed      | 97.9     |
+| total reward      | 163      |
+--------------------------------
+--------------------------------
+| episodes          | 519      |
+| eval successes    | 0.985    |
+| eval total reward | 511      |
+| goals             | 22       |
+| steps             | 360000   |
+| successes         | 0.364    |
+| time elapsed      | 79.2     |
 | total reward      | 189      |
 --------------------------------
 --------------------------------
 | episodes          | 497      |
-| eval successes    | 493      |
-| eval total reward | 493      |
-| steps             | 210000   |
-| successes         | 0.354    |
+| eval successes    | 0.99     |
+| eval total reward | 492      |
+| goals             | 22       |
+| steps             | 370000   |
+| successes         | 0.358    |
+| time elapsed      | 65.2     |
+| total reward      | 178      |
+--------------------------------
+--------------------------------
+| episodes          | 493      |
+| eval successes    | 0.998    |
+| eval total reward | 492      |
+| goals             | 22       |
+| steps             | 380000   |
+| successes         | 0.414    |
+| time elapsed      | 64.6     |
+| total reward      | 204      |
+--------------------------------
+--------------------------------
+| episodes          | 516      |
+| eval successes    | 0.988    |
+| eval total reward | 510      |
+| goals             | 22       |
+| steps             | 390000   |
+| successes         | 0.333    |
+| time elapsed      | 66.2     |
+| total reward      | 172      |
+--------------------------------
+--------------------------------
+| episodes          | 487      |
+| eval successes    | 0.992    |
+| eval total reward | 483      |
+| goals             | 22       |
+| steps             | 400000   |
+| successes         | 0.411    |
+| time elapsed      | 64.5     |
+| total reward      | 200      |
+--------------------------------
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:516: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint8 = np.dtype([("qint8", np.int8, 1)])
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:517: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_quint8 = np.dtype([("quint8", np.uint8, 1)])
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:518: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint16 = np.dtype([("qint16", np.int16, 1)])
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:519: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_quint16 = np.dtype([("quint16", np.uint16, 1)])
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:520: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint32 = np.dtype([("qint32", np.int32, 1)])
+/mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:525: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  np_resource = np.dtype([("resource", np.ubyte, 1)])
+Logging to data/logs/ql/Office-Coffee-Task-v0/12/
+--------------------------------
+| episodes          | 300      |
+| eval successes    | 0.193    |
+| eval total reward | 58       |
+| steps             | 10000    |
+| successes         | 0.137    |
+| time elapsed      | 1.16     |
+| total reward      | 41       |
+--------------------------------
+--------------------------------
+| episodes          | 452      |
+| eval successes    | 0.717    |
+| eval total reward | 324      |
+| steps             | 20000    |
+| successes         | 0.33     |
+| time elapsed      | 1.07     |
+| total reward      | 149      |
+--------------------------------
+--------------------------------
+| episodes          | 472      |
+| eval successes    | 0.924    |
+| eval total reward | 436      |
+| steps             | 30000    |
+| successes         | 0.322    |
 | time elapsed      | 1.13     |
-| total reward      | 176      |
+| total reward      | 152      |
 --------------------------------
 --------------------------------
-| episodes          | 522      |
-| eval successes    | 518      |
-| eval total reward | 518      |
-| steps             | 220000   |
-| successes         | 0.293    |
-| time elapsed      | 1.18     |
+| episodes          | 503      |
+| eval successes    | 0.98     |
+| eval total reward | 493      |
+| steps             | 40000    |
+| successes         | 0.4      |
+| time elapsed      | 1.17     |
+| total reward      | 201      |
+--------------------------------
+--------------------------------
+| episodes          | 508      |
+| eval successes    | 0.994    |
+| eval total reward | 505      |
+| steps             | 50000    |
+| successes         | 0.37     |
+| time elapsed      | 1.15     |
+| total reward      | 188      |
+--------------------------------
+--------------------------------
+| episodes          | 511      |
+| eval successes    | 0.992    |
+| eval total reward | 507      |
+| steps             | 60000    |
+| successes         | 0.333    |
+| time elapsed      | 1.14     |
+| total reward      | 170      |
+--------------------------------
+--------------------------------
+| episodes          | 451      |
+| eval successes    | 0.991    |
+| eval total reward | 447      |
+| steps             | 70000    |
+| successes         | 0.339    |
+| time elapsed      | 1.08     |
 | total reward      | 153      |
 --------------------------------
 --------------------------------
 | episodes          | 496      |
-| eval successes    | 493      |
-| eval total reward | 493      |
-| steps             | 230000   |
-| successes         | 0.343    |
-| time elapsed      | 1.15     |
-| total reward      | 170      |
---------------------------------
---------------------------------
-| episodes          | 508      |
-| eval successes    | 501      |
-| eval total reward | 501      |
-| steps             | 240000   |
-| successes         | 0.335    |
-| time elapsed      | 1.14     |
-| total reward      | 170      |
---------------------------------
---------------------------------
-| episodes          | 511      |
-| eval successes    | 510      |
-| eval total reward | 510      |
-| steps             | 250000   |
-| successes         | 0.346    |
-| time elapsed      | 1.15     |
-| total reward      | 177      |
---------------------------------
---------------------------------
-| episodes          | 508      |
-| eval successes    | 502      |
-| eval total reward | 502      |
-| steps             | 260000   |
-| successes         | 0.376    |
-| time elapsed      | 1.14     |
-| total reward      | 191      |
---------------------------------
---------------------------------
-| episodes          | 524      |
-| eval successes    | 518      |
-| eval total reward | 518      |
-| steps             | 270000   |
-| successes         | 0.366    |
-| time elapsed      | 1.2      |
-| total reward      | 192      |
---------------------------------
---------------------------------
-| episodes          | 531      |
-| eval successes    | 524      |
-| eval total reward | 524      |
-| steps             | 280000   |
-| successes         | 0.307    |
-| time elapsed      | 1.2      |
-| total reward      | 163      |
---------------------------------
---------------------------------
-| episodes          | 490      |
-| eval successes    | 485      |
-| eval total reward | 485      |
-| steps             | 290000   |
-| successes         | 0.324    |
-| time elapsed      | 1.13     |
-| total reward      | 159      |
---------------------------------
---------------------------------
-| episodes          | 519      |
-| eval successes    | 515      |
-| eval total reward | 515      |
-| steps             | 300000   |
-| successes         | 0.376    |
-| time elapsed      | 1.14     |
-| total reward      | 195      |
---------------------------------
---------------------------------
-| episodes          | 491      |
-| eval successes    | 488      |
-| eval total reward | 488      |
-| steps             | 310000   |
-| successes         | 0.369    |
-| time elapsed      | 1.13     |
-| total reward      | 181      |
---------------------------------
---------------------------------
-| episodes          | 481      |
-| eval successes    | 478      |
-| eval total reward | 478      |
-| steps             | 320000   |
-| successes         | 0.337    |
-| time elapsed      | 1.11     |
-| total reward      | 162      |
---------------------------------
---------------------------------
-| episodes          | 510      |
-| eval successes    | 509      |
-| eval total reward | 509      |
-| steps             | 330000   |
-| successes         | 0.32     |
-| time elapsed      | 1.15     |
-| total reward      | 163      |
---------------------------------
---------------------------------
-| episodes          | 506      |
-| eval successes    | 502      |
-| eval total reward | 502      |
-| steps             | 340000   |
-| successes         | 0.364    |
-| time elapsed      | 1.14     |
+| eval successes    | 0.99     |
+| eval total reward | 491      |
+| steps             | 80000    |
+| successes         | 0.371    |
+| time elapsed      | 1.12     |
 | total reward      | 184      |
 --------------------------------
 --------------------------------
-| episodes          | 526      |
-| eval successes    | 523      |
-| eval total reward | 523      |
-| steps             | 350000   |
-| successes         | 0.337    |
-| time elapsed      | 1.18     |
+| episodes          | 516      |
+| eval successes    | 0.994    |
+| eval total reward | 513      |
+| steps             | 90000    |
+| successes         | 0.353    |
+| time elapsed      | 1.17     |
+| total reward      | 182      |
+--------------------------------
+--------------------------------
+| episodes          | 495      |
+| eval successes    | 0.992    |
+| eval total reward | 491      |
+| steps             | 100000   |
+| successes         | 0.329    |
+| time elapsed      | 1.11     |
+| total reward      | 163      |
+--------------------------------
+--------------------------------
+| episodes          | 496      |
+| eval successes    | 0.992    |
+| eval total reward | 492      |
+| steps             | 110000   |
+| successes         | 0.339    |
+| time elapsed      | 1.11     |
+| total reward      | 168      |
+--------------------------------
+--------------------------------
+| episodes          | 516      |
+| eval successes    | 0.992    |
+| eval total reward | 512      |
+| steps             | 120000   |
+| successes         | 0.331    |
+| time elapsed      | 1.14     |
+| total reward      | 171      |
+--------------------------------
+--------------------------------
+| episodes          | 495      |
+| eval successes    | 0.992    |
+| eval total reward | 491      |
+| steps             | 130000   |
+| successes         | 0.358    |
+| time elapsed      | 1.16     |
 | total reward      | 177      |
 --------------------------------
 --------------------------------
-| episodes          | 517      |
-| eval successes    | 509      |
-| eval total reward | 509      |
-| steps             | 360000   |
-| successes         | 0.329    |
+| episodes          | 504      |
+| eval successes    | 0.986    |
+| eval total reward | 497      |
+| steps             | 140000   |
+| successes         | 0.347    |
+| time elapsed      | 1.13     |
+| total reward      | 175      |
+--------------------------------
+--------------------------------
+| episodes          | 524      |
+| eval successes    | 0.994    |
+| eval total reward | 521      |
+| steps             | 150000   |
+| successes         | 0.303    |
 | time elapsed      | 1.15     |
+| total reward      | 159      |
+--------------------------------
+--------------------------------
+| episodes          | 504      |
+| eval successes    | 0.994    |
+| eval total reward | 501      |
+| steps             | 160000   |
+| successes         | 0.337    |
+| time elapsed      | 1.14     |
 | total reward      | 170      |
 --------------------------------
 --------------------------------
-| episodes          | 499      |
-| eval successes    | 494      |
-| eval total reward | 494      |
-| steps             | 370000   |
-| successes         | 0.321    |
-| time elapsed      | 1.13     |
-| total reward      | 160      |
+| episodes          | 483      |
+| eval successes    | 0.994    |
+| eval total reward | 480      |
+| steps             | 170000   |
+| successes         | 0.366    |
+| time elapsed      | 1.14     |
+| total reward      | 177      |
 --------------------------------
 --------------------------------
-| episodes          | 497      |
-| eval successes    | 493      |
-| eval total reward | 493      |
-| steps             | 380000   |
-| successes         | 0.384    |
+| episodes          | 493      |
+| eval successes    | 0.99     |
+| eval total reward | 488      |
+| steps             | 180000   |
+| successes         | 0.373    |
+| time elapsed      | 1.15     |
+| total reward      | 184      |
+--------------------------------
+--------------------------------
+| episodes          | 494      |
+| eval successes    | 0.988    |
+| eval total reward | 488      |
+| steps             | 190000   |
+| successes         | 0.364    |
 | time elapsed      | 1.13     |
-| total reward      | 191      |
+| total reward      | 180      |
+--------------------------------
+--------------------------------
+| episodes          | 477      |
+| eval successes    | 0.998    |
+| eval total reward | 476      |
+| steps             | 200000   |
+| successes         | 0.398    |
+| time elapsed      | 1.13     |
+| total reward      | 190      |
+--------------------------------
+--------------------------------
+| episodes          | 520      |
+| eval successes    | 0.992    |
+| eval total reward | 516      |
+| steps             | 210000   |
+| successes         | 0.329    |
+| time elapsed      | 1.18     |
+| total reward      | 171      |
+--------------------------------
+--------------------------------
+| episodes          | 516      |
+| eval successes    | 0.992    |
+| eval total reward | 512      |
+| steps             | 220000   |
+| successes         | 0.353    |
+| time elapsed      | 1.16     |
+| total reward      | 182      |
 --------------------------------
 --------------------------------
 | episodes          | 513      |
-| eval successes    | 507      |
+| eval successes    | 0.988    |
 | eval total reward | 507      |
-| steps             | 390000   |
-| successes         | 0.386    |
-| time elapsed      | 1.15     |
-| total reward      | 198      |
+| steps             | 230000   |
+| successes         | 0.347    |
+| time elapsed      | 1.19     |
+| total reward      | 178      |
 --------------------------------
 --------------------------------
-| episodes          | 497      |
-| eval successes    | 493      |
-| eval total reward | 493      |
-| steps             | 400000   |
-| successes         | 0.368    |
-| time elapsed      | 1.13     |
+| episodes          | 518      |
+| eval successes    | 0.998    |
+| eval total reward | 517      |
+| steps             | 240000   |
+| successes         | 0.373    |
+| time elapsed      | 1.16     |
+| total reward      | 193      |
+--------------------------------
+--------------------------------
+| episodes          | 487      |
+| eval successes    | 0.99     |
+| eval total reward | 482      |
+| steps             | 250000   |
+| successes         | 0.366    |
+| time elapsed      | 1.1      |
+| total reward      | 178      |
+--------------------------------
+--------------------------------
+| episodes          | 521      |
+| eval successes    | 0.996    |
+| eval total reward | 519      |
+| steps             | 260000   |
+| successes         | 0.351    |
+| time elapsed      | 1.16     |
 | total reward      | 183      |
+--------------------------------
+--------------------------------
+| episodes          | 500      |
+| eval successes    | 0.988    |
+| eval total reward | 494      |
+| steps             | 270000   |
+| successes         | 0.344    |
+| time elapsed      | 1.11     |
+| total reward      | 172      |
+--------------------------------
+--------------------------------
+| episodes          | 502      |
+| eval successes    | 1        |
+| eval total reward | 502      |
+| steps             | 280000   |
+| successes         | 0.335    |
+| time elapsed      | 1.12     |
+| total reward      | 168      |
+--------------------------------
+--------------------------------
+| episodes          | 501      |
+| eval successes    | 0.99     |
+| eval total reward | 496      |
+| steps             | 290000   |
+| successes         | 0.401    |
+| time elapsed      | 1.12     |
+| total reward      | 201      |
+--------------------------------
+--------------------------------
+| episodes          | 490      |
+| eval successes    | 0.992    |
+| eval total reward | 486      |
+| steps             | 300000   |
+| successes         | 0.363    |
+| time elapsed      | 1.09     |
+| total reward      | 178      |
+--------------------------------
+--------------------------------
+| episodes          | 540      |
+| eval successes    | 0.985    |
+| eval total reward | 532      |
+| steps             | 310000   |
+| successes         | 0.335    |
+| time elapsed      | 1.16     |
+| total reward      | 181      |
+--------------------------------
+--------------------------------
+| episodes          | 512      |
+| eval successes    | 0.994    |
+| eval total reward | 509      |
+| steps             | 320000   |
+| successes         | 0.314    |
+| time elapsed      | 1.13     |
+| total reward      | 161      |
+--------------------------------
+--------------------------------
+| episodes          | 505      |
+| eval successes    | 0.996    |
+| eval total reward | 503      |
+| steps             | 330000   |
+| successes         | 0.366    |
+| time elapsed      | 1.12     |
+| total reward      | 185      |
+--------------------------------
+--------------------------------
+| episodes          | 508      |
+| eval successes    | 0.998    |
+| eval total reward | 507      |
+| steps             | 340000   |
+| successes         | 0.37     |
+| time elapsed      | 1.12     |
+| total reward      | 188      |
+--------------------------------
+--------------------------------
+| episodes          | 488      |
+| eval successes    | 0.99     |
+| eval total reward | 483      |
+| steps             | 350000   |
+| successes         | 0.324    |
+| time elapsed      | 1.1      |
+| total reward      | 158      |
+--------------------------------
+--------------------------------
+| episodes          | 479      |
+| eval successes    | 0.983    |
+| eval total reward | 471      |
+| steps             | 360000   |
+| successes         | 0.38     |
+| time elapsed      | 1.09     |
+| total reward      | 182      |
+--------------------------------
+--------------------------------
+| episodes          | 472      |
+| eval successes    | 0.994    |
+| eval total reward | 469      |
+| steps             | 370000   |
+| successes         | 0.373    |
+| time elapsed      | 1.08     |
+| total reward      | 176      |
+--------------------------------
+--------------------------------
+| episodes          | 520      |
+| eval successes    | 0.994    |
+| eval total reward | 517      |
+| steps             | 380000   |
+| successes         | 0.337    |
+| time elapsed      | 1.14     |
+| total reward      | 175      |
+--------------------------------
+--------------------------------
+| episodes          | 494      |
+| eval successes    | 0.992    |
+| eval total reward | 490      |
+| steps             | 390000   |
+| successes         | 0.36     |
+| time elapsed      | 1.12     |
+| total reward      | 178      |
+--------------------------------
+--------------------------------
+| episodes          | 494      |
+| eval successes    | 0.994    |
+| eval total reward | 491      |
+| steps             | 400000   |
+| successes         | 0.348    |
+| time elapsed      | 1.12     |
+| total reward      | 172      |
 --------------------------------
 /mnt/data/home/geraud/miniconda3/envs/sm/lib/python3.7/site-packages/tensorflow/python/framework/dtypes.py:516: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
   _np_qint8 = np.dtype([("qint8", np.int8, 1)])

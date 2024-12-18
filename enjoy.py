@@ -13,9 +13,9 @@ def render(state, SM, skill, task_env, images, max_width, max_height):
     if hasattr(task_env.environment,"render_skill"): task_env.environment.render_params["skill"] = skill
     if hasattr(task_env.environment,"render_params"):
         task_env.environment.render_params["state"] = states
-        task_env.environment.render_params["task_title"] = r"Task: ${}$".format(str(task_env.task).replace("&"," \wedge ").replace("|"," \\vee ").replace("~"," \\neg "))
+        # task_env.environment.render_params["task_title"] = r"Task: ${}$".format(str(task_env.task).replace("&"," \wedge ").replace("|"," \\vee ").replace("~"," \\neg "))
         exp = sympify(SM.exp); exp = exp if type(exp)==bool else exp.subs({symbol: Symbol(' Q_{{{}}} '.format(symbol)) for symbol in exp.free_symbols})
-        task_env.environment.render_params["skill_title"] = r"SM($u_{}$): ${}$".format(task_env.rm.u, str(exp).replace("&"," \wedge ").replace("|"," \\vee ").replace("~"," \\neg ").replace("p_","").replace("c_","\widehat ").replace("True","Q_{True}").replace("False","Q_{False}"))
+        # task_env.environment.render_params["skill_title"] = r"SM($u_{}$): ${}$".format(task_env.rm.u, str(exp).replace("&"," \wedge ").replace("|"," \\vee ").replace("~"," \\neg ").replace("p_","").replace("c_","\widehat ").replace("True","Q_{True}").replace("False","Q_{False}"))
     images.append(task_env.render())
     if task_env.render_mode =="rgb_array":
         if images[-1].shape[0]>max_width: max_width = images[-1].shape[0]
@@ -33,7 +33,7 @@ parser.add_argument("--sp_dir", help="Directory where the learned skill primitiv
 parser.add_argument("--q_dir", help="Directory where the learned task specific skill will be saved", default='')
 parser.add_argument("--save_path", help="Save renders to path.", default='')
 parser.add_argument("--render_mode", help="Render mode. E.g. human, rgb_array", default="rgb_array")
-parser.add_argument("--episodes", help="Number of episodes", type=int, default=5)
+parser.add_argument("--episodes", help="Number of episodes", type=int, default=1)
 parser.add_argument("--seed", help="Random seed", type=int, default=None)
 
 if __name__ == "__main__":
@@ -44,7 +44,7 @@ if __name__ == "__main__":
   
     # Initialise the MDP for the given temporal logic task
     if "Task" in args.env: task_env = gym.make(args.env, render_mode=args.render_mode, test=True)
-    else:                  task_env = Task(gym.make(args.env, max_episode_steps=20, render_mode=args.render_mode), args.ltl, test=True)
+    else:                  task_env = Task(gym.make(args.env, max_episode_steps=500, render_mode=args.render_mode), args.ltl, test=True)
     if hasattr(task_env.environment.unwrapped, "start_position"): task_env.environment.unwrapped.start_position = (10,4)
 
     # Load the zeroshot or fewshot skill
@@ -54,13 +54,14 @@ if __name__ == "__main__":
 
     if args.fewshot:
         skill = torch.load(args.q_dir); SM = skill.SM
-        save_path = args.save_path if args.save_path else f"./images/fewshot_{args.env}_{args.ltl}.mp4"
+        save_path = args.save_path if args.save_path else f"./images/fewshot_{args.env}_{args.ltl}.gif"
     else:
         primitive_env = TaskPrimitive(task_env.environment, sb3=sb3)
         primitive_env.goals.update(torch.load(args.sp_dir+"goals")) 
-        SP = {primitive: Agent(primitive, primitive_env, save_dir=sp_dir, load=True) for primitive in ['0','1']}
+        if args.algo=="ql": SP = {primitive: Agent(primitive, primitive_env, save_dir=sp_dir, load=True) for primitive in ['0','1']}
+        else:               SP = {primitive: Agent("wvf_"+primitive, primitive_env, save_dir=sp_dir, load=True) for primitive in ['0','1']}
         SM = SkillMachine(primitive_env, SP, vectorised=args.algo!="ql"); skill = SM
-        save_path = args.save_path if args.save_path else f"./images/zeroshot_{args.env}_{args.ltl}.mp4"
+        save_path = args.save_path if args.save_path else f"./images/zeroshot_{args.env}_{args.ltl}.gif"
     print("save_path", save_path)
 
     # Visualise the skill solving the given task

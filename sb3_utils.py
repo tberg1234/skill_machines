@@ -96,7 +96,7 @@ class UVFAFeaturesExtractor(BaseFeaturesExtractor):
 
 
 class EvaluateSaveCallback(BaseCallback):
-    def __init__(self, primitive_env, task_env, SM=None, skill=None, save_dir="", eval_steps=500, print_freq=1e4, seed=None, verbose=1):
+    def __init__(self, primitive_env, task_env, SM=None, skill=None, save_dir="", eval_steps=50, print_freq=1e4, seed=None, verbose=1):
         super().__init__(verbose)
         self.primitive_env, self.task_env, self.SM, self.skill, self.eval_steps, self.print_freq, self.save_dir, self.seed  = primitive_env, task_env, SM, skill, eval_steps, print_freq, save_dir, seed
         self.rewards, self.successes, self.best = 0, 0, 0

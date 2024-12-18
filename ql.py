@@ -55,7 +55,7 @@ def learn(task_env, total_steps, q_dir="vf", log_dir="logs", gamma=0.9, lr=0.5, 
                 torch.save(Q, q_dir+"skill") 
                 logger.record("steps", step); logger.record("episodes", num_episodes); 
                 logger.record("total reward", reward_total); logger.record("successes", successes/num_episodes)
-                logger.record("eval total reward", eval_total_reward); logger.record("eval successes", eval_successes)
+                logger.record("eval total reward", eval_total_reward); logger.record("eval successes", eval_successes/num_episodes)
                 logger.record("time elapsed", time.time()-start_time); logger.dump(step)
                 reward_total, successes, eval_total_reward, eval_successes, num_episodes, start_time = 0, 0, 0, 0, 0, time.time()
             if done or truncated: 

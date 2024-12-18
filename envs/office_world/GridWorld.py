@@ -129,7 +129,7 @@ class GridWorldEnv(gym.Env):
         
         plt.imshow(self.map_img, origin="upper", extent=[0, self.n, self.m, 0])        
         ax = self.env_fig.gca()
-
+        
         if self.render_params["env_map"]:
             for pos, objects in self.position_predicate.items():
                 for obj in objects:
@@ -138,19 +138,19 @@ class GridWorldEnv(gym.Env):
                     ax.text(pos[1]+0.2, pos[0]+0.8, label, style='oblique', fontweight="bold", size=self.env_fig.get_figheight()*4)        
         if self.render_params["agent"]:
             ax.add_patch(patches.Circle((self.position[1]+0.5, self.position[0]+0.5), radius=0.4, lw=0.2, ec='white', fc='black', transform=ax.transData, zorder=10)) 
-        
-        if task_title: 
+         
+        if task_title:
             plt.title(r" \\ ".join(textwrap.wrap(task_title, width=150)) + r" \\~\\ " + r" \\ ".join(textwrap.wrap(skill_title, width=150)), pad=20)
             plt.subplots_adjust(left=0, right=1, top=0.8, bottom=0, wspace=0, hspace=0)
         else:
             plt.subplots_adjust(left=0, right=1, top=1, bottom=0, wspace=0, hspace=0)
-
+        
         if type(values) != type(None):
             c = plt.imshow(values, cmap="RdYlBu_r", origin="upper", extent=[0, self.n, self.m, 0])  
             divider = make_axes_locatable(ax)
             cax = divider.append_axes("right", size="5%", pad=0.05)
             plt.colorbar(c, cax=cax)
-
+        
         plt.tight_layout()    
         if render_mode == 'rgb_array':
             self.env_fig.canvas.draw()

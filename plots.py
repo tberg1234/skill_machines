@@ -37,39 +37,41 @@ def plot_office_iclr():
     data = []
 
     for j in range(len(dirs)):
-        dirr = f'data/logs/{dirs[j]}/{args.env}/'
-        filer = open(dirr+'0/progress.csv')
-        print(dirr+'0/progress.csv')
-        csvreader = csv.reader(filer)
-        all_data_pnts = [row for row in csvreader]
-        episodes, steps, performance = all_data_pnts[0].index("episodes"), all_data_pnts[0].index("steps"), all_data_pnts[0].index(f"eval {metric}")
-        all_data_pnts = np.array(all_data_pnts[1:]).astype(np.float32)[:num_steps,:]
-        task = all_data_pnts[:,steps]
-        print(all_data_pnts.shape)
-        a = np.sum(all_data_pnts[:,episodes].reshape(-1, m), axis=1)
-        b = np.sum(all_data_pnts[:,steps].reshape(-1, m), axis=1)
-        c = np.sum(all_data_pnts[:,performance].reshape(-1, m), axis=1)
-        all_data_pnts = np.array([a,b,c]).T
-        print(all_data_pnts.shape)
+        try:
+            dirr = f'data/logs/{dirs[j]}/{args.env}/'
+            filer = open(dirr+'0/progress.csv')
+            print(dirr+'0/progress.csv')
+            csvreader = csv.reader(filer)
+            all_data_pnts = [row for row in csvreader]
+            episodes, steps, performance = all_data_pnts[0].index("episodes"), all_data_pnts[0].index("steps"), all_data_pnts[0].index(f"eval {metric}")
+            all_data_pnts = np.array(all_data_pnts[1:]).astype(np.float32)[:num_steps,:]
+            task = all_data_pnts[:,steps]
+            print(all_data_pnts.shape)
+            a = np.sum(all_data_pnts[:,episodes].reshape(-1, m), axis=1)
+            b = np.sum(all_data_pnts[:,steps].reshape(-1, m), axis=1)
+            c = np.sum(all_data_pnts[:,performance].reshape(-1, m), axis=1)
+            all_data_pnts = np.array([a,b,c]).T
+            print(all_data_pnts.shape)
 
-        for i in range(num_runs):
-            try:
-                filer = open(dirr+'/'+str(i)+'/progress.csv')
-                csvreader = csv.reader(filer)
-                data_pnts = []
-                for row in csvreader: data_pnts.append(row)
-                episodes, steps, performance = data_pnts[0].index("episodes"), data_pnts[0].index("steps"), data_pnts[0].index(f"eval {metric}")
-                # data_pnts[1][-2:]=["0","0"]
-                data_pnts = np.array(data_pnts[1:]).astype(np.float32)[:num_steps,:]
-                a = np.sum(data_pnts[:,episodes].reshape(-1, m), axis=1)
-                b = np.sum(data_pnts[:,steps].reshape(-1, m), axis=1)
-                c = np.sum(data_pnts[:,performance].reshape(-1, m), axis=1)
-                data_pnts = np.array([a,b,c]).T
-                all_data_pnts = np.dstack( [all_data_pnts, data_pnts] )
-            except:
-                print(labels[j], i, "skipped")
-        data.append((np.mean(all_data_pnts, axis=2)[:,2], np.std(all_data_pnts, axis=2)[:,2], labels[j]))
-
+            for i in range(num_runs):
+                try:
+                    filer = open(dirr+'/'+str(i)+'/progress.csv')
+                    csvreader = csv.reader(filer)
+                    data_pnts = []
+                    for row in csvreader: data_pnts.append(row)
+                    episodes, steps, performance = data_pnts[0].index("episodes"), data_pnts[0].index("steps"), data_pnts[0].index(f"eval {metric}")
+                    # data_pnts[1][-2:]=["0","0"]
+                    data_pnts = np.array(data_pnts[1:]).astype(np.float32)[:num_steps,:]
+                    a = np.sum(data_pnts[:,episodes].reshape(-1, m), axis=1)
+                    b = np.sum(data_pnts[:,steps].reshape(-1, m), axis=1)
+                    c = np.sum(data_pnts[:,performance].reshape(-1, m), axis=1)
+                    data_pnts = np.array([a,b,c]).T
+                    all_data_pnts = np.dstack( [all_data_pnts, data_pnts] )
+                except:
+                    print(labels[j], i, "skipped")
+            data.append((np.mean(all_data_pnts, axis=2)[:,2], np.std(all_data_pnts, axis=2)[:,2], labels[j]))
+        except:
+            print(labels[j], "skipped")
     s = 20
 
     rc_ = {'figure.figsize':(9,7),'axes.labelsize': 30, 'xtick.labelsize': s, 
@@ -107,39 +109,41 @@ def plot_office():
     data = []
 
     for j in range(len(labels)):
-        dirr = f'data/logs/{dirs[j]}/{args.env}/'
-        filer = open(dirr+'0/progress.csv')
-        print(dirr+'0/progress.csv')
-        csvreader = csv.reader(filer)
-        all_data_pnts = [row for row in csvreader]
-        episodes, steps, performance = all_data_pnts[0].index("episodes"), all_data_pnts[0].index("steps"), all_data_pnts[0].index(f"eval {metric}")
-        all_data_pnts = np.array(all_data_pnts[1:]).astype(np.float32)[:num_steps,:]
-        task = all_data_pnts[:,steps]
-        print(all_data_pnts.shape)
-        a = np.sum(all_data_pnts[:,episodes].reshape(-1, m), axis=1)
-        b = np.sum(all_data_pnts[:,steps].reshape(-1, m), axis=1)
-        c = np.sum(all_data_pnts[:,performance].reshape(-1, m), axis=1)
-        all_data_pnts = np.array([a,b,c]).T
-        print(all_data_pnts.shape)
+        try:
+            dirr = f'data/logs/{dirs[j]}/{args.env}/'
+            filer = open(dirr+'0/progress.csv')
+            print(dirr+'0/progress.csv')
+            csvreader = csv.reader(filer)
+            all_data_pnts = [row for row in csvreader]
+            episodes, steps, performance = all_data_pnts[0].index("episodes"), all_data_pnts[0].index("steps"), all_data_pnts[0].index(f"eval {metric}")
+            all_data_pnts = np.array(all_data_pnts[1:]).astype(np.float32)[:num_steps,:]
+            task = all_data_pnts[:,steps]
+            print(all_data_pnts.shape)
+            a = np.sum(all_data_pnts[:,episodes].reshape(-1, m), axis=1)
+            b = np.sum(all_data_pnts[:,steps].reshape(-1, m), axis=1)
+            c = np.sum(all_data_pnts[:,performance].reshape(-1, m), axis=1)
+            all_data_pnts = np.array([a,b,c]).T
+            print(all_data_pnts.shape)
 
-        for i in range(num_runs):
-            try:
-                filer = open(dirr+'/'+str(i)+'/progress.csv')
-                csvreader = csv.reader(filer)
-                data_pnts = []
-                for row in csvreader: data_pnts.append(row)
-                # data_pnts[1][-2:]=["0","0"]
-                episodes, steps, performance = data_pnts[0].index("episodes"), data_pnts[0].index("steps"), data_pnts[0].index(f"eval {metric}")
-                data_pnts = np.array(data_pnts[1:]).astype(np.float32)[:num_steps,:]
-                a = np.sum(data_pnts[:,episodes].reshape(-1, m), axis=1)
-                b = np.sum(data_pnts[:,steps].reshape(-1, m), axis=1)
-                c = np.sum(data_pnts[:,performance].reshape(-1, m), axis=1)
-                data_pnts = np.array([a,b,c]).T
-                all_data_pnts = np.dstack( [all_data_pnts, data_pnts] )
-            except:
-                print(labels[j], i, "skipped")
-        data.append((np.mean(all_data_pnts, axis=2)[:,2], np.std(all_data_pnts, axis=2)[:,2], labels[j]))
-
+            for i in range(num_runs):
+                try:
+                    filer = open(dirr+'/'+str(i)+'/progress.csv')
+                    csvreader = csv.reader(filer)
+                    data_pnts = []
+                    for row in csvreader: data_pnts.append(row)
+                    # data_pnts[1][-2:]=["0","0"]
+                    episodes, steps, performance = data_pnts[0].index("episodes"), data_pnts[0].index("steps"), data_pnts[0].index(f"eval {metric}")
+                    data_pnts = np.array(data_pnts[1:]).astype(np.float32)[:num_steps,:]
+                    a = np.sum(data_pnts[:,episodes].reshape(-1, m), axis=1)
+                    b = np.sum(data_pnts[:,steps].reshape(-1, m), axis=1)
+                    c = np.sum(data_pnts[:,performance].reshape(-1, m), axis=1)
+                    data_pnts = np.array([a,b,c]).T
+                    all_data_pnts = np.dstack( [all_data_pnts, data_pnts] )
+                except:
+                    print(labels[j], i, "skipped")
+            data.append((np.mean(all_data_pnts, axis=2)[:,2], np.std(all_data_pnts, axis=2)[:,2], labels[j]))
+        except:
+            print(labels[j], "skipped")
     s = 20
 
     rc_ = {'figure.figsize':(9,7),'axes.labelsize': 30, 'xtick.labelsize': s, 

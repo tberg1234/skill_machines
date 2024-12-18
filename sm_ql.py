@@ -40,8 +40,8 @@ def learn(primitive_env, task_env, total_steps, zeroshot=False, fewshot=False, q
     # Initialise the World Value Functions for the min ("0") and max ("1") WVFs
     SP = {primitive: QLAgent(primitive, primitive_env, save_dir=sp_dir, load=load, lr=lr, gamma=gamma, qinit=qinit) for primitive in ['0','1']}
     if load: primitive_env.goals.update(torch.load(sp_dir+"goals")) 
-    # Skill machine over the learned skill primitives. goal_oriented=True gives faster runtime since goals are maximised only per rm transition (and not per step)
-    SM = SkillMachine(primitive_env, SP, goal_oriented=True) 
+    # Skill machine over the learned skill primitives. goal_directed=True gives faster runtime since goals are maximised only per rm transition (and not per step)
+    SM = SkillMachine(primitive_env, SP, goal_directed=True) 
     # Initialise task specific value function for fewshot learning
     if fewshot: Q = QLAgent("skill", task_env, SM=SM, lr=lr, gamma=gamma, qinit=qinit)
 

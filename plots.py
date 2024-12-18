@@ -24,7 +24,7 @@ args = parser.parse_args()
 #metric = "successes"
 #m = 1
 metric = "total reward"
-m = 4
+m = 1
 
 def plot_office_iclr():
      

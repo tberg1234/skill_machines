@@ -21,10 +21,10 @@ parser.add_argument(
     help="Experiment. E.g office, office_iclr, movingtargets_iclr",
 )
 args = parser.parse_args()
-metric = "successes"
-m = 1
-#metric = "total reward"
-#m = 1 
+#metric = "successes"
+#m = 1
+metric = "total reward"
+m = 4 
 
 def plot_office_iclr():
      

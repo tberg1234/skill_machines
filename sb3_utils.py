@@ -96,14 +96,14 @@ class UVFAFeaturesExtractor(BaseFeaturesExtractor):
 
 
 class EvaluateSaveCallback(BaseCallback):
-    def __init__(self, primitive_env, task_env, SM=None, skill=None, save_dir="", eval_steps=50, print_freq=1e4, seed=None, verbose=1):
+    def __init__(self, primitive_env, task_env, SM=None, skill=None, save_dir="", eval_episodes=100, print_freq=1e4, seed=None, verbose=1):
         super().__init__(verbose)
-        self.primitive_env, self.task_env, self.SM, self.skill, self.eval_steps, self.print_freq, self.save_dir, self.seed  = primitive_env, task_env, SM, skill, eval_steps, print_freq, save_dir, seed
+        self.primitive_env, self.task_env, self.SM, self.skill, self.eval_episodes, self.print_freq, self.save_dir, self.seed  = primitive_env, task_env, SM, skill, eval_episodes, print_freq, save_dir, seed
         self.rewards, self.successes, self.best = 0, 0, 0
         
     def _on_step(self) -> bool:        
         if (self.n_calls-1) % self.print_freq == 0:
-            if self.task_env: self.rewards, self.successes = evaluate(self.task_env, SM=self.SM, skill=self.skill, gamma=0.99, episodes=100, max_episode_steps=self.eval_steps, seed=self.seed) 
+            if self.task_env: self.rewards, self.successes = evaluate(self.task_env, SM=self.SM, skill=self.skill, gamma=0.99, episodes=self.eval_episodes, seed=self.seed) 
             else:             self.rewards = np.sum(self.primitive_env.rewards)/100
             if self.rewards >= self.best:
                 self.best = self.rewards

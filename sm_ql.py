@@ -40,8 +40,8 @@ def learn(primitive_env, task_env, total_steps, zeroshot=False, fewshot=False, q
     # Initialise the World Value Functions for the min ("0") and max ("1") WVFs
     SP = {primitive: QLAgent(primitive, primitive_env, save_dir=sp_dir, load=load, lr=lr, gamma=gamma, qinit=qinit) for primitive in ['0','1']}
     if load: primitive_env.goals.update(torch.load(sp_dir+"goals")) 
-    # Skill machine over the learned skill primitives
-    SM = SkillMachine(primitive_env, SP) 
+    # Skill machine over the learned skill primitives. goal_oriented=True gives faster runtime since goals are maximised only per rm transition (and not per step)
+    SM = SkillMachine(primitive_env, SP, goal_oriented=True) 
     # Initialise task specific value function for fewshot learning
     if fewshot: Q = QLAgent("skill", task_env, SM=SM, lr=lr, gamma=gamma, qinit=qinit)
 
@@ -59,8 +59,8 @@ def learn(primitive_env, task_env, total_steps, zeroshot=False, fewshot=False, q
             # Selecting and executing the action
             if fewshot or zeroshot:
                 if random.random() < epsilon: action = task_env.action_space.sample()
-                elif zeroshot:                action = SM.get_action_value(state)[0][0]
                 elif fewshot:                 action = Q.get_action_value(state)[0][0]
+                else:                         action = SM.get_action_value(state)[0][0]
                 state_, reward, done, truncated, info = task_env.step(action)
                 SM.step(task_env.rm, info["true_propositions"])
             else:
@@ -94,8 +94,8 @@ def learn(primitive_env, task_env, total_steps, zeroshot=False, fewshot=False, q
                 reward_total, successes, eval_total_reward, eval_successes, num_episodes, start_time = 0, 0, 0, 0, 0, time.time()
             if done or truncated: 
                 num_episodes += 1; reward_total += reward; successes += reward>=primitive_env.rmax
-                if fewshot:    r, s = evaluate(task_env, SM=SM, skill=Q, episodes=eval_episodes, epsilon=0, gamma=1, max_episode_steps=200, seed=seed)
-                elif task_env: r, s = evaluate(task_env, SM=SM, episodes=eval_episodes, epsilon=0, gamma=1, max_episode_steps=200, seed=seed)
+                if fewshot:    r, s = evaluate(task_env, SM=SM, skill=Q, episodes=eval_episodes, epsilon=0, gamma=1, seed=seed)
+                elif task_env: r, s = evaluate(task_env, SM=SM, episodes=eval_episodes, epsilon=0, gamma=1, seed=seed)
                 if task_env:   eval_total_reward += r; eval_successes += s
                 break
 
@@ -125,10 +125,10 @@ if __name__ == "__main__":
     
     # Initialise MDP for the primitives (primitive_env), and MDP for the given temporal logic task (task_env)
     if "Task" in args.env: 
-        primitive_env = TaskPrimitive(gym.make(args.env).environment, max_episode_steps=1000)
+        primitive_env = TaskPrimitive(gym.make(args.env).environment)
         task_env = gym.make(args.env)
     else:                  
-        primitive_env = TaskPrimitive(gym.make(args.env, max_episode_steps=1000))
+        primitive_env = TaskPrimitive(gym.make(args.env))
         task_env = Task(gym.make(args.env), args.ltl) if args.ltl else None
 
     # Train primitive skill (skill_primitive), and optionally task specific skill fewshot

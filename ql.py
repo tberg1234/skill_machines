@@ -60,7 +60,7 @@ def learn(task_env, total_steps, q_dir="vf", log_dir="logs", gamma=0.9, lr=0.5, 
                 reward_total, successes, eval_total_reward, eval_successes, num_episodes, start_time = 0, 0, 0, 0, 0, time.time()
             if done or truncated: 
                 num_episodes += 1; reward_total += reward; successes += reward>=task_env.rmax
-                r, s = evaluate(task_env, skill=Q, episodes=eval_episodes, epsilon=0, gamma=1, max_episode_steps=200, seed=seed)
+                r, s = evaluate(task_env, skill=Q, episodes=eval_episodes, epsilon=0, gamma=1, seed=seed)
                 eval_total_reward += r; eval_successes += s
                 break
     return Q

@@ -117,7 +117,7 @@ class EvaluateSaveCallback(BaseCallback):
 
 
 class DQNAgent(BaseAgent):
-    def __init__(self, name, env, save_dir=None, log_dir=None, load=False, use_her=4):
+    def __init__(self, name, env, save_dir=None, log_dir=None, load=False, use_her=16):
         self.name, self.action_space, self.observation_space = name, env.action_space, env.observation_space
         self.model_class = DQN
         self.model = self.model_class(
@@ -125,7 +125,7 @@ class DQNAgent(BaseAgent):
                     policy_kwargs = dict(features_extractor_class = UVFAFeaturesExtractor, features_extractor_kwargs = dict(features_dim=1024)),
                     replay_buffer_class = None if not use_her else WVFReplayBuffer,
                     replay_buffer_kwargs = None if not use_her else dict(n_sampled_goal = use_her, goal_selection_strategy = "future", ),
-                    learning_rate = 1e-5, gamma = 0.99, learning_starts = 10000, target_update_interval = 1000, train_freq = 1,
+                    # learning_rate = 1e-5, gamma = 0.99, learning_starts = 10000, target_update_interval = 1000, train_freq = 1,
                     exploration_fraction = 0.5, exploration_final_eps = 0.1,
                 )
         if log_dir: self.model.set_logger(configure(log_dir+self.name, ["stdout", "csv", "tensorboard"]))

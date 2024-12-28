@@ -139,7 +139,7 @@ class DQNAgent(BaseAgent):
             if len(obs[key].shape)>2: obs[key] =  obs[key].permute(0, 3, 1, 2)
         with torch.no_grad(): values = self.model.q_net(obs)
         if values.device != torch.device("cpu"): values = values.cpu()
-        return values.numpy().argmax(1), values.numpy().max(1) # *(self.name=="1")
+        return values.numpy().argmax(1), values.numpy().max(1)
         
 
 class TD3Agent(BaseAgent):

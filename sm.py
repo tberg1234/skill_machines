@@ -212,7 +212,7 @@ class ComposeSkillPrimitive(SkillPrimitive):
             min_actions, min_values = self.skill_primitives[0].wvfs["0"].get_action_value(states)
             values = (max_values + min_values) - values
             if self.is_discrete: actions = np.where((abs(values - max_values) < abs(values - min_values)), max_actions, min_actions)
-            else:           actions = np.where((abs(values - max_values) < abs(values - min_values))[:,np.newaxis], max_actions, min_actions)
+            else:                actions = np.where((abs(values - max_values) < abs(values - min_values))[:,np.newaxis], max_actions, min_actions)
         
         return actions, values
 

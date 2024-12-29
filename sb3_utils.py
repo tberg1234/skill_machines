@@ -96,22 +96,22 @@ class UVFAFeaturesExtractor(BaseFeaturesExtractor):
 
 
 class EvaluateSaveCallback(BaseCallback):
-    def __init__(self, primitive_env, task_env, SM=None, skill=None, save_dir="", eval_episodes=100, print_freq=1e4, seed=None, verbose=1):
+    def __init__(self, primitive_env, task_env, SM=None, skill=None, save_dir="", eval_steps=1000, print_freq=1e4, seed=None, verbose=1):
         super().__init__(verbose)
-        self.primitive_env, self.task_env, self.SM, self.skill, self.eval_episodes, self.print_freq, self.save_dir, self.seed  = primitive_env, task_env, SM, skill, eval_episodes, print_freq, save_dir, seed
+        self.primitive_env, self.task_env, self.SM, self.skill, self.eval_steps, self.print_freq, self.save_dir, self.seed  = primitive_env, task_env, SM, skill, eval_steps, print_freq, save_dir, seed
         self.rewards, self.successes, self.best = 0, 0, 0
         
     def _on_step(self) -> bool:        
         if (self.n_calls-1) % self.print_freq == 0:
-            if self.task_env: self.rewards, self.successes = evaluate(self.task_env, SM=self.SM, skill=self.skill, gamma=0.99, episodes=self.eval_episodes, seed=self.seed) 
-            else:             self.rewards = np.sum(self.primitive_env.rewards)/100
+            if self.task_env: self.rewards, self.successes = evaluate(self.task_env, SM=self.SM, skill=self.skill, gamma=0.99, eval_steps=self.eval_steps, seed=self.seed) 
+            else:             self.rewards, self.successes = np.sum(self.primitive_env.rewards), np.sum(self.primitive_env.successes)/100
             if self.rewards >= self.best:
                 self.best = self.rewards
                 if self.SM:    self.model.save(self.save_dir+"wvf_"+self.primitive_env.primitive)   
                 if self.skill: self.model.save(self.save_dir+"skill")   
                 if self.primitive_env: torch.save(self.primitive_env.goals, self.save_dir+"goals") 
-        if self.task_env:      self.logger.record("eval rewards", self.rewards); self.logger.record("eval successes", self.successes)
-        else:                  self.logger.record("mean rewards", self.rewards); self.logger.record("mean successes", self.successes)
+        if self.task_env:      self.logger.record("eval total reward", self.rewards); self.logger.record("eval successes", self.successes)
+        else:                  self.logger.record("total reward", self.rewards); self.logger.record("successes", self.successes)
         if self.primitive_env: self.logger.record("goals", len(self.primitive_env.goals))
         return True
 

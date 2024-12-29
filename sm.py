@@ -39,9 +39,9 @@ class TaskPrimitive(gym.Env):
         self.render_mode = render_mode
         self.environment, self.primitive, self.rmin, self.rmax, self.use_env_rewards = env, primitive, rmin, rmax, use_env_rewards
         (self.np_random, self.seed), self.max_episode_steps = seeding.np_random(seed), max_episode_steps
+        self.rewards, self.successes = deque(maxlen=max_episode_steps*100), deque(maxlen=max_episode_steps*100)
         self.wvf, self.sb3 = wvf or sb3, sb3
         
-        self.rewards = deque(maxlen=max_episode_steps*100)
         self.constraints_mask = np.array([1*(e in env.constraints) for e in env.predicates], dtype=np.uint8)
         self.predicates, self.get_predicates, self.constraints = env.predicates, env.get_predicates, env.constraints
         self.goal_space = gym.spaces.Box(low=0, high=1, shape=(2*len(env.predicates),), dtype=np.uint8)
@@ -126,7 +126,7 @@ class TaskPrimitive(gym.Env):
         if self.sb3: state.update({'achieved_goal': self.achieved_goal.copy()})
                 
         reward = self.compute_reward(self.achieved_goal.reshape(1,-1), self.desired_goal.reshape(1,-1), env_reward, done)[0]
-        self.rewards.append(reward)
+        self.rewards.append(reward); self.successes.append(reward>=self.rmax)
         
         truncated, self.steps = env_truncated, self.steps+1
         if self.steps>=self.max_episode_steps: truncated = True
@@ -334,7 +334,7 @@ class SkillMachine():
         return env_action, value
 
     
-def evaluate(task_env, SM=None, skill=None, episodes=1, epsilon=0, gamma=1, max_episode_steps=1000, seed=None):
+def evaluate(task_env, SM=None, skill=None, epsilon=0, gamma=1, episodes=100, eval_steps=1000, seed=None):
     """Given a temporal logic task (task_env), evaluates the SM possibly combined with a task specific policy (skill)"""
 
     rewards, successes, episode, all_images = 0, 0, 0, []
@@ -351,6 +351,6 @@ def evaluate(task_env, SM=None, skill=None, episodes=1, epsilon=0, gamma=1, max_
             if SM: SM.step(task_env.rm, info["true_propositions"])
             
             rewards += (gamma**step)*reward; step += 1
-            if done or (state["env_state"]==state_["env_state"]).all() or truncated or step>=max_episode_steps: successes += reward>=task_env.rm.rmax; break
+            if done or (state["env_state"]==state_["env_state"]).all() or truncated or step>=eval_steps: successes += reward>=task_env.rm.rmax; break
             state = state_
     return rewards, successes/episodes

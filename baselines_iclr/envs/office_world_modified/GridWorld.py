@@ -406,7 +406,8 @@ class Task(gym.core.Wrapper):
         
         # All events
         self.events = ascii_lowercase[:len(predicates.keys())] #self.env.features
-        self.constraints = "e" # self.events # 
+        self.constraints = "e" # self.events #
+        self.violated_constraints = ""
         self.rmax = 1
         self.rmin = 0
         self.predicate_letters = OrderedDict(zip(predicates.keys(), ascii_lowercase))
@@ -421,20 +422,23 @@ class Task(gym.core.Wrapper):
         return str().join(gridworld_events)
     
     def get_constraints(self):
-        constraints = ""
-        events = self.get_events()
-        for c in self.constraints:
-            if c in events:
-                constraints += c
-        return constraints
+        return self.violated_constraints
     
     def reset(self):
+        self.violated_constraints, self.true_propositions = "", ""
         self.state = self.env.reset()
         return self.state[0]
     
     def step(self, action):
         state, reward, done, info = self.env.step(action)
         self.state = state
+        
+        constraints = ""
+        true_propositions = self.get_events()
+        for c in self.constraints:
+            if ((c in self.true_propositions)!=(c in true_propositions)) or (c in self.violated_constraints):
+                constraints += c
+        self.violated_constraints, self.true_propositions = constraints, true_propositions
         
         return self.state[0], self.rmin, False, {}
     

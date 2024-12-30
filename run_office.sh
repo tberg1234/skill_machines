@@ -1,5 +1,5 @@
 #!/bin/bash
-for i in `seq 0 25`; 
+for i in `seq 0 10`; 
 do
 	(
 	# Learn skill primitives

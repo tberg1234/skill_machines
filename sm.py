@@ -285,20 +285,19 @@ class SkillMachine():
         for u in rm.delta_u:
             exp_predicates, exp_constraints, best = "1", "0", float("-inf")
             for exp, value in Q[u].items():
-                if value > best:          
-                    exp_predicates = exp; best = value
-                if value <= rm.rmin: 
-                    if exp_constraints: exp_constraints += (" | " + exp) 
-                    else:               exp_constraints = exp
+                if value > best:     exp_predicates = exp; best = value
+                if value <= rm.rmin: exp_constraints += (" | " + exp) 
             
             exp_predicates = sympify(exp_predicates.replace("!","~").replace("1","True").replace("0","False"))
-            if type(exp_predicates)!=bool: exp_predicates = exp_predicates.subs({symbol: Symbol(f'p_{symbol}') for symbol in exp_predicates.free_symbols})
-            self.delta_q[u] = f"({str(exp_predicates)})"
-
             exp_constraints = sympify(exp_constraints.replace("!","~").replace("1","True").replace("0","False"))
+            if type(exp_predicates)!=bool: 
+                exp_predicates = exp_predicates.subs({symbol: Symbol(f'p_{symbol}') for symbol in exp_predicates.free_symbols})
+            self.delta_q[u] = f"({str(exp_predicates)})"
             if type(exp_constraints)!=bool: 
-                exp_constraints = exp_constraints.subs({symbol: Symbol(f'c_{symbol}') for symbol in exp_constraints.free_symbols})
-                self.delta_q[u] += " " + f"& ~ ({str(exp_constraints)})"
+                # Only consider learned constraints
+                symbols = {symbol: (Symbol(f'c_{symbol}') if symbol in self.skill_primitives else "False") for symbol in exp_constraints.free_symbols}
+                exp_constraints = exp_constraints.subs(symbols)
+                if type(exp_constraints)!=bool: self.delta_q[u] += " " + f"& ~ ({str(exp_constraints)})"
 
             for exp, u_next in rm.delta_u[u].items():
                 self.sm_str += "({},{},'{}',WorldValueFunction({}))\n".format(u,rm.delta_u[u][exp],exp,self.delta_q[u])

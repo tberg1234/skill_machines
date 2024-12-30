@@ -21,6 +21,8 @@ from baselines.common.wrappers import ClipActionsWrapper
 from baselines.common.cmd_util import arg_parser
 
 from reward_machines.rm_environment import RewardMachineWrapper, HierarchicalRMWrapper
+from skill_machines.sm_environment import SPWrapper, SMWrapper
+from skill_machines.sm_environment_v1 import SPWrapperV1, SMWrapperV1
 
 def make_vec_env(env_id, env_type, num_env, seed, args, 
                  wrapper_kwargs=None,
@@ -79,6 +81,23 @@ def make_env(env_id, env_type, args, mpi_rank=0, subrank=0, seed=None, reward_sc
     # Adding RM wrappers if needed
     if args.alg.endswith("hrm") or args.alg.endswith("dhrm"):
         env = HierarchicalRMWrapper(env, args.r_min, args.r_max, args.use_self_loops, args.use_rs, args.gamma, args.rs_gamma)
+
+    discrete_actions = not isinstance(env.action_space, gym.spaces.Box)
+    if discrete_actions:
+        tabular = (not "d" in args.alg)
+        if args.alg.startswith("sp"):
+            env = SPWrapperV1(env, tabular = tabular)
+            
+        if args.alg.startswith("sm"):
+            env = SPWrapperV1(env, False, tabular)
+            env = SMWrapperV1(env, args.use_csm, args.rs_gamma)
+    else:
+        if args.alg.startswith("sp"):
+            env = SPWrapper(env, tabular = False)
+            
+        if args.alg.startswith("sm"):
+            env = SPWrapper(env, False, False)
+            env = SMWrapper(env, args.use_csm, args.rs_gamma)
         
     if args.use_rs or args.use_crm:
         env = RewardMachineWrapper(env, args.use_crm, args.use_rs, args.gamma, args.rs_gamma)

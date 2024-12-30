@@ -21,24 +21,25 @@ parser.add_argument(
     help="Experiment. E.g office, office_iclr, movingtargets_iclr",
 )
 args = parser.parse_args()
-metric = "total reward"
-m = 4 
-metric = "successes"
-m = 1
+
 
 def plot_office_iclr():
      
     num_runs = 25
     num_steps = 400000
-    
+    metric = "total reward"
+    m = 4
+    #metric = "successes"
+    #m = 1
+
     labels = ['SM (Ours)','QL-SM (Ours)','CRM','CRM-RS','HRM','HRM-RS','QL',"QL-RS"]
-    dirs = ['sm_ql/zeroshot','sm_ql/fewshot','crm','crm-rs','hrm','hrm-rs','rm-ql','rm-ql-rs']
+    dirs = ['sm-ql/zeroshot','sm-ql/fewshot','crm','crm-rs','hrm','hrm-rs','rm-ql','rm-ql-rs']
 
     data = []
 
     for j in range(len(dirs)):
         try:
-            dirr = f'data/logs/{dirs[j]}/{args.env}/'
+            dirr = f'baselines_iclr/data/logs/{dirs[j]}/{args.env}/'
             filer = open(dirr+'0/progress.csv')
             print(dirr+'0/progress.csv')
             csvreader = csv.reader(filer)
@@ -94,14 +95,18 @@ def plot_office_iclr():
     #plt.ylim(top=2)
     ax.xaxis.get_major_formatter().set_powerlimits((0, 1))
     fig.tight_layout()
-    fig.savefig(f"images/{args.env}_{metric}.pdf", bbox_inches='tight')
+    fig.savefig(f"images/iclr_{args.env}_{metric}.pdf", bbox_inches='tight')
     plt.show()
 
 
 def plot_office():
 
-    num_runs = 25
+    num_runs = 10
     num_steps = 400000
+    metric = "total reward"
+    m = 4
+    #metric = "successes"
+    #m = 1
 
     labels = ['SM (Ours)','QL-SM (Ours)', 'QL']
     dirs = ['sm_ql/zeroshot','sm_ql/fewshot', 'ql']

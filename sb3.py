@@ -7,6 +7,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--env", help="The agent's environment, or the RM augmented environment for a predefined task distribution.", default='Safety-v0')
 parser.add_argument("--ltl", help="The ltl task the agent should solve. Ignored if --env is a task.", default='')
 parser.add_argument("--total_steps", help="Total training steps", type=int, default=1000000)
+parser.add_argument("--eval_steps", help="Max steps per eval episode", type=int, default=1000)
 parser.add_argument("--algo", help="Stable baselines3 algorithm", default='td3')
 parser.add_argument("--skill_dir", help="Directory where the learned skill will be saved", default='')
 parser.add_argument("--log_dir", help="Directory where the results will be saved", default='')
@@ -30,4 +31,4 @@ if __name__ == "__main__":
     elif args.algo=="td3": agent = TD3Agent("skill", task_env, skill_dir, log_dir, args.load, use_her=0)
 
     # Start Training
-    agent.model.learn(args.total_steps, EvaluateSaveCallback(None, task_env_test, None, agent, skill_dir))
+    agent.model.learn(args.total_steps, EvaluateSaveCallback(None, task_env_test, None, agent, skill_dir, args.eval_steps))

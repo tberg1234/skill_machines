@@ -111,7 +111,7 @@ def build_env(args):
 
     env_type, env_id = get_env_type(args)
 
-    if alg in ['deepq', 'qlearning', 'opql', 'spopql', 'hrm', 'dhrm', 'spql', 'smql_crm', 'smql', 'spdql', 'smdql', 'spddpg', 'smddpg']:
+    if alg in ['deepq', 'qlearning', 'hrm', 'dhrm', 'spql', 'smql_crm', 'smql', 'spdql', 'smdql', 'spddpg', 'smddpg']:
         env = make_env(env_id, env_type, args, seed=seed, logger_dir=logger.get_dir())
         if alg == 'spddpg':
             env = [env, make_env(env_id, env_type, args, seed=seed, logger_dir=logger.get_dir())]

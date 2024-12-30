@@ -27,7 +27,7 @@ def plot_office_iclr():
      
     num_runs = 25
     num_steps = 400000
-    metric = "total reward"
+    metric = "eval total reward"
     m = 4
     #metric = "successes"
     #m = 1
@@ -44,7 +44,8 @@ def plot_office_iclr():
             print(dirr+'0/progress.csv')
             csvreader = csv.reader(filer)
             all_data_pnts = [row for row in csvreader]
-            episodes, steps, performance = all_data_pnts[0].index("episodes"), all_data_pnts[0].index("steps"), all_data_pnts[0].index(f"eval {metric}")
+            metric_ = "total reward" if "sm" in dirs[j] else metric
+            episodes, steps, performance = all_data_pnts[0].index("episodes"), all_data_pnts[0].index("steps"), all_data_pnts[0].index(metric_)
             all_data_pnts = np.array(all_data_pnts[1:]).astype(np.float32)[:num_steps,:]
             task = all_data_pnts[:,steps]
             print(all_data_pnts.shape)
@@ -60,7 +61,7 @@ def plot_office_iclr():
                     csvreader = csv.reader(filer)
                     data_pnts = []
                     for row in csvreader: data_pnts.append(row)
-                    episodes, steps, performance = data_pnts[0].index("episodes"), data_pnts[0].index("steps"), data_pnts[0].index(f"eval {metric}")
+                    episodes, steps, performance = data_pnts[0].index("episodes"), data_pnts[0].index("steps"), data_pnts[0].index(metric_)
                     # data_pnts[1][-2:]=["0","0"]
                     data_pnts = np.array(data_pnts[1:]).astype(np.float32)[:num_steps,:]
                     a = np.sum(data_pnts[:,episodes].reshape(-1, m), axis=1)
@@ -84,8 +85,8 @@ def plot_office_iclr():
     fig, ax = plt.subplots()
     for (mean, std, label) in data:
         task = np.linspace(task.min(), task.max(), len(mean))  
-        ax.plot(task, mean,  label=label, lw = lw)
-        ax.fill_between(task, mean - std, mean + std, alpha=0.4)
+        ax.plot(task, mean, lw = lw)
+        ax.fill_between(task, mean - std, mean + std, alpha=0.4, label=label)
 
     # plt.legend(loc="lower left", bbox_to_anchor=(0,0.025))
     plt.legend()

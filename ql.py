@@ -29,7 +29,7 @@ class QLAgent(BaseAgent):
         else:    self.values[state][action] += self.lr * (reward + self.gamma*self.get_values(state_).max() - self.values[state][action])
 
 
-def learn(task_env, total_steps, q_dir="vf", log_dir="logs", gamma=0.9, lr=0.5, epsilon=0.5, qinit=0, eval_episodes=1, init_eval=1000, print_freq=10000, seed=None):  
+def learn(task_env, total_steps, q_dir="vf", log_dir="logs", gamma=0.9, lr=0.5, epsilon=0.5, qinit=0, eval_episodes=1, print_freq=10000, seed=None):  
     """Q-Learning based method for solving temporal logic tasks zeroshot or fewshot using Skill Machines"""
 
     # Initialise task specific value function
@@ -43,11 +43,11 @@ def learn(task_env, total_steps, q_dir="vf", log_dir="logs", gamma=0.9, lr=0.5, 
         while True:            
             # Selecting and executing the action
             if random.random() < epsilon: action = task_env.action_space.sample()
-            else:                         action = Q.get_action_value(state)[0][0]
+            else:                         action = random.choice([action for action in range(primitive_env.action_space.n) if Q.get_values(state)[action] == Q.get_values(state).max()])
             state_, reward, done, truncated, info = task_env.step(action)
             
             # Updating q-values
-            if step>=init_eval: Q.update_values(state, action, reward, state_, done)
+            Q.update_values(state, action, reward, state_, done)
             
             # logging and moving to the next state
             step += 1; state = state_
@@ -60,7 +60,7 @@ def learn(task_env, total_steps, q_dir="vf", log_dir="logs", gamma=0.9, lr=0.5, 
                 reward_total, successes, eval_total_reward, eval_successes, num_episodes, start_time = 0, 0, 0, 0, 0, time.time()
             if done or truncated: 
                 num_episodes += 1; reward_total += reward; successes += reward>=task_env.rmax
-                r, s = evaluate(task_env, skill=Q, episodes=eval_episodes, epsilon=0, gamma=1, seed=seed)
+                r, s = evaluate(task_env, skill=Q, episodes=eval_episodes, epsilon=0, gamma=gamma, seed=seed)
                 eval_total_reward += r; eval_successes += s
                 break
     return Q
@@ -71,7 +71,7 @@ parser.add_argument("--ltl", help="The ltl task the agent should solve. Ignored 
 parser.add_argument("--total_steps", help="Total training steps", type=int, default=100000)
 parser.add_argument("--q_dir", help="Directory where the learned task specific skill will be saved", default='')
 parser.add_argument("--log_dir", help="Directory where the results will be saved", default='')
-parser.add_argument("--qinit", help="Q-values optimistic initialisation", type=float, default=0.001)
+parser.add_argument("--qinit", help="Q-values optimistic initialisation", type=float, default=0.0)
 parser.add_argument("--seed", help="Random seed", type=int, default=None)
 
 if __name__ == "__main__":

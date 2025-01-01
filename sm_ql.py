@@ -34,7 +34,7 @@ class QLAgent(BaseAgent):
         else:    self.values[state][action] += self.lr * (reward + self.gamma*self.get_values(state_).max() - self.values[state][action])
 
 
-def learn(primitive_env, task_env, total_steps, zeroshot=False, fewshot=False, q_dir="vf", sp_dir="wvfs", log_dir="logs", load=False, gamma=0.9, lr=0.5, epsilon=0.5, qinit=0, eval_episodes=1, init_eval=1000, print_freq=10000, seed=None):  
+def learn(primitive_env, task_env, total_steps, zeroshot=False, fewshot=False, q_dir="vf", sp_dir="wvfs", log_dir="logs", load=False, gamma=0.9, lr=0.5, epsilon=0.5, qinit=0, eval_episodes=1, print_freq=10000, seed=None):  
     """Q-Learning based method for solving temporal logic tasks zeroshot or fewshot using Skill Machines"""
 
     # Initialise the World Value Functions for the min ("0") and max ("1") WVFs
@@ -70,9 +70,9 @@ def learn(primitive_env, task_env, total_steps, zeroshot=False, fewshot=False, q
                 state_, reward, done, truncated, info = primitive_env.step(action)
             
             # Updating q-values
-            if fewshot and step>=init_eval: 
+            if fewshot: 
                 Q.update_values(state, action, reward, state_, done)
-            elif not zeroshot and step>=init_eval:
+            elif not zeroshot:
                 tp_state, tp_state_ = state.copy(), state_.copy()
                 for primitive in SP:
                     primitive_env.primitive = primitive
@@ -113,7 +113,7 @@ parser.add_argument("--fewshot", help="Fewshot transfer", action='store_true', d
 parser.add_argument("--sp_dir", help="Directory where the learned skill primitives will be saved", default='')
 parser.add_argument("--q_dir", help="Directory where the learned task specific skill will be saved", default='')
 parser.add_argument("--log_dir", help="Directory where the results will be saved", default='')
-parser.add_argument("--qinit", help="Q-values optimistic initialisation", type=float, default=0.001)
+parser.add_argument("--qinit", help="Q-values optimistic initialisation", type=float, default=0.0)
 parser.add_argument("--seed", help="Random seed", type=int, default=None)
 
 if __name__ == "__main__":

@@ -29,8 +29,8 @@ def plot_office_iclr():
     num_steps = 400000
     metric = "eval total reward"
     m = 4
-    #metric = "successes"
-    #m = 1
+    # metric = "eval successes"
+    # m = 1
 
     labels = ['SM (Ours)','QL-SM (Ours)','CRM','CRM-RS','HRM','HRM-RS','QL',"QL-RS"]
     dirs = ['sm-ql/zeroshot','sm-ql/fewshot','crm','crm-rs','hrm','hrm-rs','rm-ql','rm-ql-rs']
@@ -44,8 +44,7 @@ def plot_office_iclr():
             print(dirr+'0/progress.csv')
             csvreader = csv.reader(filer)
             all_data_pnts = [row for row in csvreader]
-            metric_ = metric # "total reward" if "sm" in dirs[j] else metric
-            episodes, steps, performance = all_data_pnts[0].index("episodes"), all_data_pnts[0].index("steps"), all_data_pnts[0].index(metric_)
+            episodes, steps, performance = all_data_pnts[0].index("episodes"), all_data_pnts[0].index("steps"), all_data_pnts[0].index(metric)
             all_data_pnts = np.array(all_data_pnts[1:]).astype(np.float32)[:num_steps,:]
             task = all_data_pnts[:,steps]
             print(all_data_pnts.shape)
@@ -104,13 +103,13 @@ def plot_office():
 
     num_runs = 10
     num_steps = 400000
-    metric = "total reward"
+    metric = "eval total reward"
     m = 4
-    #metric = "successes"
-    #m = 1
+    # metric = "eval successes"
+    # m = 1
 
-    labels = ['SM (Ours)','QL-SM (Ours)', 'QL']
-    dirs = ['sm_ql/zeroshot','sm_ql/fewshot', 'ql']
+    labels = ['SM (Ours)','SM-Zeroshot (Ours)','SM-Fewshot (Ours)','Baseline (QL)']
+    dirs = ['sm_ql','sm_ql/zeroshot','sm_ql/fewshot','ql']
 
     data = []
 
@@ -121,7 +120,7 @@ def plot_office():
             print(dirr+'0/progress.csv')
             csvreader = csv.reader(filer)
             all_data_pnts = [row for row in csvreader]
-            episodes, steps, performance = all_data_pnts[0].index("episodes"), all_data_pnts[0].index("steps"), all_data_pnts[0].index(f"eval {metric}")
+            episodes, steps, performance = all_data_pnts[0].index("episodes"), all_data_pnts[0].index("steps"), all_data_pnts[0].index(metric)
             all_data_pnts = np.array(all_data_pnts[1:]).astype(np.float32)[:num_steps,:]
             task = all_data_pnts[:,steps]
             print(all_data_pnts.shape)
@@ -138,7 +137,7 @@ def plot_office():
                     data_pnts = []
                     for row in csvreader: data_pnts.append(row)
                     # data_pnts[1][-2:]=["0","0"]
-                    episodes, steps, performance = data_pnts[0].index("episodes"), data_pnts[0].index("steps"), data_pnts[0].index(f"eval {metric}")
+                    episodes, steps, performance = data_pnts[0].index("episodes"), data_pnts[0].index("steps"), data_pnts[0].index(metric)
                     data_pnts = np.array(data_pnts[1:]).astype(np.float32)[:num_steps,:]
                     a = np.sum(data_pnts[:,episodes].reshape(-1, m), axis=1)
                     b = np.sum(data_pnts[:,steps].reshape(-1, m), axis=1)

@@ -92,7 +92,7 @@ class TaskPrimitive(gym.Env):
         self.steps, (self.np_random, self.seed) = 0, seeding.np_random(seed)
         self.env_state, env_info = self.environment.reset(seed=seed, **kwargs)
         self.true_propositions = self.environment.get_predicates()
-        self.violated_constraints = (self.proposition_space.sample() & self.constraints_mask)*0#*(self.steps%2)
+        self.violated_constraints = (self.proposition_space.sample() & self.constraints_mask)*(self.steps%2)
 
         self.achieved_goal = np.concatenate([self.true_propositions, self.violated_constraints])
         ag_key = self.achieved_goal.tobytes()

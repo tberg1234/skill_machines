@@ -125,7 +125,6 @@ class RewardMachine:
             self.delta_r[u1][u2] = reward_function
         # Sorting self.U... just because... 
         self.U = sorted(self.U)
-
     def _add_state(self, u_list):
         for u in u_list:
             if u not in self.U and u != self.terminal_u:

@@ -146,7 +146,7 @@ class RewardMachine(gym.Env):
             self.rm_str += "({},{},'{}',ConstantRewardFunction({}))\n".format(u,u_next,exp,reward)
         self.rm_str = "{}    # terminal state\n".format(list(self.terminal_states)) + self.rm_str
         self.rm_str = "{}    # initial state\n".format(self.u0) + self.rm_str
-    
+        
     def render(self, *args, **kwargs):
         if not self.graph:
             assert self.u!=None, "Reset the environment after instatiation before rendering"

@@ -1,11 +1,11 @@
 #!/bin/bash
 #cd reward_machines
-for i in `seq 0 25`; 
+for i in `seq 0 10`; 
 do
 	(
 	# Primitives
-	python run.py --alg=smql --env=Office-new-v0 --num_timesteps=100000 --gamma=0.9 --epsilon 0.5 --print_freq 10000 --sp data/spql_$i --log_path=data/logs/sp-ql/Office-v0/$i
-	python run.py --alg=smql --env=Office-new-up-v0 --num_timesteps=100000 --gamma=0.9 --epsilon 0.5 --print_freq 10000 --sp data/spql_up_$i --log_path=data/logs/sp-ql/Office-Mod-v0/$i
+	python run.py --alg=smql --env=Office-new-v0 --num_timesteps=100000 --qinit=0.001 --gamma=0.9 --epsilon 0.5 --print_freq 10000 --sp data/spql_$i --log_path=data/logs/sp-ql/Office-v0/$i
+	python run.py --alg=smql --env=Office-new-up-v0 --num_timesteps=100000 --qinit=0.001 --gamma=0.9 --epsilon 0.5 --print_freq 10000 --sp data/spql_up_$i --log_path=data/logs/sp-ql/Office-Mod-v0/$i
 
 	# RM1 task
 	python run.py --alg=smql --env=Office-new-rm1-v0 --num_timesteps=400000 --qinit=0.001 --gamma=0.9 --epsilon 0.5 --print_freq 10000 --init_eval --zeroshot --sp data/spql_$i --log_path=data/logs/sm-ql/zeroshot/Office-Coffee-Task-v0/$i

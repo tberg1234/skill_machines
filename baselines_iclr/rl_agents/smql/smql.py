@@ -21,20 +21,34 @@ class gym_nasium(gymnasium.Wrapper):
             self.action_space = gymnasium.spaces.Discrete(env.action_space.n)
         else: 
             self.action_space = gymnasium.spaces.Box(low=env.action_space.low.min(), high=env.action_space.high.max(), shape=(env.action_space.shape[0],), dtype=env.action_space.dtype)
+    
+    def convert_rm(self):
+        rm = self.env.current_rm
+        self.rm = lambda: None
+        self.rm.rmin, self.rm.rmax = 0, 1
+        self.rm.u0 = rm.u0
+        self.rm.u = rm.u0
+        self.rm.terminal_states = [rm.terminal_u]
+        self.rm.delta_u = {u:{exp:u_                                 for u_,exp in rm.delta_u[u].items()} for u in rm.delta_u}
+        self.rm.delta_r = {u:{exp:rm.delta_r[u][u_].get_reward(None) for u_,exp in rm.delta_u[u].items()} for u in rm.delta_u}
+            
     def reset(self, **kwargs):
         state = self.env.reset()
         info = {"true_propositions": self.env.get_predicates()}
         if not self.task: 
             if type(state) == tuple: state = np.array(state)
         else:
+            self.convert_rm()
             state = {'env_state': state[:len(self.env.obs)],'rm_state': state[len(self.env.obs):]}
         return state, info
+    
     def step(self, action, **kwargs):
         state, reward, done, info = self.env.step(action)
         info.update({"true_propositions": self.env.get_predicates()})
         if not self.task:
             if type(state) == tuple: state = np.array(state) 
         else:
+            self.rm.u = self.current_u_id
             state = {'env_state': state[:len(self.env.obs)],'rm_state': state[len(self.env.obs):]}
         return state, reward, done, False, info
 
@@ -79,13 +93,6 @@ def learn(env, total_timesteps=100000, zeroshot=False, fewshot=False, q_dir="vf"
         load = True
         primitive_env = TaskPrimitive(gym_nasium(env.env.env.env), max_episode_steps=1000)
         task_env = gym_nasium(env,task=True)
-        task_env.rm = lambda: None; rm = env.reward_machines[0]
-        task_env.rm.rmin, task_env.rm.rmax = 0, 1
-        task_env.rm.u0 = rm.u0
-        task_env.rm.u = rm.u0
-        task_env.rm.terminal_states = [rm.terminal_u]
-        task_env.rm.delta_u = {u:{exp:u_                                 for u_,exp in rm.delta_u[u].items()} for u in rm.delta_u}
-        task_env.rm.delta_r = {u:{exp:rm.delta_r[u][u_].get_reward(None) for u_,exp in rm.delta_u[u].items()} for u in rm.delta_u}
     else:
         primitive_env = TaskPrimitive(gym_nasium(env), max_episode_steps=1000)
         task_env = None
@@ -109,19 +116,13 @@ def learn(env, total_timesteps=100000, zeroshot=False, fewshot=False, q_dir="vf"
             epsilon = 0.1
 
         if fewshot or zeroshot:
-            state, info = task_env.reset(seed=seed)   
-            task_env.rm = lambda: None; rm = env.current_rm
-            task_env.rm.rmin, task_env.rm.rmax = 0, 1
-            task_env.rm.u0 = rm.u0
-            task_env.rm.u = rm.u0
-            task_env.rm.terminal_states = [rm.terminal_u]
-            task_env.rm.delta_u = {u:{exp:u_                                 for u_,exp in rm.delta_u[u].items()} for u in rm.delta_u}
-            task_env.rm.delta_r = {u:{exp:rm.delta_r[u][u_].get_reward(None) for u_,exp in rm.delta_u[u].items()} for u in rm.delta_u}
+            state, info = task_env.reset(seed=seed) 
             SM.reset(task_env.rm, info["true_propositions"])
         else:
             state, info = primitive_env.reset(seed=seed) 
-        state0=state
-        while True:            
+        
+        while True:  
+            # if num_episodes % 2 != 0: print(state, SM.exp, task_env.rm.u, env.get_events())
             # Selecting and executing the action
             if fewshot or zeroshot:
                 states = {k:np.expand_dims(v,0) for (k,v) in state.items()}
@@ -129,7 +130,6 @@ def learn(env, total_timesteps=100000, zeroshot=False, fewshot=False, q_dir="vf"
                 elif fewshot:                 action = Q.get_action_value(states)[0][0]
                 else:                         action = SM.get_action_value(states)[0][0]
                 state_, reward, done, truncated, info = task_env.step(action)
-                task_env.rm.u = task_env.current_u_id
                 SM.step(task_env.rm, info["true_propositions"])
             else:
                 if random.random() < epsilon: action = primitive_env.environment.action_space.sample()
@@ -169,8 +169,7 @@ def learn(env, total_timesteps=100000, zeroshot=False, fewshot=False, q_dir="vf"
                     num_episodes, reward_total, successes = 0, 0, 0
             if done or truncated:
                 num_episodes += 1 
-                # if num_episodes % 2 != 0 and not reward>=1: print(state0, state)
                 break
-
+            
     return SP
 

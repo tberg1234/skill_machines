@@ -398,90 +398,50 @@ predicates =  {
 class Task(gym.core.Wrapper):
     def __init__(self, env, predicates=predicates, task_goals=[], rmax=1, rmin=0, start_positions=None):
         super().__init__(env)
-        
+
         self.start_positions = start_positions
-        self.task_goals = task_goals
         self.rmax = rmax
         self.rmin = rmin
-
-        self.predicates = predicates
-        self.predicate_keys =tuple(sorted(list(self.predicates.keys())))
-        self.goals = set([self.goal_predicates(i) for i in range(2**len(self.predicate_keys))])
-        self.goal_space = spaces.Discrete(len(self.goals))
-
         self.state = None
-        
+
         # All events
         self.events = ascii_lowercase[:len(predicates.keys())] #self.env.features
-        self.constraints = "e" # self.events # 
+        self.predicates = list(self.events)
+        self.constraints = ["e"] # self.events #
         self.rmax = 1
         self.rmin = 0
-        self.predicate_letters = OrderedDict(zip(predicates.keys(), ascii_lowercase))
+        self.predicate_letters = list(zip(predicates.keys(), ascii_lowercase))
 
-        self.observation_space = spaces.Box(low=0, high=max([self.n,self.m]), shape=(4,), dtype=np.uint8)
+        self.observation_space = spaces.Box(low=0, high=max([self.n,self.m]), shape=(2,), dtype=np.uint8)
+
+    def get_predicates(self):
+        predicates_ = np.zeros(len(self.predicates), dtype=self.observation_space.dtype)
+        i = 0
+        for (key, letter) in self.predicate_letters:
+            if letter in self.events:
+                if predicates[key](self.state) == True: predicates_[i] = 1
+                i += 1
+        return predicates_
 
     def get_events(self):
         gridworld_events = []
-        for key, letter in self.predicate_letters.items():
-            if predicates[key](self.state) == True:
+        for key, letter in self.predicate_letters:
+            if letter in self.events and predicates[key](self.state) == True:
                 gridworld_events.append(letter)
         return str().join(gridworld_events)
-    
-    def get_constraints(self):
-        constraints = ""
-        events = self.get_events()
-        for c in self.constraints:
-            if c in events:
-                constraints += c
-        return constraints
-    
+
     def reset(self):
         self.state = self.env.reset()
         return self.state[0]
-    
+
     def step(self, action):
         state, reward, done, info = self.env.step(action)
         self.state = state
-        
-        return self.state[0], self.rmin, done, {}
-    
-    def get_goal(self, state): # Labelling function
-        goal = ''
-        for predicate in self.predicate_keys:
-            goal += str(0+self.predicates[predicate](state))
-
-        return int(goal, 2)
-    
-    def get_predicate(self, state): # Labelling function
-        predicates = set()
-        for predicate in self.predicate_keys:
-            if self.predicates[predicate](state):
-                predicates.add(predicate)
-
-        return predicates
-    
-    def predicates_goal(self, predicates):
-        goal = ''
-        for predicate in self.predicate_keys:
-            goal += '1' if predicate in predicates else '0'
-
-        return int(goal, 2)
-        
-    def goal_predicates(self, goal):
-        goal = bin(goal)[2:]
-        goal = '0'*(len(self.predicate_keys)-len(goal)) + goal
-        predicates = set()
-        for i in range(len(self.predicate_keys)-1,-1,-1):
-            if goal[i] == '1':
-                predicates.add(self.predicate_keys[i])
-
-        return frozenset(predicates)
-    
-    def _get_reward(self, goal):
-        return self.rmax if (goal in self.task_goals) else self.rmin   
+        return self.state[0], self.rmin, False, {}
 
     def render(self, *args, **kwargs):
         return self.env.render(*args, **kwargs)
+
 
 class GridWorldEnv(Task):
     def __init__(self):

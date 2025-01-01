@@ -84,7 +84,8 @@ def learn(primitive_env, task_env, total_steps, zeroshot=False, fewshot=False, q
             # logging and moving to the next state
             step += 1; state = state_
             if step%print_freq == 0:       
-                if fewshot: torch.save(Q, q_dir+"skill") 
+                if fewshot: 
+                    torch.save(Q, q_dir+"skill") 
                 elif not zeroshot: 
                     for primitive in SP: torch.save(SP[primitive].values, sp_dir+"wvf_"+primitive) 
                     torch.save(primitive_env.goals, sp_dir+"goals")                
@@ -95,8 +96,8 @@ def learn(primitive_env, task_env, total_steps, zeroshot=False, fewshot=False, q
                 reward_total, successes, eval_total_reward, eval_successes, num_episodes, start_time = 0, 0, 0, 0, 0, time.time()
             if done or truncated: 
                 num_episodes += 1; reward_total += reward; successes += reward>=primitive_env.rmax
-                if fewshot:    r, s = evaluate(task_env, SM=SM, skill=Q, epsilon=0, gamma=1, episodes=eval_episodes, seed=seed)
-                elif task_env: r, s = evaluate(task_env, SM=SM, epsilon=0, gamma=1, episodes=eval_episodes, seed=seed)
+                if fewshot:    r, s = evaluate(task_env, SM=SM, skill=Q, epsilon=0, gamma=gamma, episodes=eval_episodes, seed=seed)
+                elif task_env: r, s = evaluate(task_env, SM=SM, epsilon=0, gamma=gamma, episodes=eval_episodes, seed=seed)
                 if task_env:   eval_total_reward += r; eval_successes += s
                 break
 

@@ -387,6 +387,20 @@ predicates =  {
     't_mail': lambda state: True in state[1][6][1] and state[1][6][0],
     't_office': lambda state: True in state[1][7][1] and state[1][7][0],
 }
+"""
+predicate_letters = [
+    ('_1room','A'),
+    ('_2room','B'),
+    ('_3room','C'),
+    ('_4room','D'),
+    ('_decor','d'),
+    ('_coffee','c'),
+    ('_mail','m'),
+    ('_office','o'),
+    ('t_mail','M'),
+    ('t_office','O'),
+]
+"""
 
 class Task(gym.core.Wrapper):
     def __init__(self, env, predicates=predicates, task_goals=[], rmax=1, rmin=0, start_positions=None):
@@ -400,47 +414,36 @@ class Task(gym.core.Wrapper):
         # All events
         self.events = ascii_lowercase[:len(predicates.keys())] #self.env.features
         self.predicates = list(self.events) 
-        self.constraints = "e" # self.events #
-        self.violated_constraints = ""
+        self.constraints = ["e"] # self.events #
         self.rmax = 1
         self.rmin = 0
-        self.predicate_letters = OrderedDict(zip(predicates.keys(), ascii_lowercase))
+        self.predicate_letters = list(zip(predicates.keys(), ascii_lowercase))
 
         self.observation_space = spaces.Box(low=0, high=max([self.n,self.m]), shape=(2,), dtype=np.uint8)
     
     def get_predicates(self):
         predicates_ = np.zeros(len(self.predicates), dtype=self.observation_space.dtype)
-        for i, (key, letter) in enumerate(self.predicate_letters.items()):
-            if predicates[key](self.state) == True:
-                predicates_[i] = 1
+        i = 0
+        for (key, letter) in self.predicate_letters:
+            if letter in self.events: 
+                if predicates[key](self.state) == True: predicates_[i] = 1
+                i += 1
         return predicates_
 
     def get_events(self):
         gridworld_events = []
-        for key, letter in self.predicate_letters.items():
-            if predicates[key](self.state) == True:
+        for key, letter in self.predicate_letters:
+            if letter in self.events and predicates[key](self.state) == True:
                 gridworld_events.append(letter)
         return str().join(gridworld_events)
     
-    #def get_constraints(self):
-    #    return self.violated_constraints
-    
     def reset(self):
-        #self.violated_constraints, self.true_propositions = "", ""
         self.state = self.env.reset()
         return self.state[0]
     
     def step(self, action):
         state, reward, done, info = self.env.step(action)
-        self.state = state
-        
-        #constraints = ""
-        #true_propositions = self.get_events()
-        #for c in self.constraints:
-        #    if ((c in self.true_propositions)!=(c in true_propositions)) or (c in self.violated_constraints):
-        #        constraints += c
-        #self.violated_constraints, self.true_propositions = constraints, true_propositions
-        
+        self.state = state 
         return self.state[0], self.rmin, False, {}
 
     def render(self, *args, **kwargs):

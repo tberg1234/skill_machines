@@ -74,7 +74,7 @@ def learn(env,
         if num_episodes % 2 == 0:
             epsilon = learning_epsilon
         else:
-            epsilon = 0
+            epsilon = 0.1
         
         s = tuple(env.reset())
         if s not in Q: Q[s] = dict([(a,q_init) for a in actions])
@@ -113,12 +113,11 @@ def learn(env,
                 step += 1
                 if step%print_freq == 0:
                     logger.record_tabular("steps", step)
-                    logger.record_tabular("episodes", num_episodes)
+                    logger.record_tabular("episodes", num_episodes*0.5)
                     logger.record_tabular("eval total reward", reward_total)
                     logger.record_tabular("eval successes", successes/(num_episodes*0.5))
                     logger.dump_tabular()
-                    reward_total = 0
-                    successes = 0
+                    num_episodes, reward_total, successes = 0, 0, 0
             if done: 
                 num_episodes += 1
                 break

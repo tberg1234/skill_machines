@@ -44,7 +44,7 @@ def plot_office_iclr():
             print(dirr+'0/progress.csv')
             csvreader = csv.reader(filer)
             all_data_pnts = [row for row in csvreader]
-            metric_ = "total reward" if "sm" in dirs[j] else metric
+            metric_ = metric # "total reward" if "sm" in dirs[j] else metric
             episodes, steps, performance = all_data_pnts[0].index("episodes"), all_data_pnts[0].index("steps"), all_data_pnts[0].index(metric_)
             all_data_pnts = np.array(all_data_pnts[1:]).astype(np.float32)[:num_steps,:]
             task = all_data_pnts[:,steps]

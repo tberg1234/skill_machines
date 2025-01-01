@@ -21,8 +21,6 @@ from baselines.common.wrappers import ClipActionsWrapper
 from baselines.common.cmd_util import arg_parser
 
 from reward_machines.rm_environment import RewardMachineWrapper, HierarchicalRMWrapper
-from skill_machines.sm_environment import SPWrapper, SMWrapper
-from skill_machines.sm_environment_v1 import SPWrapperV1, SMWrapperV1
 
 def make_vec_env(env_id, env_type, num_env, seed, args, 
                  wrapper_kwargs=None,
@@ -81,23 +79,6 @@ def make_env(env_id, env_type, args, mpi_rank=0, subrank=0, seed=None, reward_sc
     # Adding RM wrappers if needed
     if args.alg.endswith("hrm") or args.alg.endswith("dhrm"):
         env = HierarchicalRMWrapper(env, args.r_min, args.r_max, args.use_self_loops, args.use_rs, args.gamma, args.rs_gamma)
-
-    discrete_actions = not isinstance(env.action_space, gym.spaces.Box)
-    if discrete_actions:
-        tabular = (not "d" in args.alg)
-        if args.alg.startswith("sp"):
-            env = SPWrapperV1(env, tabular = tabular)
-            
-        if args.alg.startswith("sm"):
-            env = SPWrapperV1(env, False, tabular)
-            env = SMWrapperV1(env, args.use_csm, args.rs_gamma)
-    else:
-        if args.alg.startswith("sp"):
-            env = SPWrapper(env, tabular = False)
-            
-        if args.alg.startswith("sm"):
-            env = SPWrapper(env, False, False)
-            env = SMWrapper(env, args.use_csm, args.rs_gamma)
         
     if args.use_rs or args.use_crm:
         env = RewardMachineWrapper(env, args.use_crm, args.use_rs, args.gamma, args.rs_gamma)
@@ -140,9 +121,10 @@ def common_arg_parser():
     # RM-related arguments
     parser.add_argument("--init_eval", help="Do an initial evaluation", default=False, action='store_true')
     parser.add_argument("--beta", help="Weighting of skill machine vs new skill", default=None, type=float)
-    parser.add_argument("--sp", help="Skill primitives for skill machine", default=None, type=str)
-    parser.add_argument("--use_spe", help="Use full skill primitives", action="store_true", default=False)
-    parser.add_argument("--use_csm", help="Use counterfactual experience", action="store_true", default=False)
+    parser.add_argument("--load", help="Load pretrained skill primitives", action='store_true', default=False)
+    parser.add_argument("--zeroshot", help="Zeroshot transfer", action='store_true', default=False)
+    parser.add_argument("--fewshot", help="Fewshot transfer", action='store_true', default=False)
+    parser.add_argument("--sp_dir", help="Directory where the learned skill primitives will be saved", default='')
     parser.add_argument("--use_rs", help="Use reward shaping", action="store_true", default=False)
     parser.add_argument("--use_crm", help="Use counterfactual experience", action="store_true", default=False)
     parser.add_argument('--gamma', help="Discount factor", type=float, default=0.9)

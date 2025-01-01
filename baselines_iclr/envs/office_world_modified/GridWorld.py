@@ -393,26 +393,27 @@ class Task(gym.core.Wrapper):
         super().__init__(env)
         
         self.start_positions = start_positions
-        self.task_goals = task_goals
         self.rmax = rmax
         self.rmin = rmin
-
-        self.predicates = predicates
-        self.predicate_keys =tuple(sorted(list(self.predicates.keys())))
-        self.goals = set([self.goal_predicates(i) for i in range(2**len(self.predicate_keys))])
-        self.goal_space = spaces.Discrete(len(self.goals))
-
         self.state = None
         
         # All events
         self.events = ascii_lowercase[:len(predicates.keys())] #self.env.features
+        self.predicates = list(self.events) 
         self.constraints = "e" # self.events #
         self.violated_constraints = ""
         self.rmax = 1
         self.rmin = 0
         self.predicate_letters = OrderedDict(zip(predicates.keys(), ascii_lowercase))
 
-        self.observation_space = spaces.Box(low=0, high=max([self.n,self.m]), shape=(4,), dtype=np.uint8)
+        self.observation_space = spaces.Box(low=0, high=max([self.n,self.m]), shape=(2,), dtype=np.uint8)
+    
+    def get_predicates(self):
+        predicates_ = np.zeros(len(self.predicates), dtype=self.observation_space.dtype)
+        for i, (key, letter) in enumerate(self.predicate_letters.items()):
+            if predicates[key](self.state) == True:
+                predicates_[i] = 1
+        return predicates_
 
     def get_events(self):
         gridworld_events = []
@@ -421,11 +422,11 @@ class Task(gym.core.Wrapper):
                 gridworld_events.append(letter)
         return str().join(gridworld_events)
     
-    def get_constraints(self):
-        return self.violated_constraints
+    #def get_constraints(self):
+    #    return self.violated_constraints
     
     def reset(self):
-        self.violated_constraints, self.true_propositions = "", ""
+        #self.violated_constraints, self.true_propositions = "", ""
         self.state = self.env.reset()
         return self.state[0]
     
@@ -433,49 +434,14 @@ class Task(gym.core.Wrapper):
         state, reward, done, info = self.env.step(action)
         self.state = state
         
-        constraints = ""
-        true_propositions = self.get_events()
-        for c in self.constraints:
-            if ((c in self.true_propositions)!=(c in true_propositions)) or (c in self.violated_constraints):
-                constraints += c
-        self.violated_constraints, self.true_propositions = constraints, true_propositions
+        #constraints = ""
+        #true_propositions = self.get_events()
+        #for c in self.constraints:
+        #    if ((c in self.true_propositions)!=(c in true_propositions)) or (c in self.violated_constraints):
+        #        constraints += c
+        #self.violated_constraints, self.true_propositions = constraints, true_propositions
         
         return self.state[0], self.rmin, False, {}
-    
-    def get_goal(self, state): # Labelling function
-        goal = ''
-        for predicate in self.predicate_keys:
-            goal += str(0+self.predicates[predicate](state))
-
-        return int(goal, 2)
-    
-    def get_predicate(self, state): # Labelling function
-        predicates = set()
-        for predicate in self.predicate_keys:
-            if self.predicates[predicate](state):
-                predicates.add(predicate)
-
-        return predicates
-    
-    def predicates_goal(self, predicates):
-        goal = ''
-        for predicate in self.predicate_keys:
-            goal += '1' if predicate in predicates else '0'
-
-        return int(goal, 2)
-        
-    def goal_predicates(self, goal):
-        goal = bin(goal)[2:]
-        goal = '0'*(len(self.predicate_keys)-len(goal)) + goal
-        predicates = set()
-        for i in range(len(self.predicate_keys)-1,-1,-1):
-            if goal[i] == '1':
-                predicates.add(self.predicate_keys[i])
-
-        return frozenset(predicates)
-    
-    def _get_reward(self, goal):
-        return self.rmax if (goal in self.task_goals) else self.rmin   
 
     def render(self, *args, **kwargs):
         return self.env.render(*args, **kwargs)

@@ -1,270 +1,176 @@
-"""
-Q-Learning based method for skill machines
-"""
-
-import random, time, numpy as np
-from collections import defaultdict
-from sympy.logic import boolalg
-from sympy import sympify, Symbol
+import sys, os, argparse, random, time, torch, numpy as np, gymnasium, gym, envs
+sys.path.insert(1, '../')
+from sm import TaskPrimitive, SkillMachine, BaseAgent
+from rm import Task
 from baselines import logger
-from matplotlib import pyplot as plt
-from PIL import Image, ImageDraw
 
 
-def load_sp(path,env,qinit):
-    values_, env.sp_goals = np.load(path+".npy", allow_pickle=True).tolist()
-    values = defaultdict(lambda: np.zeros(env.action_space.n)+qinit)
-    for s in values_:
-        values[s] = values_[s][:env.action_space.n]
-    SP = EVF(env = env, primitive = "max")
-    SP.values = values
-    return SP
-
-class EVF():
-    def __init__(self, env=None, primitive=None):
+class gym_nasium(gymnasium.Wrapper):
+    def __init__(self,env,task=False):
+        super().__init__(env)
         self.env = env
-        self.primitive = primitive
-        self.goals = self.env.sp_goals
-        self.goal = None
-        self.values = defaultdict(lambda: np.zeros(env.action_space.n)+10)
+        self.task = task
+        if not self.task:
+            self.observation_space = gymnasium.spaces.Box(low=env.observation_space.low.min(), high=env.observation_space.high.max(), shape=(env.observation_space.shape[0],), dtype=env.observation_space.dtype)
+        else:
+            self.observation_space_dict = {}
+            for key,space in [('env_state',env.observation_dict["features"]),('rm_state',env.observation_dict["rm-state"])]:
+                self.observation_space_dict[key] = gymnasium.spaces.Box(low=space.low.min(), high=space.high.max(), shape=(space.shape[0],), dtype=space.dtype)
+            self.observation_space = gymnasium.spaces.Dict(self.observation_space_dict)
+        if type(env.action_space) != gym.spaces.Box: 
+            self.action_space = gymnasium.spaces.Discrete(env.action_space.n)
+        else: 
+            self.action_space = gymnasium.spaces.Box(low=env.action_space.low.min(), high=env.action_space.high.max(), shape=(env.action_space.shape[0],), dtype=env.action_space.dtype)
+    def reset(self, **kwargs):
+        state = self.env.reset()
+        info = {"true_propositions": self.env.get_predicates()}
+        if not self.task: 
+            if type(state) == tuple: state = np.array(state)
+        else:
+            state = {'env_state': state[:len(self.env.obs)],'rm_state': state[len(self.env.obs):]}
+        return state, info
+    def step(self, action, **kwargs):
+        state, reward, done, info = self.env.step(action)
+        info.update({"true_propositions": self.env.get_predicates()})
+        if not self.task:
+            if type(state) == tuple: state = np.array(state) 
+        else:
+            state = {'env_state': state[:len(self.env.obs)],'rm_state': state[len(self.env.obs):]}
+        return state, reward, done, False, info
+
+class QLAgent(BaseAgent):
+    """Q-learning Agent"""
     
-    def __call__(self, obs, goal=None):
-        goal = goal if goal else self.goal
-        obs = self.env.get_sp_obs(obs, self.env.sp_state, goal, self.primitive, False)
-        obs = tuple(obs)
-
-        return self.values[obs] 
-
-    def reset(self, obs, **kwargs):
-        self.goal = self._select_goal(obs)
+    def __init__(self, name, env, SM=None, save_dir=None, load=False, lr=0.5, gamma=0.9, qinit=0):
+        self.values, self.lr, self.gamma, self.SM, self.qinit = {}, lr, gamma, SM, qinit
+        self.action_space, self.observation_space = env.action_space, env.observation_space
+        if load: self.values = torch.load(save_dir+"wvf_"+name)
+        self.name = name
+                
+    def get_action_value(self, state):
+        stateb = gymnasium.spaces.flatten(self.observation_space, state).tobytes()
+        if stateb not in self.values: self.values[stateb] = np.zeros(self.action_space.n)
+        action, value = self.values[stateb].argmax(), self.values[stateb].max()
+        if self.SM:
+            (Q_action, Q_value), ((SM_action,), (SM_value,)) = (action, value), self.SM.get_action_value(state)
+            idx = np.argmax([self.gamma*Q_value, (1-self.gamma)*SM_value])
+            action, value = [Q_action, SM_action][idx], [Q_value, SM_value][idx]
+        return np.array([action]), np.array([value])
+        
+    def get_values(self, state):
+        state = gymnasium.spaces.flatten(self.observation_space, state).tobytes()
+        if state not in self.values: self.values[state] = np.zeros(self.action_space.n) + self.qinit
+        return self.values[state]    
     
-    def step(self, obs, goal=None, **kwargs):
-        goal = goal if goal else self.goal
-        values = self(obs,goal)[:-1]
-        action = values.argmax()
-        return action, _, _, _
+    def update_values(self, state, action, reward, state_, done):
+        state = gymnasium.spaces.flatten(self.observation_space, state).tobytes()
+        if state not in self.values: self.values[state] = np.zeros(self.action_space.n) + self.qinit
+        if done: self.values[state][action] += self.lr * (reward - self.values[state][action])
+        else:    self.values[state][action] += self.lr * (reward + self.gamma*self.get_values(state_).max() - self.values[state][action])
 
-    def _select_goal(self, obs):
-        values = [self(obs,goal).max() for goal in self.goals]
-        values = np.array(values)
-        idx = np.random.choice(np.flatnonzero(values == values.max()))
-        return self.goals[idx]
 
-class ComposedEVF(EVF):
-    def __init__(self, evfs, action_space=None, max_evf=None, compose="or"):
-        super().__init__(evfs[0].env)
-        self.compose = compose
-        self.max_evf = max_evf
-        self.evfs = evfs
+def learn(env, total_timesteps=100000, zeroshot=False, fewshot=False, q_dir="vf", sp_dir="wvfs", log_dir="logs", load=False, gamma=0.9, lr=0.5, epsilon=0.5, qinit=0, eval_episodes=1, init_eval=True, print_freq=10000, seed=None, **kwargs):  
+    """Q-Learning based method for solving temporal logic tasks zeroshot or fewshot using Skill Machines"""
     
-    def __call__(self, obs, goal=None):
-        goal = goal if goal else self.goal
-        qs = [self.evfs[i](obs, goal) for i in range(len(self.evfs))]
-        qs = np.stack(tuple(qs), 0)
-        if self.compose=="or":
-            q = qs.max(0)
-        elif self.compose=="and":
-            q = qs.min(0)
-        else: #not
-            q = self.max_evf(obs, goal) - qs[0]
-        return q
+    os.makedirs(sp_dir, exist_ok=True); os.makedirs(q_dir, exist_ok=True)
 
-def select_goal(skill, obs):
-    values = [skill(obs,goal).max() for goal in skill.goals]
-    values = np.array(values)
-    idx = np.random.choice(np.flatnonzero(values == values.max()))
-    return skill.goals[idx]
+    # Initialise MDP for the primitives (primitive_env), and MDP for the given temporal logic task (task_env)
+    if zeroshot or fewshot:
+        load = True
+        primitive_env = TaskPrimitive(gym_nasium(env.env.env.env), max_episode_steps=1000)
+        task_env = gym_nasium(env,task=True)
+        task_env.rm = lambda: None; rm = env.reward_machines[0]
+        task_env.rm.rmin, task_env.rm.rmax = 0, 1
+        task_env.rm.u0 = rm.u0
+        task_env.rm.u = rm.u0
+        task_env.rm.terminal_states = [rm.terminal_u]
+        task_env.rm.delta_u = {u:{exp:u_                                 for u_,exp in rm.delta_u[u].items()} for u in rm.delta_u}
+        task_env.rm.delta_r = {u:{exp:rm.delta_r[u][u_].get_reward(None) for u_,exp in rm.delta_u[u].items()} for u in rm.delta_u}
+    else:
+        primitive_env = TaskPrimitive(gym_nasium(env), max_episode_steps=1000)
+        task_env = None
     
-def OR(evfs):
-    return ComposedEVF(evfs, compose="or")
+    # Initialise the World Value Functions for the min ("0") and max ("1") WVFs
+    SP = {primitive: QLAgent(primitive, primitive_env, save_dir=sp_dir, load=load, lr=lr, gamma=gamma, qinit=qinit) for primitive in ['0','1']}
+    if load: primitive_env.goals.update(torch.load(sp_dir+"goals")) 
+    # Skill machine over the learned skill primitives. goal_directed=True gives faster runtime since goals are maximised only per rm transition (and not per step)
+    SM = SkillMachine(primitive_env, SP, goal_directed=True) 
+    # Initialise task specific value function for fewshot learning
+    if fewshot: Q = QLAgent("skill", task_env, SM=SM, lr=lr, gamma=gamma, qinit=qinit)
 
-def AND(evfs):
-    return ComposedEVF(evfs, compose="and")
-
-def NOT(evf, max_evf):
-    return ComposedEVF([evf], max_evf=max_evf, compose="not")
-
-def exp_value(SP, exp):   
-    evf =  None
-    exp = sympify(exp)
-    if exp:    
-        def convert(exp):
-            if type(exp) == Symbol:
-                compound = EVF(env=SP.env, primitive = str(exp))
-                compound.values = SP.values
-            elif type(exp) == boolalg.Or:
-                compound = convert(exp.args[0])
-                for sub in exp.args[1:]:
-                    compound = OR([compound, convert(sub)])
-            elif type(exp) == boolalg.And:
-                compound = convert(exp.args[0])
-                for sub in exp.args[1:]:
-                    compound = AND([compound, convert(sub)])
-            else:
-                compound = convert(exp.args[0])
-                compound = NOT(compound, SP)
-            return compound            
-        evf = convert(exp)
-    return evf
-
-def get_qmax(Q,s,actions,q_init):
-    if s not in Q:
-        Q[s] = dict([(a,q_init) for a in actions])
-    return max(Q[s].values())
-
-def get_best_action(Q,actions,q_init):
-    best = [a for a in actions if Q[a] == Q.max()]
-    return random.choice(best)
-
-def learn(env,
-          network=None,
-          seed=None,
-          save_gif="",
-          save_episode=0,
-          lr=0.1,
-          total_timesteps=100000,
-          epsilon=0.1,
-          print_freq=10000,
-          gamma=0.9,
-          q_init=0.0,
-          init_eval=True,
-          beta=0.9,
-          sp=None,
-          use_spe=False,
-          use_csm=False,
-          use_crm=False,
-          use_rs=False,
-          **others):
-    """Train tabular skill primitives.
-    Parameters
-    -------
-    env: gym.Env
-        environment to train on
-    network: string or a function
-        This is just a placeholder to be consistent with the openai-baselines interface, but we don't really use state-approximation in tabular q-learning
-    seed: int or None
-        prng seed. The runs with the same seed "should" give the same results. If None, no seeding is used.
-    lr: float
-        learning rate
-    total_timesteps: int
-        number of env steps to optimizer for
-    epsilon: float
-        epsilon-greedy exploration
-    print_freq: int
-        how often to print out training progress
-        set to None to disable printing
-    gamma: float
-        discount factor
-    q_init: float
-        initial q-value for unseen states
-    use_crm: bool
-        use counterfactual experience to train the policy
-    use_rs: bool
-        use reward shaping
-    """
-
-    # Running Q-Learning
-    q_init = 0.001
+    # Start Training
     learning_epsilon = epsilon
-    init_eval = print_freq if init_eval else 0
-    beta = beta if beta!=None else gamma
-    reward_total = 0
-    successes = 0
-    step = 0
-    num_episodes = 0    
-    eval_reward_total = 0
-    eval_step = 0 
-    Q = defaultdict(lambda: np.zeros(env.action_space.n)+q_init)
-    actions = list(range(env.action_space.n))
-    
-    # Loading and composing skills for skill machine
-    SM = {}
-    SP = load_sp(sp, env, q_init)
-    for i in range(len(env.skill_machines)):
-        sm = env.skill_machines[i]
-        SM[i] = {}
-        for u in sm:
-            SM[i][u] = exp_value(SP, sm[u])
-
-    trajectory = []
-    while step < total_timesteps:        
-        # Selecting and executing the action
+    init_eval = print_freq if init_eval else 0 
+    step, reward_total, successes, eval_total_reward, eval_successes, num_episodes, start_time = 0, 0, 0, 0, 0, 1, time.time()
+    while step < total_timesteps:
         if num_episodes % 2 == 0:
             epsilon = learning_epsilon
         else:
             epsilon = 0.1
-        
-        # Render
-        if save_gif and num_episodes==save_episode:
-            epsilon = 0
-            env.unwrapped.start_positions = [(10,3)]
-                
-        s = tuple(env.reset())        
-        bs, u, rm = env.obs, env.current_u_id, env.current_rm_id
-        skill = SM[rm][u]
-        goal = select_goal(skill, bs)
-        
-        while True:
-            # Render
-            if save_gif and num_episodes==save_episode:
-                    image = env.render()      
-                    image = Image.fromarray(np.uint8(image))
-                    image = image.convert("P",palette=Image.ADAPTIVE)
-                    trajectory.append(image)   
-                    trajectory[0].save(save_gif+'.gif', save_all=True, append_images=trajectory[1:], optimize=False, duration=10, loop=0)
-                    print(env.sp_state, bs, goal, beta*Q[s], (1-beta)*skill(bs,goal), skill.primitive, rm, u, env.skill_machines[rm][u]) 
-                    # plt.pause(0.0001)
-            
-            # Using skill for current rm state
-            bs, u_, rm_ = env.obs, env.current_u_id, env.current_rm_id
-            if u_ != u or rm_ != rm:
-                u, rm = u_, rm_
-                skill = SM[rm][u]
-                goal = select_goal(skill, bs)
-            
-            if not use_csm:
-                a = random.choice(actions) if random.random() < epsilon else get_best_action(skill(bs, goal),actions,q_init)
+
+        if fewshot or zeroshot:
+            state, info = task_env.reset(seed=seed)   
+            task_env.rm = lambda: None; rm = env.current_rm
+            task_env.rm.rmin, task_env.rm.rmax = 0, 1
+            task_env.rm.u0 = rm.u0
+            task_env.rm.u = rm.u0
+            task_env.rm.terminal_states = [rm.terminal_u]
+            task_env.rm.delta_u = {u:{exp:u_                                 for u_,exp in rm.delta_u[u].items()} for u in rm.delta_u}
+            task_env.rm.delta_r = {u:{exp:rm.delta_r[u][u_].get_reward(None) for u_,exp in rm.delta_u[u].items()} for u in rm.delta_u}
+            SM.reset(task_env.rm, info["true_propositions"])
+        else:
+            state, info = primitive_env.reset(seed=seed) 
+        state0=state
+        while True:            
+            # Selecting and executing the action
+            if fewshot or zeroshot:
+                states = {k:np.expand_dims(v,0) for (k,v) in state.items()}
+                if random.random() < epsilon: action = task_env.action_space.sample()
+                elif fewshot:                 action = Q.get_action_value(states)[0][0]
+                else:                         action = SM.get_action_value(states)[0][0]
+                state_, reward, done, truncated, info = task_env.step(action)
+                task_env.rm.u = task_env.current_u_id
+                SM.step(task_env.rm, info["true_propositions"])
             else:
-                Q_max = np.array([max([beta*Q[s][a], (1-beta)*skill(bs, goal)[a]]) for a in actions])
-                a = random.choice(actions) if random.random() < epsilon else get_best_action(Q_max,actions,q_init)
-            sn, r, done, info = env.step(a)
-            sn = tuple(sn)
-
-            # Updating the q-values
-            experiences = []
-            if use_crm:
-                # Adding counterfactual experience (this will alrady include shaped rewards if use_rs=True)
-                for _s,_a,_r,_sn,_done in info["crm-experience"]:
-                    experiences.append((tuple(_s),_a,_r,tuple(_sn),_done))
-            elif use_rs:
-                # Include only the current experince but shape the reward
-                experiences = [(s,a,info["rs-reward"],sn,done)]
-            else:
-                # Include only the current experience (standard q-learning)
-                experiences = [(s,a,r,sn,done)]
-
-
-            if num_episodes % 2 == 0 and step >= init_eval:
-                for _s,_a,_r,_sn,_done in experiences:
-                    if _done: _delta = _r - Q[_s][_a]
-                    else:     _delta = _r + gamma*Q[_sn].max() - Q[_s][_a]
-                    Q[_s][_a] += lr*_delta
-
-            # moving to the next state
-            if num_episodes % 2 == 1:
-                reward_total += r
-                successes += r>=1
+                if random.random() < epsilon: action = primitive_env.environment.action_space.sample()
+                else:                         action = random.choice([action for action in range(primitive_env.action_space.n) if SP["1"].get_values(state)[action] == SP["1"].get_values(state).max()])
+                state_, reward, done, truncated, info = primitive_env.step(action)
+            
+            # Updating q-values
+            if fewshot and num_episodes % 2 == 0 and step>=init_eval: 
+                Q.update_values(state, action, reward, state_, done)
+            elif (not zeroshot) and num_episodes % 2 == 0 and step>=init_eval:
+                tp_state, tp_state_ = state.copy(), state_.copy()
+                for primitive in SP:
+                    primitive_env.primitive = primitive
+                    for desired_goal in primitive_env.goals.values():
+                        tp_state["desired_goal"], tp_state_["desired_goal"] = desired_goal, desired_goal
+                        tp_reward = primitive_env.compute_reward(info["achieved_goal"].reshape(1,-1), desired_goal.reshape(1,-1), info["env_reward"], done)[0]
+                        SP[primitive].update_values(tp_state, action, tp_reward, tp_state_, done)
+            
+            # logging and moving to the next state
+            state = state_
+            if num_episodes % 2 != 0:
+                reward_total += reward
+                successes += (reward>=1)
             if num_episodes % 2 == 0:
                 step += 1
                 if step%print_freq == 0 or step == init_eval:
+                    # if fewshot: torch.save(Q, q_dir+"skill")
+                    if not zeroshot:
+                        for primitive in SP: torch.save(SP[primitive].values, sp_dir+"wvf_"+primitive)
+                        torch.save(primitive_env.goals, sp_dir+"goals")
                     logger.record_tabular("steps", step)
-                    logger.record_tabular("episodes", num_episodes)
+                    logger.record_tabular("episodes", num_episodes*0.5)
                     logger.record_tabular("eval total reward", reward_total)
                     logger.record_tabular("eval successes", successes/(num_episodes*0.5))
+                    logger.record_tabular("goals", len(primitive_env.goals))
                     logger.dump_tabular()
-                    reward_total = 0
-                    successes = 0
-            if done:
-                num_episodes += 1
+                    num_episodes, reward_total, successes = 0, 0, 0
+            if done or truncated:
+                num_episodes += 1 
+                # if num_episodes % 2 != 0 and not reward>=1: print(state0, state)
                 break
-            s = sn
+
+    return SP
+

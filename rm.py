@@ -14,7 +14,7 @@ def exp_boolean(exp, propositions):
     """
     Evaluates a Boolean expression. exp is the Boolean expression and propositions is a dictionary of truth values
     """
-    exp = sympify(exp.replace("!","~").replace("1","True").replace("0","False"))
+    exp = sympify(exp.replace("!","~").replace("1","true").replace("0","false"))
     if not exp: return False   
 
     def convert(exp):

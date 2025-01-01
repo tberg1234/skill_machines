@@ -58,14 +58,15 @@ def learn(primitive_env, task_env, total_steps, zeroshot=False, fewshot=False, q
         while True:            
             # Selecting and executing the action
             if fewshot or zeroshot:
+                states = {k:np.expand_dims(v,0) for (k,v) in state.items()}
                 if random.random() < epsilon: action = task_env.action_space.sample()
-                elif fewshot:                 action = Q.get_action_value(state)[0][0]
-                else:                         action = SM.get_action_value(state)[0][0]
+                elif fewshot:                 action = Q.get_action_value(states)[0][0]
+                else:                         action = SM.get_action_value(states)[0][0]
                 state_, reward, done, truncated, info = task_env.step(action)
                 SM.step(task_env.rm, info["true_propositions"])
             else:
                 if random.random() < epsilon: action = primitive_env.environment.action_space.sample()
-                else:                         action = SP["1"].get_action_value(state)[0][0]
+                else:                         action = random.choice([action for action in range(primitive_env.action_space.n) if SP["1"].get_values(state)[action] == SP["1"].get_values(state).max()])
                 state_, reward, done, truncated, info = primitive_env.step(action)
             
             # Updating q-values

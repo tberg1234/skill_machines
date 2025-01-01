@@ -81,10 +81,9 @@ def train(args, extra_args):
     # Adding parameters
     alg_kwargs['init_eval']   = args.init_eval
     # Adding SM-related parameters
-    alg_kwargs['beta']   = args.beta
-    alg_kwargs['sp']   = args.sp
-    alg_kwargs['use_spe']   = args.use_spe
-    alg_kwargs['use_csm']   = args.use_csm
+    alg_kwargs['sp_dir']   = args.sp_dir
+    alg_kwargs['zeroshot'] = args.zeroshot
+    alg_kwargs['fewshot']  = args.fewshot
     # Adding RM-related parameters
     alg_kwargs['use_rs']   = args.use_rs
     alg_kwargs['use_crm']  = args.use_crm
@@ -111,10 +110,8 @@ def build_env(args):
 
     env_type, env_id = get_env_type(args)
 
-    if alg in ['deepq', 'qlearning', 'hrm', 'dhrm', 'spql', 'smql_crm', 'smql', 'spdql', 'smdql', 'spddpg', 'smddpg']:
+    if alg in ['deepq', 'qlearning', 'hrm', 'dhrm', 'smql']:
         env = make_env(env_id, env_type, args, seed=seed, logger_dir=logger.get_dir())
-        if alg == 'spddpg':
-            env = [env, make_env(env_id, env_type, args, seed=seed, logger_dir=logger.get_dir())]
     else:
         config = tf.ConfigProto(allow_soft_placement=True,
                                intra_op_parallelism_threads=1,

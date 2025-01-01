@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from collections import deque
+from collections import deque, defaultdict
 import gymnasium as gym, warnings, numpy as np, imageio
 from gymnasium.utils import seeding
 from sympy.logic import boolalg
@@ -92,7 +92,7 @@ class TaskPrimitive(gym.Env):
         self.steps, (self.np_random, self.seed) = 0, seeding.np_random(seed)
         self.env_state, env_info = self.environment.reset(seed=seed, **kwargs)
         self.true_propositions = self.environment.get_predicates()
-        self.violated_constraints = (self.proposition_space.sample() & self.constraints_mask)*(self.steps%2)
+        self.violated_constraints = (self.proposition_space.sample() & self.constraints_mask)*0#*(self.steps%2)
 
         self.achieved_goal = np.concatenate([self.true_propositions, self.violated_constraints])
         ag_key = self.achieved_goal.tobytes()
@@ -220,12 +220,12 @@ def value_iteration(delta_u, delta_r, gamma=0.9):
     """
     We use value iteration to compute the Q-function for a reward machine.
     """
-    Q, V = {}, {u:0 for u in delta_u}
+    Q, V = defaultdict(lambda: defaultdict(float)), defaultdict(float)
     V_error = 1
     while V_error > 0.0000001:
         V_error = 0
         for u in delta_u:
-            q, Q[u] = [], {}
+            q = []
             for exp in delta_u[u]:
                 u_next, r = delta_u[u][exp], delta_r[u][exp]
                 q.append(r+gamma*V[u_next])
@@ -280,7 +280,7 @@ class SkillMachine():
         self.split_action = primitive_env.split_action
        
     def build(self, rm):
-        self.delta_q, Q = {}, value_iteration(rm.delta_u, rm.delta_r)
+        self.delta_q, Q = defaultdict(bool), value_iteration(rm.delta_u, rm.delta_r)
         self.sm_str = "" # In a format similar to that of RMs from Rodrigo's code base
         for u in rm.delta_u:
             exp_predicates, exp_constraints, best = "1", "0", float("-inf")
@@ -288,22 +288,21 @@ class SkillMachine():
                 if value > best:     exp_predicates = exp; best = value
                 if value <= rm.rmin: exp_constraints += (" | " + exp) 
             
-            exp_predicates = sympify(exp_predicates.replace("!","~").replace("1","True").replace("0","False"))
-            exp_constraints = sympify(exp_constraints.replace("!","~").replace("1","True").replace("0","False"))
+            exp_predicates = sympify(exp_predicates.replace("!","~").replace("1","true").replace("0","false")).simplify()
+            exp_constraints = sympify(exp_constraints.replace("!","~").replace("1","true").replace("0","false")).simplify()
             if type(exp_predicates)!=bool: 
-                exp_predicates = exp_predicates.subs({symbol: Symbol(f'p_{symbol}') for symbol in exp_predicates.free_symbols})
-            self.delta_q[u] = f"({str(exp_predicates)})"
+                exp_predicates = exp_predicates.subs({symbol: f'p_{symbol}' for symbol in exp_predicates.free_symbols})
             if type(exp_constraints)!=bool: 
                 # Only consider learned constraints
-                symbols = {symbol: (Symbol(f'c_{symbol}') if symbol in self.skill_primitives else "False") for symbol in exp_constraints.free_symbols}
+                symbols = {symbol: (f'c_{symbol}' if f'c_{symbol}' in self.skill_primitives else "false") for symbol in exp_constraints.free_symbols}
                 exp_constraints = exp_constraints.subs(symbols)
-                if type(exp_constraints)!=bool: self.delta_q[u] += " " + f"& ~ ({str(exp_constraints)})"
-
+            self.delta_q[u] = exp_predicates & ~ exp_constraints
+            
             for exp, u_next in rm.delta_u[u].items():
                 self.sm_str += "({},{},'{}',WorldValueFunction({}))\n".format(u,rm.delta_u[u][exp],exp,self.delta_q[u])
         self.sm_str = "{}    # terminal state\n".format(list(rm.terminal_states)) + self.sm_str
         self.sm_str = "{}    # initial state\n".format(rm.u0) + self.sm_str
-        
+                
     def reset(self, rm, true_propositions):
         self.rm_state, self.goal = None, None
         self.violated_constraints, self.true_propositions = self.proposition_space.low.copy(), true_propositions.copy()

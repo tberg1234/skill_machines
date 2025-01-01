@@ -196,12 +196,12 @@ gym.envs.registration.register(
 )
 gym.envs.registration.register(
     id='Safety-Task-1-v0',
-    max_episode_steps=500, 
+    max_episode_steps=200, 
     entry_point=Task1,
 )
 gym.envs.registration.register(
     id='Safety-Task-2-v0',
-    max_episode_steps=500, 
+    max_episode_steps=200, 
     entry_point=Task2,
 )
 gym.envs.registration.register(

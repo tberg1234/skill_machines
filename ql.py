@@ -29,7 +29,7 @@ class QLAgent(BaseAgent):
         else:    self.values[state][action] += self.lr * (reward + self.gamma*self.get_values(state_).max() - self.values[state][action])
 
 
-def learn(task_env, total_steps, q_dir="vf", log_dir="logs", gamma=0.9, lr=0.5, epsilon=0.5, qinit=0, eval_episodes=1, print_freq=10000, seed=None):  
+def learn(task_env, total_steps, q_dir="vf", log_dir="logs", gamma=0.9, lr=0.1, epsilon=0.5, qinit=0, eval_episodes=1, print_freq=10000, seed=None):  
     """Q-Learning based method for solving temporal logic tasks zeroshot or fewshot using Skill Machines"""
 
     # Initialise task specific value function
@@ -43,7 +43,7 @@ def learn(task_env, total_steps, q_dir="vf", log_dir="logs", gamma=0.9, lr=0.5, 
         while True:            
             # Selecting and executing the action
             if random.random() < epsilon: action = task_env.action_space.sample()
-            else:                         action = random.choice([action for action in range(primitive_env.action_space.n) if Q.get_values(state)[action] == Q.get_values(state).max()])
+            else:                         action = random.choice([action for action in range(task_env.action_space.n) if Q.get_values(state)[action] == Q.get_values(state).max()])
             state_, reward, done, truncated, info = task_env.step(action)
             
             # Updating q-values

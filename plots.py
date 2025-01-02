@@ -25,7 +25,7 @@ args = parser.parse_args()
 
 def plot_office_iclr():
      
-    num_runs = 25
+    num_runs = 10
     num_steps = 400000
     metric = "eval total reward"
     m = 4
@@ -60,7 +60,7 @@ def plot_office_iclr():
                     csvreader = csv.reader(filer)
                     data_pnts = []
                     for row in csvreader: data_pnts.append(row)
-                    episodes, steps, performance = data_pnts[0].index("episodes"), data_pnts[0].index("steps"), data_pnts[0].index(metric_)
+                    episodes, steps, performance = data_pnts[0].index("episodes"), data_pnts[0].index("steps"), data_pnts[0].index(metric)
                     # data_pnts[1][-2:]=["0","0"]
                     data_pnts = np.array(data_pnts[1:]).astype(np.float32)[:num_steps,:]
                     a = np.sum(data_pnts[:,episodes].reshape(-1, m), axis=1)

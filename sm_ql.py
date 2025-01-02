@@ -34,7 +34,7 @@ class QLAgent(BaseAgent):
         else:    self.values[state][action] += self.lr * (reward + self.gamma*self.get_values(state_).max() - self.values[state][action])
 
 
-def learn(primitive_env, task_env, total_steps, zeroshot=False, fewshot=False, q_dir="vf", sp_dir="wvfs", log_dir="logs", load=False, gamma=0.9, lr=0.5, epsilon=0.5, qinit=0, eval_episodes=1, print_freq=10000, seed=None):  
+def learn(primitive_env, task_env, total_steps, zeroshot=False, fewshot=False, q_dir="vf", sp_dir="wvfs", log_dir="logs", load=False, gamma=0.9, lr=0.1, epsilon=0.5, qinit=0, eval_episodes=1, print_freq=10000, seed=None):  
     """Q-Learning based method for solving temporal logic tasks zeroshot or fewshot using Skill Machines"""
 
     # Initialise the World Value Functions for the min ("0") and max ("1") WVFs

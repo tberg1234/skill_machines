@@ -22,7 +22,7 @@ class TaskPrimitive(gym.Env):
         Environment for learning skill primitives.
         env (gym env): the environment
         primitive (string): the proposition (e.g. "p_coffee") or constraint (e.g. "c_coffee") defining the task primitive. 
-                           It can also be '1' or '0' respectively for the OR or AND over all the task primitives.  
+                           It can also be '1' (max rewards) or '0' (min rewards) respectively for the max or min task primitives respectively.  
         rmin (int): The minimum reward of the reward machines defining temporal logic tasks in this environment
         rmax (int): The maximum reward of the reward machines defining temporal logic tasks in this environment
         wvf (bool): Use the extended MDP to learn a World Value Function.
@@ -118,6 +118,9 @@ class TaskPrimitive(gym.Env):
         self.achieved_goal = np.concatenate([self.true_propositions, violated_constraints])
         ag_key = self.achieved_goal.tobytes()
         if ag_key not in self.goals: self.goals[ag_key] = self.achieved_goal
+        
+        # If sb3==True, we only choose the done_action when the goal is reached. 
+        # This makes intergration with existing RL libraries like SB3 easier
         if self.sb3: done_action = (self.achieved_goal==self.desired_goal).min()
         done = env_done or done_action
 

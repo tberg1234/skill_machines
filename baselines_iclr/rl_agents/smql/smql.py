@@ -6,6 +6,8 @@ from baselines import logger
 
 
 class gym_nasium(gymnasium.Wrapper):
+    """ Converts the gym environment from the Icarte et al Reward Machines codebase to the Gymnasium environment we expect for Skill Machines"""
+    
     def __init__(self,env,task=False):
         super().__init__(env)
         self.env = env
@@ -122,7 +124,6 @@ def learn(env, total_timesteps=100000, zeroshot=False, fewshot=False, q_dir="vf"
             state, info = primitive_env.reset(seed=seed) 
         
         while True:  
-            # if num_episodes % 2 != 0: print(state, SM.exp, task_env.rm.u, env.get_events())
             # Selecting and executing the action
             if fewshot or zeroshot:
                 states = {k:np.expand_dims(v,0) for (k,v) in state.items()}

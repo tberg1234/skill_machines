@@ -39,14 +39,14 @@ class OfficeLongTask(gym.Wrapper):
     def __init__(self, *args, **kwargs):
         """Deliver mail to the office until there is no mail left, then deliver coffee to office while there are people in the office, then patrol rooms A-B-C-D-A, and never break a decoration"""
         env = gym.make("Office-v0", render_mode=kwargs['render_mode'] if "render_mode" in kwargs else "human")
-        task = Task(env, "(F (m & X (F (o & X (~ m U (~ M & m & X (F (c & X (~ o U (~ O & o & X (F (A & X (F (B & X (F (C & X (F (D & X (F A))))))))))))))))))) & (G~d)", **kwargs)
+        task = Task(env, "(F (m & X (F (o & X (~ m U (~ tm & m & X (F (c & X (~ o U (~ to & o & X (F (A & X (F (B & X (F (C & X (F (D & X (F A))))))))))))))))))) & (G~d)", **kwargs)
         super().__init__(task)
 
 class OfficeMultiTask(gym.Wrapper):
     metadata = {'render_modes': ['human','rgb_array'], "render_fps": 10}
     def __init__(self, *args, **kwargs):
         """Randomly sampled task distribution"""
-        self.tasks = ["(F (c & X (F o))) & (G~d)","(F (A & X (F (B & X (F (C & X (F D))))))) & (G~d)","(F (m & X (F (o & X (~ m U (~ M & m & X (F (c & X (~ o U (~ O & o & X (F (A & X (F (B & X (F (C & X (F (D & X (F A))))))))))))))))))) & (G~d)"]
+        self.tasks = ["(F (c & X (F o))) & (G~d)","(F (A & X (F (B & X (F (C & X (F D))))))) & (G~d)","(F (m & X (F (o & X (~ m U (~ tm & m & X (F (c & X (~ o U (~ to & o & X (F (A & X (F (B & X (F (C & X (F (D & X (F A))))))))))))))))))) & (G~d)"]
         env = gym.make("Office-v0", render_mode=kwargs['render_mode'] if "render_mode" in kwargs else "human")
         self.create_task = lambda : Task(env, np.random.choice(self.tasks), **kwargs)
         super().__init__(self.create_task())

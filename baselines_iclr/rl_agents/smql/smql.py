@@ -115,7 +115,7 @@ def learn(env, total_timesteps=100000, zeroshot=False, fewshot=False, q_dir="vf"
         if num_episodes % 2 == 0:
             epsilon = learning_epsilon
         else:
-            epsilon = 0.1
+            epsilon = 0.0
 
         if fewshot or zeroshot:
             state, info = task_env.reset(seed=seed) 

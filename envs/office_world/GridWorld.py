@@ -45,7 +45,7 @@ class GridWorldEnv(gym.Env):
         (2,2):['A'], (2,14):['B'], (10,14):['C'], (10,2):['D'],
         (6,2):['d'], (6,14):['d'], (2,6):['d'], (2,10):['d'], (10,6):['d'], (10,10):['d'],
         (3,5):['c'], (9,11):['c'], 
-        (6,10):['m', DynamicObj('M', max_count=2)], (6,6):['o', DynamicObj('O', max_count=4)]
+        (6,10):['m', DynamicObj('tm', max_count=2)], (6,6):['o', DynamicObj('to', max_count=4)]
     }
     predicate_latex = {
         "A": "$A$", "B": "$B$", "C": "$C$", "D": "$D$",
@@ -53,8 +53,8 @@ class GridWorldEnv(gym.Env):
         "c": "${\mbox{\Coffeecup}}$",
         "m": "${\mbox{\Letter}}$",
         "o": "${\mbox{\Gentsroom}}$",
-        "M": "${\mbox{\Letter}}^+$",
-        "O": "${\mbox{\Gentsroom}}^+$"
+        "tm": "${\mbox{\Letter}}^+$",
+        "to": "${\mbox{\Gentsroom}}^+$"
     }
 
     def __init__(self, MAP=MAP, start_position=None, seed=None, render_mode = 'human'):   

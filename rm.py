@@ -14,7 +14,7 @@ def exp_boolean(exp, propositions):
     """
     Evaluates a Boolean expression. exp is the Boolean expression and propositions is a dictionary of truth values
     """
-    exp = sympify(exp.replace("!","~").replace("1","true").replace("0","false"))
+    exp = sympify(exp.replace("!","~").replace("1","True").replace("0","False"))
     if not exp: return False   
 
     def convert(exp):
@@ -184,6 +184,7 @@ class Tokenizer(object):
         self.text_space = gym.spaces.Box(low=0, high=self.max_text_size, shape=(self.max_text_size,), dtype=self.dtype)
     
     def tokenize(self, text):
+        text = text[:self.max_text_size]
         tokens = re.findall("[{0}]".format(string.printable), text.lower())
         var_indexed_text = np.array([self.vocab[token] for token in tokens])
         tokenized = np.zeros(self.max_text_size, dtype=self.dtype)

@@ -107,12 +107,12 @@ class coffee(GridWorld_Object):
         super().__init__(positions)
 
 class mail(GridWorld_Object):
-    def __init__(self, count=1):
+    def __init__(self, count=None):
         positions = [(6,10)]
         super().__init__(positions, count)
 
 class office(GridWorld_Object):
-    def __init__(self, count=1):
+    def __init__(self, count=None):
         positions = [(6,6)]
         super().__init__(positions, count)
 

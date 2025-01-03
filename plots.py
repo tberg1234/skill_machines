@@ -47,13 +47,12 @@ def plot_office_iclr():
             episodes, steps, performance = all_data_pnts[0].index("episodes"), all_data_pnts[0].index("steps"), all_data_pnts[0].index(metric)
             all_data_pnts = np.array(all_data_pnts[1:]).astype(np.float32)[:num_steps,:]
             task = all_data_pnts[:,steps]
-            print(all_data_pnts.shape)
+            print("data:", all_data_pnts.shape)
             a = np.sum(all_data_pnts[:,episodes].reshape(-1, m), axis=1)
             b = np.sum(all_data_pnts[:,steps].reshape(-1, m), axis=1)
             c = np.sum(all_data_pnts[:,performance].reshape(-1, m), axis=1)
             all_data_pnts = np.array([a,b,c]).T
-            print(all_data_pnts.shape)
-
+            
             for i in range(num_runs):
                 try:
                     filer = open(dirr+'/'+str(i)+'/progress.csv')
@@ -105,8 +104,8 @@ def plot_office():
     num_steps = 400000
     metric = "eval total reward"
     m = 1
-    metric = "eval successes"
-    m = 1
+    #metric = "eval successes"
+    #m = 1
 
     labels = ['SM (Ours)','SM-Zeroshot (Ours)','SM-Fewshot (Ours)','Baseline (QL)']
     dirs = ['sm_ql','sm_ql/zeroshot','sm_ql/fewshot','ql']
@@ -123,13 +122,12 @@ def plot_office():
             episodes, steps, performance = all_data_pnts[0].index("episodes"), all_data_pnts[0].index("steps"), all_data_pnts[0].index(metric)
             all_data_pnts = np.array(all_data_pnts[1:]).astype(np.float32)[:num_steps,:]
             task = all_data_pnts[:,steps]
-            print(all_data_pnts.shape)
+            print("data:", all_data_pnts.shape)
             a = np.sum(all_data_pnts[:,episodes].reshape(-1, m), axis=1)
             b = np.sum(all_data_pnts[:,steps].reshape(-1, m), axis=1)
             c = np.sum(all_data_pnts[:,performance].reshape(-1, m), axis=1)
             all_data_pnts = np.array([a,b,c]).T
-            print(all_data_pnts.shape)
-
+            
             for i in range(num_runs):
                 try:
                     filer = open(dirr+'/'+str(i)+'/progress.csv')

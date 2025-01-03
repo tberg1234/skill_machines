@@ -177,7 +177,7 @@ class Tokenizer(object):
     """Simple mapping from tokens to ids with a capacity of `max_size` words.
     It can be saved in a `vocab.json` file."""
 
-    def __init__(self, max_text_size=256):
+    def __init__(self, max_text_size=32):
         self.vocab = {c:i for i,c in enumerate(string.printable)}
         self.dtype = np.int16
         self.max_text_size = max_text_size

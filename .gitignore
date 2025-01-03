@@ -1,5 +1,6 @@
 log
 *log
+log*
 data/
 #*data/
 __pycache__/

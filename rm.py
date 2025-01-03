@@ -230,7 +230,7 @@ class Task(gym.Env):
             self.true_propositions = self.environment.get_predicates()
             _, _, rm_done, _, _ = self.rm.step(self.true_propositions)
             tries += 1; seed = seed+1 if type(seed)!=type(None) else seed
-            if tries < 100: print("WARNING: Unable to reset the environment in a non-terminal state after 100 tries. This could be a result of the task=({0}) or seed={1}".format(self.task,kwargs["seed"]))
+            if tries > 100: print("WARNING: Unable to reset the environment in a non-terminal state after 100 tries. This could be a result of the task=({0}) or seed={1}".format(self.task,seed))
         (rm_state, rm_info) = self.rm.reset(**kwargs)        
         ###
         state = {'env_state': self.env_state,'rm_state': rm_state, 'task': self.tokenizer.tokenize(self.task)}

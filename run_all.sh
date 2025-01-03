@@ -37,14 +37,14 @@ do
 	python sm_ql.py --env Office-Mod-CoffeeStrict-Task-v0 --total_steps 400000 --fewshot --load --sp_dir data/sp_ql/Office-Mod-v0/$i/ --log_dir data/logs/sm_ql/fewshot/Office-Mod-CoffeeStrict-Task-v0/$i/
 	python ql.py --env Office-Mod-CoffeeStrict-Task-v0 --total_steps 400000 --log_dir data/logs/ql/Office-Mod-CoffeeStrict-Task-v0/$i/
 
-        ) &> log &
+        ) &> log_office &
 done
 
 for i in `seq 0 4`;
 do
         (	
 	# Learn primitives
-	python sm_sb3.py --env MovingTargets-v0 --algo dqn --sp_dir data/sp_dqn/MovingTargets-v0/$i/ --log_dir data/logs/sp_dqn
+	python sm_sb3.py --env MovingTargets-v0 --algo dqn --sp_dir data/sp_dqn/MovingTargets-v0/$i/ --log_dir data/logs/sp_dqn/$i/
 
 	# Moving-Targets tasks
         python sm_sb3.py --env MovingTargets-Task-1-v0 --algo dqn --sp_dir data/sp_dqn/MovingTargets-v0/$i/ --log_dir data/logs/sm_dqn/MovingTargets-Task-1-v0/$i/ --load
@@ -63,7 +63,7 @@ do
         python sm_sb3.py --env MovingTargets-PartiallyOrdered-Task-v0 --algo dqn --sp_dir data/sp_dqn/MovingTargets-PartiallyOrdered-Task-v0/$i/ --log_dir data/logs/sm_dqn/MovingTargets-PartiallyOrdered-Task-v0/$i/
         python sb3.py --env MovingTargets-PartiallyOrdered-Task-v0 --algo dqn --skill_dir data/dqn/MovingTargets-PartiallyOrdered-Task-v0/$i/ --log_dir data/logs/dqn/MovingTargets-PartiallyOrdered-Task-v0/$i/
 
-        ) &> log
+        ) &> log_moving
 done &
 
 for i in `seq 0 4`;
@@ -89,5 +89,5 @@ do
         python sm_sb3.py --env Safety-PartiallyOrdered-Task-v0 --algo td3 --sp_dir data/sp_td3/Safety-PartiallyOrdered-Task-v0/$i/ --log_dir data/logs/sm_td3/Safety-PartiallyOrdered-Task-v0/$i/
         python sb3.py --env Safety-PartiallyOrdered-Task-v0 --algo td3 --skill_dir data/td3/Safety-PartiallyOrdered-Task-v0/$i/ --log_dir data/logs/td3/Safety-PartiallyOrdered-Task-v0/$i/    
 
-	) &> log
+	) &> log_safety
 done &

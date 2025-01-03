@@ -83,14 +83,14 @@ def plot_office_iclr():
     fig, ax = plt.subplots()
     for (mean, std, label) in data:
         task = np.linspace(task.min(), task.max(), len(mean))  
-        ax.plot(task, mean, lw = lw)
-        ax.fill_between(task, mean - std, mean + std, alpha=0.4, label=label)
+        ax.plot(task, mean, lw = lw, label=label)
+        ax.fill_between(task, mean - std, mean + std, alpha=0.4)
 
     # plt.legend(loc="lower left", bbox_to_anchor=(0,0.025))
-    plt.legend()
+    plt.legend(markerscale=6)
     # ax.legend_ = None
-    plt.xlabel("Steps")
-    # plt.ylabel('Total Reward')
+    plt.xlabel("steps")
+    plt.ylabel(metric)
     #plt.ylim(top=2)
     ax.xaxis.get_major_formatter().set_powerlimits((0, 1))
     fig.tight_layout()
@@ -164,8 +164,8 @@ def plot_office():
     # plt.legend(loc="lower left", bbox_to_anchor=(0,0.025))
     plt.legend(loc="lower right")
     # ax.legend_ = None
-    plt.xlabel("Steps")
-    # plt.ylabel('Total Reward')
+    plt.xlabel("steps")
+    plt.ylabel(metric)
     #plt.ylim(top=2)
     ax.xaxis.get_major_formatter().set_powerlimits((0, 1))
     #ax.ticklabel_format(axis='y',style='scientific', useOffset=True)

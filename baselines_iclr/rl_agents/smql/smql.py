@@ -31,8 +31,8 @@ class gym_nasium(gymnasium.Wrapper):
         self.rm.u0 = rm.u0
         self.rm.u = rm.u0
         self.rm.terminal_states = [rm.terminal_u]
-        self.rm.delta_u = {u:{exp:u_                                 for u_,exp in rm.delta_u[u].items()} for u in rm.delta_u}
-        self.rm.delta_r = {u:{exp:rm.delta_r[u][u_].get_reward(None) for u_,exp in rm.delta_u[u].items()} for u in rm.delta_u}
+        self.rm.delta_u = {u:{exp:u_                                      for u_,exp in rm.delta_u_full[u].items()} for u in rm.delta_u_full}
+        self.rm.delta_r = {u:{exp:rm.delta_r_full[u][u_].get_reward(None) for u_,exp in rm.delta_u_full[u].items()} for u in rm.delta_u_full}
             
     def reset(self, **kwargs):
         state = self.env.reset()

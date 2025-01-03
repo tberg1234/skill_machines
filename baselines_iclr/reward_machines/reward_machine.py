@@ -104,6 +104,8 @@ class RewardMachine:
         # setting the DFA
         self.u0 = eval(lines[0])
         terminal_states = eval(lines[1])
+        self.delta_u_full = {}
+        self.delta_r_full = {}
         # adding transitions
         for e in lines[2:]:
             # Reading the transition
@@ -118,13 +120,20 @@ class RewardMachine:
             # Adding state-transition to delta_u
             if u1 not in self.delta_u:
                 self.delta_u[u1] = {}
-            self.delta_u[u1][u2] = dnf_formula
+                self.delta_u_full[u1] = {}
+            if not (u2 == self.terminal_u and reward_function.get_reward(None)<=0):
+                self.delta_u[u1][u2] = dnf_formula
+            self.delta_u_full[u1][u2] = dnf_formula
             # Adding reward-transition to delta_r
             if u1 not in self.delta_r:
                 self.delta_r[u1] = {}
-            self.delta_r[u1][u2] = reward_function
+                self.delta_r_full[u1] = {}
+            if not (u2 == self.terminal_u and reward_function.get_reward(None)<=0):
+                self.delta_r[u1][u2] = reward_function
+            self.delta_r_full[u1][u2] = reward_function
         # Sorting self.U... just because... 
         self.U = sorted(self.U)
+
     def _add_state(self, u_list):
         for u in u_list:
             if u not in self.U and u != self.terminal_u:

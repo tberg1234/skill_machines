@@ -177,7 +177,7 @@ class Tokenizer(object):
     """Simple mapping from tokens to ids with a capacity of `max_size` words.
     It can be saved in a `vocab.json` file."""
 
-    def __init__(self, max_text_size=32):
+    def __init__(self, max_text_size=100):
         self.vocab = {c:i for i,c in enumerate(string.printable)}
         self.dtype = np.int16
         self.max_text_size = max_text_size
@@ -222,7 +222,7 @@ class Task(gym.Env):
     def reset(self, seed=None, **kwargs):
         (self.env_state, env_info), (rm_state, rm_info) = self.environment.reset(seed=seed, **kwargs), self.rm.reset(seed=seed, **kwargs)
         self.true_propositions = self.environment.get_predicates()
-        ### Make sure that the initial state is not terminal
+        ### Try to make terminal initial states non-terminal
         _, _, rm_done, _, _ = self.rm.step(self.true_propositions)
         tries = 0
         while rm_done: 
@@ -230,7 +230,7 @@ class Task(gym.Env):
             self.true_propositions = self.environment.get_predicates()
             _, _, rm_done, _, _ = self.rm.step(self.true_propositions)
             tries += 1; seed = seed+1 if type(seed)!=type(None) else seed
-            assert tries < 100, "Unable to reset the environment in a non-terminal state after 100 tries. This could be a result of the task=({0}) or seed={1}".format(self.task,kwargs["seed"])
+            if tries < 100: print("WARNING: Unable to reset the environment in a non-terminal state after 100 tries. This could be a result of the task=({0}) or seed={1}".format(self.task,kwargs["seed"]))
         (rm_state, rm_info) = self.rm.reset(**kwargs)        
         ###
         state = {'env_state': self.env_state,'rm_state': rm_state, 'task': self.tokenizer.tokenize(self.task)}

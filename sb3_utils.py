@@ -132,13 +132,14 @@ class DQNAgent(BaseAgent):
         if load: self.model = self.model_class.load(save_dir+self.name, env=env)
         os.makedirs(save_dir, exist_ok=True)
 
-    def get_action_value(self, obs):
-        obs = obs.copy()
+    def get_action_value(self, states):
+        obs = states.copy()
         for key,obs_ in obs.items():
             obs[key] = torch.as_tensor(obs_, device=self.model.device)
             if len(obs[key].shape)>2: obs[key] =  obs[key].permute(0, 3, 1, 2)
         with torch.no_grad(): values = self.model.q_net(obs)
         if values.device != torch.device("cpu"): values = values.cpu()
+        # print("deterministic action:", values.numpy().argmax(1), "stochastic action:", self.model.predict(states, deterministic=False)[0].squeeze())
         return values.numpy().argmax(1), values.numpy().max(1)
         
 
@@ -167,4 +168,5 @@ class TD3Agent(BaseAgent):
             actions = self.model.actor(obs).clamp(-1, 1)
             values = self.model.critic(obs, actions)[0]
         if values.device != torch.device("cpu"): actions, values = actions.cpu(), values.cpu()
+        # print("deterministic action:", actions.squeeze().numpy(), "stochastic action:", self.model.predict(states, deterministic=False)[0].squeeze())
         return actions.squeeze().numpy(), values.squeeze().numpy()

@@ -87,10 +87,11 @@ def plot_office_iclr():
         ax.fill_between(task, mean - std, mean + std, alpha=0.4)
 
     # plt.legend(loc="lower left", bbox_to_anchor=(0,0.025))
-    plt.legend(markerscale=6)
+    plt.legend()
     # ax.legend_ = None
-    plt.xlabel("steps")
-    plt.ylabel(metric)
+    plt.xlabel("Steps")
+    if metric == "eval total reward": plt.ylabel("Total Reward")
+    else:                             plt.ylabel(metric)
     #plt.ylim(top=2)
     ax.xaxis.get_major_formatter().set_powerlimits((0, 1))
     fig.tight_layout()
@@ -165,7 +166,8 @@ def plot_office():
     plt.legend(loc="lower right")
     # ax.legend_ = None
     plt.xlabel("steps")
-    plt.ylabel(metric)
+    if metric == "eval total reward": plt.ylabel("Total Discounted Reward")
+    else:                             plt.ylabel(metric)
     #plt.ylim(top=2)
     ax.xaxis.get_major_formatter().set_powerlimits((0, 1))
     #ax.ticklabel_format(axis='y',style='scientific', useOffset=True)

@@ -47,7 +47,7 @@ def learn(primitive_env, task_env, total_steps, zeroshot=False, fewshot=False, q
 
     # Start Training
     logger = configure(log_dir, ["stdout", "csv", "tensorboard"])
-    step, reward_total, successes, num_episodes, start_time = 0, 0, 0, 1, time.time()
+    step, reward_total, successes, best_total_reward, num_episodes, start_time = 0, 0, 0, 0, 1, time.time()
     while step < total_steps:
         if fewshot or zeroshot:
             state, info = task_env.reset(seed=seed)   
@@ -83,20 +83,22 @@ def learn(primitive_env, task_env, total_steps, zeroshot=False, fewshot=False, q
             
             # logging and moving to the next state
             step += 1; state = state_
-            if step%print_freq == 0:       
-                if fewshot: 
-                    torch.save(Q, q_dir+"skill") 
-                elif not zeroshot: 
-                    for primitive in SP: torch.save(SP[primitive].values, sp_dir+"wvf_"+primitive) 
-                    torch.save(primitive_env.goals, sp_dir+"goals")                
-                logger.record("steps", step); logger.record("episodes", num_episodes); logger.record("goals", len(primitive_env.goals));
-                logger.record("total reward", reward_total); logger.record("successes", successes/num_episodes)
+            if (step-1)%print_freq == 0:       
                 if task_env: 
                     if fewshot: eval_total_reward, eval_successes = evaluate(task_env, SM=SM, skill=Q, epsilon=0, gamma=gamma, episodes=eval_episodes, seed=seed)
                     else:       eval_total_reward, eval_successes = evaluate(task_env, SM=SM, epsilon=0, gamma=gamma, episodes=eval_episodes, seed=seed)
+                    if eval_total_reward >= best_total_reward:
+                        best_total_reward = eval_total_reward
+                        if fewshot:
+                            torch.save(Q, q_dir+"skill")
+                        elif not zeroshot:
+                            for primitive in SP: torch.save(SP[primitive].values, sp_dir+"wvf_"+primitive)
+                            torch.save(primitive_env.goals, sp_dir+"goals")
                     logger.record("eval total reward", eval_total_reward); logger.record("eval successes", eval_successes)
+                logger.record("steps", step); logger.record("episodes", num_episodes); logger.record("goals", len(primitive_env.goals))
+                logger.record("total reward", reward_total); logger.record("successes", successes/num_episodes)
                 logger.record("time elapsed", time.time()-start_time); logger.dump(step)
-                reward_total, successes, num_episodes, start_time = 0, 0, 0, time.time()
+                reward_total, successes, num_episodes, start_time = 0, 0, 1, time.time()
             if done or truncated: 
                 num_episodes += 1; reward_total += reward; successes += reward>=primitive_env.rmax
                 break

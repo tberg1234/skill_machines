@@ -29,8 +29,8 @@ def plot_office_iclr():
     num_steps = 400000
     metric = "eval total reward"
     m = 4
-    #metric = "eval successes"
-    #m = 1
+    metric = "eval successes"
+    m = 1
 
     labels = ['SM (Ours)','QL-SM (Ours)','CRM','CRM-RS','HRM','HRM-RS','QL',"QL-RS"]
     dirs = ['sm-ql/zeroshot','sm-ql/fewshot','crm','crm-rs','hrm','hrm-rs','rm-ql','rm-ql-rs']
@@ -107,7 +107,7 @@ def plot_office():
     metric = "eval successes"
     m = 1
 
-    labels = ['SM (Ours)','SM-Zeroshot (Ours)','SM-Fewshot (Ours)','Baseline (QL)']
+    labels = ['SM (Ours)','SM-Pretrained (Ours)','SM-QL-Pretrained (Ours)','QL (Baseline)']
     dirs = ['sm_ql','sm_ql/zeroshot','sm_ql/fewshot','ql']
 
     data = []

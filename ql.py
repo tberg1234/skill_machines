@@ -37,7 +37,7 @@ def learn(task_env, total_steps, q_dir="vf", log_dir="logs", gamma=0.9, lr=0.1, 
 
     # Start Training
     logger = configure(log_dir, ["stdout", "csv", "tensorboard"])
-    step, reward_total, successes, num_episodes, start_time = 0, 0, 0, 1, time.time()
+    step, reward_total, successes, best_total_reward, num_episodes, start_time = 0, 0, 0, 0, 1, time.time()
     while step < total_steps:
         state, info = task_env.reset(seed=seed)       
         while True:            
@@ -51,14 +51,16 @@ def learn(task_env, total_steps, q_dir="vf", log_dir="logs", gamma=0.9, lr=0.1, 
             
             # logging and moving to the next state
             step += 1; state = state_
-            if step%print_freq == 0:       
-                torch.save(Q, q_dir+"skill")
+            if (step-1)%print_freq == 0:       
                 eval_total_reward, eval_successes = evaluate(task_env, skill=Q, episodes=eval_episodes, epsilon=0, gamma=gamma, seed=seed)
+                if eval_total_reward >= best_total_reward:
+                    best_total_reward = eval_total_reward
+                    torch.save(Q, q_dir+"skill")
                 logger.record("steps", step); logger.record("episodes", num_episodes); 
                 logger.record("total reward", reward_total); logger.record("successes", successes/num_episodes)
                 logger.record("eval total reward", eval_total_reward); logger.record("eval successes", eval_successes)
                 logger.record("time elapsed", time.time()-start_time); logger.dump(step)
-                reward_total, successes, num_episodes, start_time = 0, 0, 0, time.time()
+                reward_total, successes, num_episodes, start_time = 0, 0, 1, time.time()
             if done or truncated: 
                 num_episodes += 1; reward_total += reward; successes += reward>=task_env.rmax
                 break

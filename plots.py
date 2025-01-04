@@ -29,8 +29,8 @@ def plot_office_iclr():
     num_steps = 400000
     metric = "eval total reward"
     m = 4
-    metric = "eval successes"
-    m = 1
+    #metric = "eval successes"
+    #m = 1
 
     labels = ['SM (Ours)','QL-SM (Ours)','CRM','CRM-RS','HRM','HRM-RS','QL',"QL-RS"]
     dirs = ['sm-ql/zeroshot','sm-ql/fewshot','crm','crm-rs','hrm','hrm-rs','rm-ql','rm-ql-rs']
@@ -102,11 +102,11 @@ def plot_office_iclr():
 def plot_office():
 
     num_runs = 10
-    num_steps = 400000
+    num_steps = 400000//10000
     metric = "eval total reward"
     m = 1
-    metric = "eval successes"
-    m = 1
+    #metric = "eval successes"
+    #m = 1
 
     labels = ['SM (Ours)','SM-Pretrained (Ours)','SM-QL-Pretrained (Ours)','QL (Baseline)']
     dirs = ['sm_ql','sm_ql/zeroshot','sm_ql/fewshot','ql']
@@ -114,7 +114,7 @@ def plot_office():
     data = []
 
     for j in range(len(labels)):
-        try:
+        if True:
             dirr = f'data/logs/{dirs[j]}/{args.env}/'
             filer = open(dirr+'0/progress.csv')
             print(dirr+'0/progress.csv')
@@ -146,8 +146,6 @@ def plot_office():
                 except:
                     print(labels[j], i, "skipped")
             data.append((np.mean(all_data_pnts, axis=2)[:,2], np.std(all_data_pnts, axis=2)[:,2], labels[j]))
-        except:
-            print(labels[j], "skipped")
     s = 20
 
     rc_ = {'figure.figsize':(9,7),'axes.labelsize': 30, 'xtick.labelsize': s, 

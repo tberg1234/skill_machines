@@ -110,7 +110,7 @@ def learn(env, total_timesteps=100000, zeroshot=False, fewshot=False, q_dir="vf"
     # Start Training
     learning_epsilon = epsilon
     init_eval = print_freq if init_eval else 0 
-    step, reward_total, successes, eval_total_reward, eval_successes, num_episodes, start_time = 0, 0, 0, 0, 0, 1, time.time()
+    step, reward_total, successes, best_reward_total, num_episodes, start_time = 0, 0, 0, 0, 1, time.time()
     while step < total_timesteps:
         if num_episodes % 2 == 0:
             epsilon = learning_epsilon
@@ -157,10 +157,12 @@ def learn(env, total_timesteps=100000, zeroshot=False, fewshot=False, q_dir="vf"
             if num_episodes % 2 == 0:
                 step += 1
                 if step%print_freq == 0 or step == init_eval:
-                    # if fewshot: torch.save(Q, q_dir+"skill")
-                    if not zeroshot:
-                        for primitive in SP: torch.save(SP[primitive].values, sp_dir+"wvf_"+primitive)
-                        torch.save(primitive_env.goals, sp_dir+"goals")
+                    if reward_total >= best_reward_total:
+                        best_reward_total = reward_total
+                        # if fewshot: torch.save(Q, q_dir+"skill")
+                        if not zeroshot:
+                            for primitive in SP: torch.save(SP[primitive].values, sp_dir+"wvf_"+primitive)
+                            torch.save(primitive_env.goals, sp_dir+"goals")
                     logger.record_tabular("steps", step)
                     logger.record_tabular("episodes", num_episodes*0.5)
                     logger.record_tabular("eval total reward", reward_total)

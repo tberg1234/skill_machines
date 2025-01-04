@@ -1,6 +1,6 @@
 #!/bin/bash
 #cd reward_machines
-for i in `seq 0 10`; 
+for i in `seq 0 60`; 
 do
 	(
 	# Primitives

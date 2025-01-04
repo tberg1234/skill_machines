@@ -84,36 +84,36 @@ gym.envs.registration.register(
 
 gym.envs.registration.register(
     id='Office-Coffee-Task-v0',
-    max_episode_steps=200, 
+    max_episode_steps=1000, 
     entry_point=OfficeCoffeeTask,
 )
 gym.envs.registration.register(
     id='Office-Patrol-Task-v0',
-    max_episode_steps=200, 
+    max_episode_steps=1000, 
     entry_point=OfficePatrolTask,
 )
 gym.envs.registration.register(
     id='Office-CoffeeMail-Task-v0',
-    max_episode_steps=200, 
+    max_episode_steps=1000, 
     entry_point=OfficeCoffeeMailTask,
 )
 gym.envs.registration.register(
     id='Office-Long-Task-v0',
-    max_episode_steps=200, 
+    max_episode_steps=1000, 
     entry_point=OfficeLongTask,
 )
 gym.envs.registration.register(
     id='Office-Multi-Task-v0',
-    max_episode_steps=200, 
+    max_episode_steps=1000, 
     entry_point=OfficeMultiTask,
 )
 gym.envs.registration.register(
     id='Office-Mod-Coffee-Task-v0',
-    max_episode_steps=200, 
+    max_episode_steps=1000, 
     entry_point=OfficeModCoffeeTask,
 )
 gym.envs.registration.register(
     id='Office-Mod-CoffeeStrict-Task-v0',
-    max_episode_steps=200, 
+    max_episode_steps=1000, 
     entry_point=OfficeModCoffeeStrictTask,
 )

@@ -105,8 +105,8 @@ def plot_office():
     num_steps = 400000//10000
     metric = "eval total reward"
     m = 1
-    #metric = "eval successes"
-    #m = 1
+    metric = "eval successes"
+    m = 1
 
     labels = ['SM (Ours)','SM-Pretrained (Ours)','SM-QL-Pretrained (Ours)','QL (Baseline)']
     dirs = ['sm_ql','sm_ql/zeroshot','sm_ql/fewshot','ql']

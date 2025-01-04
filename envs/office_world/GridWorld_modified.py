@@ -105,7 +105,7 @@ class GridWorldEnv(gym.Env):
             for obj in self.position_predicate[self.position]:
                 if type(obj)!=str: obj.update()
                      
-        return state, 0, False, False, {}
+        return state, 0, self.grid[x][y] == 2, False, {}
     
     def reset(self, seed=None, **kwargs):    
         self.np_random, self.seed = seeding.np_random(seed)

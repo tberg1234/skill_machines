@@ -305,7 +305,7 @@ class SkillMachine():
                 self.sm_str += "({},{},'{}',WorldValueFunction({}))\n".format(u,rm.delta_u[u][exp],exp,self.delta_q[u])
         self.sm_str = "{}    # terminal state\n".format(list(rm.terminal_states)) + self.sm_str
         self.sm_str = "{}    # initial state\n".format(rm.u0) + self.sm_str
-                
+        
     def reset(self, rm, true_propositions):
         self.rm_state, self.goal = None, None
         self.violated_constraints, self.true_propositions = self.proposition_space.low.copy(), true_propositions.copy()

@@ -21,7 +21,6 @@ Install the required packages:
 conda create --name sm python==3.8
 conda activate sm
 pip install -r requirements.txt
-conda install -c conda-forge spot
 ```
 
 Install the spot library for handling LTL and automata task specifications:

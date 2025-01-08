@@ -42,6 +42,10 @@ cd baselines_iclr
 pip install -r requirements.txt
 ```
 
+## Reproduce Experiments from Paper
+```
+bash baselines_iclr/run_office.sh
+```
 
 ## Getting Started
 
@@ -53,15 +57,15 @@ For example:
 import gymnasium as gym, envs
 from rm import Task
 
-task_env = Task(gym.make("Office-v0"), ltl="F(c & X Fo) & G~d") # Task from LTL specification
-task_env = Task(gym.make("Office-v0"), hao="example_task_automata.hao") # Task from automata specification
+task_env = Task(gym.make("Office-v0"), ltl="F(c & X Fo) & G~d") # Coffee task from LTL specification
+task_env = Task(gym.make("Office-v0"), hao="example_task_automata.hao") # Coffee task from automata specification
 ```
 
 **Manual control using keyboard:** Examples
 ```
 python manual_control.py --env Office-v0 
 python manual_control.py --env Office-v0 --ltl "F(c & X(F o)) & G(~d)"
-python manual_control.py --env Office-CoffeeMail-Task-v0
+python manual_control.py --env Office-Coffee-Task-v0
 ```
 
 **To pretrain skill primitives:**
@@ -86,9 +90,13 @@ python ql.py --env Office-CoffeeMail-Task-v0 --total_steps 400000 --log_dir data
 ```
 
 <table>
+<!--   <tr>
+    <td> <div style="position: absolute; top: 50%; right: 50%;">Success rate: Coffee Task</div> <img src="images/Office-Coffee-Task-v0_eval successes-page-00001.jpg" alt="2" width = 400px height = auto></td>
+    <td> <div style="position: absolute; top: 50%; right: 50%;">Discounted rewards: Coffee Task</div> <img src="images/Office-Coffee-Task-v0_eval total reward-page-00001.jpg" alt="2" width = 400px height = auto></td>
+  </tr>    -->
   <tr>
-    <td> <div style="position: absolute; top: 50%; right: 50%;">Success rate</div> <img src="images/Office-CoffeeMail-Task-v0_eval successes-page-00001.jpg" alt="2" width = 400px height = auto></td>
-    <td> <div style="position: absolute; top: 50%; right: 50%;">Discounted rewards</div> <img src="images/Office-CoffeeMail-Task-v0_eval total reward-page-00001.jpg" alt="2" width = 400px height = auto></td>
+    <td> <div style="position: absolute; top: 50%; right: 50%;">Office-CoffeeMail-Task-v0: Success rate</div> <img src="images/Office-CoffeeMail-Task-v0_eval successes-page-00001.jpg" alt="2" width = 400px height = auto></td>
+    <td> <div style="position: absolute; top: 50%; right: 50%;">Office-CoffeeMail-Task-v0: Discounted rewards</div> <img src="images/Office-CoffeeMail-Task-v0_eval total reward-page-00001.jpg" alt="2" width = 400px height = auto></td>
   </tr>   
 </table>
 
@@ -99,30 +107,37 @@ python enjoy.py --algo ql --env Office-CoffeeMail-Task-v0 --q_dir data/sm_ql/Off
 ```
 <table>
   <tr>
-    <td> <div style="position: absolute; top: 50%; right: 50%;">Zeroshot</div> <img src="images/zeroshot_Office-CoffeeMail-Task-v0_.gif" alt="2" width = 400px height = auto></td>
-    <td> <div style="position: absolute; top: 50%; right: 50%;">Fewshot</div> <img src="images/fewshot_Office-CoffeeMail-Task-v0_.gif" alt="2" width = 400px height = auto></td>
+    <td> <div style="position: absolute; top: 50%; right: 50%;">Office-CoffeeMail-Task-v0: Zeroshot (SM)</div> <img src="images/zeroshot_Office-CoffeeMail-Task-v0_.gif" alt="2" width = 400px height = auto></td>
+    <td> <div style="position: absolute; top: 50%; right: 50%;">Office-CoffeeMail-Task-v0: Fewshot (SM-QL)</div> <img src="images/fewshot_Office-CoffeeMail-Task-v0_.gif" alt="2" width = 400px height = auto></td>
   </tr>   
 </table>
 
-**Reproduce Experiments from Paper:** To reproduce an experiment from the paper, run:
-```
-bash baselines_iclr/run_office.sh
-```
-
 **Function approximation examples:**
 ```
-python sm_sb3.py --algo dqn --env MovingTargets-v0
-python sm_sb3.py --algo td3 --env Safety-v0
+python sm_sb3.py --algo dqn --env MovingTargets-v0 --sp_dir data/MovingTargets-v0/
+python sm_sb3.py --algo td3 --env Safety-Multi-Task-v0 --sp_dir data/Safety-v0/
+python sb3.py --algo td3 --env Safety-Multi-Task-v0
 ```
+<table>
+  <tr>
+    <td> <div style="position: absolute; top: 50%; right: 50%;">MovingTargets-Task-1-v0 <br> F (circle | square) <br> Pick up any object.</div> <img src="images/MovingTargets-Task-1-v0_eval successes.png" alt="2" width = 400px height = auto></td>
+    <td> <div style="position: absolute; top: 50%; right: 50%;">MovingTargets-Task-4-v0 <br> F((~square & blue) & X(F(square & ~ blue))) <br> Pick up non-square blue objects, then non-blue squares in that order.</div> <img src="images/MovingTargets-Task-4-v0_eval successes.png" alt="2" width = 400px height = auto></td>
+  </tr>   
+  <tr>
+    <td> <div style="position: absolute; top: 50%; right: 50%;">MovingTargets-Multi-Task-v0 (Tasks 1-4 sampled randomly)</div> <img src="images/MovingTargets-Multi-Task-v0_eval successes.png" alt="2" width = 400px height = auto></td>
+    <td> <div style="position: absolute; top: 50%; right: 50%;">Safety-Multi-Task-v0 (Tasks 1-6 sampled randomly)</div> <img src="images/Safety-Multi-Task-v0_eval successes.png" alt="2" width = 400px height = auto></td>
+  </tr>   
+</table>
+
 ```
-python enjoy.py --algo dqn --env MovingTargets-Task-2-v0 --sp_dir data/MovingTargets-v0/
+python enjoy.py --algo dqn --env MovingTargets-Task-1-v0 --sp_dir data/MovingTargets-v0/
 python enjoy.py --algo dqn --env MovingTargets-Task-4-v0 --sp_dir data/MovingTargets-v0/
 ```
 
 <table>
   <tr>
-    <td> <div style="position: absolute; top: 50%; right: 50%;">Task 2: F(blue & X(F(purple & X(F(((circle | square) & ~(blue | purple))))))) : Pick up blue then purple objects, then objects that are neither blue nor purple.</div> <img src="images/zeroshot_MovingTargets-Task-2-v0_.gif" alt="2" width = 400px height = auto></td>
-    <td> <div style="position: absolute; top: 50%; right: 50%;">Task 4: F((~square & blue) & X(F(square & ~ blue))) : Pick up non-square blue objects, then non-blue squares in that order.</div> <img src="images/zeroshot_MovingTargets-Task-4-v0_.gif" alt="2" width = 400px height = auto></td>
+    <td> <div style="position: absolute; top: 50%; right: 50%;">MovingTargets-Task-1-v0 <br> F (circle | square) <br> Pick up any object</div> <img src="images/zeroshot_MovingTargets-Task-1-v0_.gif" alt="2" width = 400px height = auto></td>
+    <td> <div style="position: absolute; top: 50%; right: 50%;">MovingTargets-Task-4-v0 <br> F((~square & blue) & X(F(square & ~ blue))) <br> Pick up non-square blue objects, then non-blue squares in that order.</div> <img src="images/zeroshot_MovingTargets-Task-4-v0_.gif" alt="2" width = 400px height = auto></td>
   </tr>   
 </table>
 
@@ -133,8 +148,8 @@ python enjoy.py --algo td3 --env Safety-Task-2-v0 --sp_dir data/Safety-v0/
 
 <table>
   <tr>
-    <td> <div style="position: absolute; top: 50%; right: 50%;">Task 1: (F (buttons & X (F goal))) : Navigate to a button and then to a cylinder.</div> <img src="images/zeroshot_Safety-Task-1-v0_.gif" alt="2" width = 400px height = auto></td>
-    <td> <div style="position: absolute; top: 50%; right: 50%;">Task 2: (F (buttons & X (F goal))) & (G~hazards): Navigate to a button and then to a cylinder while never entering blue regions</div> <img src="images/zeroshot_Safety-Task-2-v0_.gif" alt="2" width = 400px height = auto></td>
+    <td> <div style="position: absolute; top: 50%; right: 50%;">Safety-Task-1-v0 <br> (F (buttons & X (F goal))) <br> Navigate to a button and then to a cylinder.</div> <img src="images/zeroshot_Safety-Task-1-v0_.gif" alt="2" width = 400px height = auto></td>
+    <td> <div style="position: absolute; top: 50%; right: 50%;">Safety-Task-2-v0 <br> (F (buttons & X (F goal))) & (G~hazards) <br> Navigate to a button and then to a cylinder while never entering blue regions</div> <img src="images/zeroshot_Safety-Task-2-v0_.gif" alt="2" width = 400px height = auto></td>
   </tr>   
 </table>
 
@@ -145,8 +160,8 @@ python enjoy.py --algo td3 --env Safety-Task-4-v0 --sp_dir data/Safety-v0/
 
 <table>
   <tr>
-    <td> <div style="position: absolute; top: 50%; right: 50%;">Task 3: F(buttons & X(F (( goal & ~hazards )&X(F(( buttons & hazards )&X(F goal)))))) : Navigate to a button, then to a cylinder without entering blue regions, then to a button inside a blue region, and finally to a cylinder again.</div> <img src="images/zeroshot_Safety-Task-3-v0_.gif" alt="2" width = 400px height = auto></td>
-    <td> <div style="position: absolute; top: 50%; right: 50%;">Task 6: F(hazards & X(F(( buttons & goal) & X ((F goal) & (G ~hazards))))) : Navigate to a blue region, then to a button with a cylinder, and finally to a cylinder while avoiding blue regions.</div> <img src="images/zeroshot_Safety-Task-6-v0_.gif" alt="2" width = 400px height = auto></td>
+    <td> <div style="position: absolute; top: 50%; right: 50%;">Safety-Task-3-v0 <br> F(buttons & X(F (( goal & ~hazards )&X(F(( buttons & hazards )&X(F goal)))))) : Navigate to a button, then to a cylinder without entering blue regions, then to a button inside a blue region, and finally to a cylinder again.</div> <img src="images/zeroshot_Safety-Task-3-v0_.gif" alt="2" width = 400px height = auto></td>
+    <td> <div style="position: absolute; top: 50%; right: 50%;">Safety-Task-6-v0 <br> F(hazards & X(F(( buttons & goal) & X ((F goal) & (G ~hazards))))) <br> Navigate to a blue region, then to a button with a cylinder, and finally to a cylinder while avoiding blue regions.</div> <img src="images/zeroshot_Safety-Task-6-v0_.gif" alt="2" width = 400px height = auto></td>
   </tr>   
 </table>
 

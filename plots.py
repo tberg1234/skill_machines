@@ -258,7 +258,7 @@ def plot_sb3(algo):
     ax.xaxis.get_major_formatter().set_powerlimits((0, 1))
     #ax.ticklabel_format(axis='y',style='scientific', useOffset=True)
     fig.tight_layout()
-    fig.savefig(f"images/{args.env}_{metric}.pdf", bbox_inches='tight')
+    fig.savefig(f"images/{args.env}_{metric}.png", bbox_inches='tight')
     # plt.show()
 
 if   args.exp=="office":      plot_office()

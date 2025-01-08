@@ -20,10 +20,10 @@ if __name__ == "__main__":
 
     # Initialise MDP for the given temporal logic task (task_env)
     if "Task" in args.env: 
-        task_env = gym.make(args.env, max_episode_steps=100)
+        task_env = gym.make(args.env)
         task_env_test = gym.make(args.env, test=True)
     else:
-        task_env = Task(gym.make(args.env, max_episode_steps=100), args.ltl)
+        task_env = Task(gym.make(args.env), args.ltl)
         task_env_test = Task(gym.make(args.env), args.ltl, test=True)
    
     # Initialise task specific skill

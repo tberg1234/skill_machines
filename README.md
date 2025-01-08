@@ -98,7 +98,7 @@ python ql.py --env Office-v0 --ltl "((F (m & X (F (c & X (F o))))) | (F (c & X (
 ```
 or
 ```
-python ql.py --env Office-CoffeeMail-Task-v0 --total_steps 400000 --sp_dir data/sp_ql/Office-v0/ --log_dir data/logs/sm_ql/zeroshot/Office-CoffeeMail-Task-v0/
+python ql.py --env Office-CoffeeMail-Task-v0 --total_steps 400000 --log_dir data/logs/ql/Office-CoffeeMail-Task-v0/
 ```
 
 <table>
@@ -110,8 +110,8 @@ python ql.py --env Office-CoffeeMail-Task-v0 --total_steps 400000 --sp_dir data/
 
 **To visualise trained policies:**
 ```
-python enjoy.py --algo ql --env Office-Mod-Coffee-Task-v0 --sp_dir data/Office-v0/
-python enjoy.py --algo ql --env Office-Coffee-Task-v0 --q_dir data/sm_ql/Office-Coffee-Task-v0/ --fewshot
+python enjoy.py --algo ql --env Office-CoffeeMail-Task-v0 --sp_dir data/Office-v0/
+python enjoy.py --algo ql --env Office-CoffeeMail-Task-v0 --q_dir data/sm_ql/Office-CoffeeMail-Task-v0/ --fewshot
 ```
 <table>
   <tr>

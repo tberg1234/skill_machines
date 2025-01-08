@@ -198,9 +198,16 @@ def plot_sb3(algo):
             all_data_pnts = np.array(all_data_pnts[1:]).astype(np.float32)[:num_steps,:]
             task = all_data_pnts[:,steps]
             print("data:", all_data_pnts.shape)
-            a = np.sum(all_data_pnts[:,episodes].reshape(-1, m), axis=1)
-            b = np.sum(all_data_pnts[:,steps].reshape(-1, m), axis=1)
-            c = np.sum(all_data_pnts[:,performance].reshape(-1, m), axis=1)
+            a,b,c,e = [], [], [], 1
+            for k in range(len(all_data_pnts)):
+                if all_data_pnts[k,steps]>e:
+                    e = all_data_pnts[k,steps]+10000
+                    a.append(all_data_pnts[k,episodes])
+                    b.append(all_data_pnts[k,steps])
+                    c.append(all_data_pnts[k,performance])
+            #a = np.sum(all_data_pnts[:,episodes].reshape(-1, m), axis=1)
+            #b = np.sum(all_data_pnts[:,steps].reshape(-1, m), axis=1)
+            #c = np.sum(all_data_pnts[:,performance].reshape(-1, m), axis=1)
             all_data_pnts = np.array([a,b,c]).T
             
             for i in range(num_runs):
@@ -213,8 +220,8 @@ def plot_sb3(algo):
                     data_pnts = np.array(data_pnts[1:]).astype(np.float32)[:num_steps,:]
                     a,b,c,e = [], [], [], 1
                     for k in range(len(data_pnts)):
-                        if data_pnts[k,performance]>e:
-                            e = data_pnts[k,performance]+10000
+                        if data_pnts[k,steps]>e:
+                            e = data_pnts[k,steps]+10000
                             a.append(data_pnts[k,episodes])
                             b.append(data_pnts[k,steps])
                             c.append(data_pnts[k,performance])
@@ -222,10 +229,10 @@ def plot_sb3(algo):
                     #b = np.sum(data_pnts[:,steps].reshape(-1, m), axis=1)
                     #c = np.sum(data_pnts[:,performance].reshape(-1, m), axis=1)
                     data_pnts = np.array([a,b,c]).T
-                    print(data_pnts.shape)
                     all_data_pnts = np.dstack( [all_data_pnts, data_pnts] )
                 except:
                     print(labels[j], i, "skipped")
+            print(all_data_pnts.shape)
             data.append((np.mean(all_data_pnts, axis=2)[:,2], np.std(all_data_pnts, axis=2)[:,2], labels[j]))
     s = 20
 

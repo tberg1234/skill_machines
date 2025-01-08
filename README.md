@@ -53,15 +53,15 @@ For example:
 import gymnasium as gym, envs
 from rm import Task
 
-task_env = Task(gym.make("Office-v0"), ltl="F(c & X Fo) & G!d") # Task from LTL specification
+task_env = Task(gym.make("Office-v0"), ltl="F(c & X Fo) & G~d") # Task from LTL specification
 task_env = Task(gym.make("Office-v0"), hao="example_task_automata.hao") # Task from automata specification
 ```
 
 **Manual control using keyboard:** Examples
 ```
 python manual_control.py --env Office-v0 
-python manual_control.py --env Office-v0 --ltl "F(c & X(F o)) & G(!d)"
-python manual_control.py --env Office-Coffee-Task-v0
+python manual_control.py --env Office-v0 --ltl "F(c & X(F o)) & G(~d)"
+python manual_control.py --env Office-CoffeeMail-Task-v0
 ```
 
 **To pretrain skill primitives:**

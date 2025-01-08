@@ -176,7 +176,7 @@ def plot_office():
 def plot_sb3(algo):
 
     num_runs = 10
-    num_steps = 400000//10000
+    num_steps = 1000000
     metric = "eval total reward"
     m = 1
     #metric = "eval successes"
@@ -211,10 +211,18 @@ def plot_sb3(algo):
                     for row in csvreader: data_pnts.append([0 if a=='' else a for a in row])
                     episodes, steps, performance = data_pnts[0].index("time/episodes"), data_pnts[0].index("time/total_timesteps"), data_pnts[0].index(metric)
                     data_pnts = np.array(data_pnts[1:]).astype(np.float32)[:num_steps,:]
-                    a = np.sum(data_pnts[:,episodes].reshape(-1, m), axis=1)
-                    b = np.sum(data_pnts[:,steps].reshape(-1, m), axis=1)
-                    c = np.sum(data_pnts[:,performance].reshape(-1, m), axis=1)
+                    a,b,c,e = [], [], [], 1
+                    for k in range(len(data_pnts)):
+                        if data_pnts[k,performance]>e:
+                            e = data_pnts[k,performance]+10000
+                            a.append(data_pnts[k,episodes])
+                            b.append(data_pnts[k,steps])
+                            c.append(data_pnts[k,performance])
+                    #a = np.sum(data_pnts[:,episodes].reshape(-1, m), axis=1)
+                    #b = np.sum(data_pnts[:,steps].reshape(-1, m), axis=1)
+                    #c = np.sum(data_pnts[:,performance].reshape(-1, m), axis=1)
                     data_pnts = np.array([a,b,c]).T
+                    print(data_pnts.shape)
                     all_data_pnts = np.dstack( [all_data_pnts, data_pnts] )
                 except:
                     print(labels[j], i, "skipped")

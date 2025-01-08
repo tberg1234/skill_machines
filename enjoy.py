@@ -15,7 +15,7 @@ def render(state, SM, skill, task_env, images, max_width, max_height):
         task_env.environment.render_params["state"] = states
         task_env.environment.render_params["task_title"] = r"Task: ${}$".format(str(task_env.task).replace("&"," \wedge ").replace("|"," \\vee ").replace("~"," \\neg "))
         exp = sympify(SM.exp); exp = exp if type(exp)==bool else exp.subs({symbol: Symbol(' Q_{{{}}} '.format(symbol)) for symbol in exp.free_symbols})
-        task_env.environment.render_params["skill_title"] = r"SM($u_{}$): ${}$".format(task_env.rm.u, str(exp).replace("&"," \wedge ").replace("|"," \\vee ").replace("~"," \\neg ").replace("p_","").replace("c_","\widehat ").replace("True","Q_{True}").replace("False","Q_{False}"))
+        task_env.environment.render_params["skill_title"] = r"SM($u_{{{}}}$): ${}$".format(task_env.rm.u, str(exp).replace("&"," \wedge ").replace("|"," \\vee ").replace("~"," \\neg ").replace("p_","").replace("c_","\widehat ").replace("True","Q_{True}").replace("False","Q_{False}"))
     images.append(task_env.render())
     if task_env.render_mode =="rgb_array":
         if images[-1].shape[0]>max_width: max_width = images[-1].shape[0]
@@ -93,4 +93,4 @@ if __name__ == "__main__":
                                                 ], mode='constant', constant_values=0) 
                         for image in all_images
                     ]
-        imageio.mimsave(save_path, all_images, fps=10)
+        imageio.mimsave(save_path, all_images, loop=0, fps=10)

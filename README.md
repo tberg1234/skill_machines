@@ -70,33 +70,17 @@ python sm_ql.py --env Office-v0
 ```
 **To train skill primitives while evaluating on task distribution:**
 ```
-python sm_ql.py --env Office-v0 --ltl "((F (m & X (F (c & X (F o))))) | (F (c & X (F (m & X (F o)))))) & (G~d)"
-```
-or
-```
 python sm_ql.py --env Office-CoffeeMail-Task-v0 --total_steps 400000 --sp_dir data/sp_ql/Office-v0/ --log_dir data/logs/sm_ql/Office-CoffeeMail-Task-v0/
 ```
 **Zeroshot transfer with pretrained skill primitives:**
-```
-python sm_ql.py --env Office-v0 --ltl "F((F (m & X (F (c & X (F o))))) | (F (c & X (F (m & X (F o)))))) & (G~d)" --zeroshot --load
-```
-or
 ```
 python sm_ql.py --env Office-CoffeeMail-Task-v0 --total_steps 400000 --zeroshot --load --sp_dir data/sp_ql/Office-v0/ --log_dir data/logs/sm_ql/zeroshot/Office-CoffeeMail-Task-v0/
 ```
 **Fewshot transfer with pretrained skill primitives:**
 ```
-python sm_ql.py --env Office-v0 --ltl "((F (m & X (F (c & X (F o))))) | (F (c & X (F (m & X (F o)))))) & (G~d)" --fewshot --load
-```
-or
-```
 python sm_ql.py --env Office-CoffeeMail-Task-v0 --total_steps 400000 --fewshot --load --sp_dir data/sp_ql/Office-v0/ --log_dir data/logs/sm_ql/zeroshot/Office-CoffeeMail-Task-v0/
 ```
 **Baseline Q-learning:**
-```
-python ql.py --env Office-v0 --ltl "((F (m & X (F (c & X (F o))))) | (F (c & X (F (m & X (F o)))))) & (G~d)"
-```
-or
 ```
 python ql.py --env Office-CoffeeMail-Task-v0 --total_steps 400000 --log_dir data/logs/ql/Office-CoffeeMail-Task-v0/
 ```

@@ -179,8 +179,8 @@ def plot_sb3(algo):
     num_steps = 1000000
     metric = "eval total reward"
     m = 1
-    #metric = "eval successes"
-    #m = 1
+    metric = "eval successes"
+    m = 1
 
     labels = ['SM (Ours)',f'{algo} (Baseline)']
     dirs = [(f'sm_{algo}','/wvf_1'),(algo,"/skill")]

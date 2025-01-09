@@ -20,6 +20,11 @@ parser.add_argument(
     default="office",
     help="Experiment. E.g office, office_iclr, movingtargets_iclr",
 )
+parser.add_argument(
+    '--metric',
+    default="eval total reward",
+    help="Performance metric",
+)
 args = parser.parse_args()
 
 
@@ -27,10 +32,7 @@ def plot_office_iclr():
      
     num_runs = 60
     num_steps = 400000
-    metric = "eval total reward"
     m = 4
-    metric = "eval successes"
-    m = 1
 
     labels = ['SM (Ours)','QL-SM (Ours)','CRM','CRM-RS','HRM','HRM-RS','QL',"QL-RS"]
     dirs = ['sm-ql/zeroshot','sm-ql/fewshot','crm','crm-rs','hrm','hrm-rs','rm-ql','rm-ql-rs']
@@ -44,7 +46,7 @@ def plot_office_iclr():
             print(dirr+'0/progress.csv')
             csvreader = csv.reader(filer)
             all_data_pnts = [row for row in csvreader]
-            episodes, steps, performance = all_data_pnts[0].index("episodes"), all_data_pnts[0].index("steps"), all_data_pnts[0].index(metric)
+            episodes, steps, performance = all_data_pnts[0].index("episodes"), all_data_pnts[0].index("steps"), all_data_pnts[0].index(args.metric)
             all_data_pnts = np.array(all_data_pnts[1:]).astype(np.float32)[:num_steps,:]
             task = all_data_pnts[:,steps]
             print("data:", all_data_pnts.shape)
@@ -59,7 +61,7 @@ def plot_office_iclr():
                     csvreader = csv.reader(filer)
                     data_pnts = []
                     for row in csvreader: data_pnts.append(row)
-                    episodes, steps, performance = data_pnts[0].index("episodes"), data_pnts[0].index("steps"), data_pnts[0].index(metric)
+                    episodes, steps, performance = data_pnts[0].index("episodes"), data_pnts[0].index("steps"), data_pnts[0].index(args.metric)
                     # data_pnts[1][-2:]=["0","0"]
                     data_pnts = np.array(data_pnts[1:]).astype(np.float32)[:num_steps,:]
                     a = np.sum(data_pnts[:,episodes].reshape(-1, m), axis=1)
@@ -90,12 +92,12 @@ def plot_office_iclr():
     plt.legend()
     # ax.legend_ = None
     plt.xlabel("Steps")
-    if metric == "eval total reward": plt.ylabel("Total Reward")
-    else:                             plt.ylabel(metric)
+    if args.metric == "eval total reward": plt.ylabel("Total Reward")
+    else:                             plt.ylabel(args.metric)
     #plt.ylim(top=2)
     ax.xaxis.get_major_formatter().set_powerlimits((0, 1))
     fig.tight_layout()
-    fig.savefig(f"images/iclr_{args.env}_{metric}.pdf", bbox_inches='tight')
+    fig.savefig(f"images/iclr_{args.env}_{args.metric}.pdf", bbox_inches='tight')
     plt.show()
 
 
@@ -103,9 +105,6 @@ def plot_office():
 
     num_runs = 10
     num_steps = 400000//10000
-    metric = "eval total reward"
-    m = 1
-    metric = "eval successes"
     m = 1
 
     labels = ['SM (Ours)','SM-Pretrained (Ours)','SM-QL-Pretrained (Ours)','QL (Baseline)']
@@ -120,7 +119,7 @@ def plot_office():
             print(dirr+'0/progress.csv')
             csvreader = csv.reader(filer)
             all_data_pnts = [row for row in csvreader]
-            episodes, steps, performance = all_data_pnts[0].index("episodes"), all_data_pnts[0].index("steps"), all_data_pnts[0].index(metric)
+            episodes, steps, performance = all_data_pnts[0].index("episodes"), all_data_pnts[0].index("steps"), all_data_pnts[0].index(args.metric)
             all_data_pnts = np.array(all_data_pnts[1:]).astype(np.float32)[:num_steps,:]
             task = all_data_pnts[:,steps]
             print("data:", all_data_pnts.shape)
@@ -136,7 +135,7 @@ def plot_office():
                     data_pnts = []
                     for row in csvreader: data_pnts.append(row)
                     # data_pnts[1][-2:]=["0","0"]
-                    episodes, steps, performance = data_pnts[0].index("episodes"), data_pnts[0].index("steps"), data_pnts[0].index(metric)
+                    episodes, steps, performance = data_pnts[0].index("episodes"), data_pnts[0].index("steps"), data_pnts[0].index(args.metric)
                     data_pnts = np.array(data_pnts[1:]).astype(np.float32)[:num_steps,:]
                     a = np.sum(data_pnts[:,episodes].reshape(-1, m), axis=1)
                     b = np.sum(data_pnts[:,steps].reshape(-1, m), axis=1)
@@ -164,23 +163,20 @@ def plot_office():
     plt.legend(loc="lower right")
     # ax.legend_ = None
     plt.xlabel("steps")
-    if metric == "eval total reward": plt.ylabel("Total Discounted Reward")
-    else:                             plt.ylabel(metric)
+    if args.metric == "eval total reward": plt.ylabel("Total Discounted Reward")
+    else:                             plt.ylabel(args.metric)
     #plt.ylim(top=2)
     ax.xaxis.get_major_formatter().set_powerlimits((0, 1))
     #ax.ticklabel_format(axis='y',style='scientific', useOffset=True)
     fig.tight_layout()
-    fig.savefig(f"images/{args.env}_{metric}.pdf", bbox_inches='tight')
+    fig.savefig(f"images/{args.env}_{args.metric}.pdf", bbox_inches='tight')
     # plt.show()
 
 def plot_sb3(algo):
 
     num_runs = 10
     num_steps = 400000//10000
-    metric = "eval total reward"
     m = 1
-    #metric = "eval successes"
-    #m = 1
 
     labels = ['SM (Ours)',f'{algo} (Baseline)']
     dirs = [(f'sm_{algo}','/wvf_1'),(algo,"/skill")]
@@ -194,7 +190,7 @@ def plot_sb3(algo):
             print(dirr+'0'+dirs[j][1]+'/progress.csv')
             csvreader = csv.reader(filer)
             all_data_pnts = [[0 if a=='' else a for a in row] for row in csvreader]
-            episodes, steps, performance = all_data_pnts[0].index("time/episodes"), all_data_pnts[0].index("time/total_timesteps"), all_data_pnts[0].index(metric)
+            episodes, steps, performance = all_data_pnts[0].index("time/episodes"), all_data_pnts[0].index("time/total_timesteps"), all_data_pnts[0].index(args.metric)
             all_data_pnts = np.array(all_data_pnts[1:]).astype(np.float32)[:num_steps,:]
             task = all_data_pnts[:,steps]
             print("data:", all_data_pnts.shape)
@@ -209,7 +205,7 @@ def plot_sb3(algo):
                     csvreader = csv.reader(filer)
                     data_pnts = []
                     for row in csvreader: data_pnts.append([0 if a=='' else a for a in row])
-                    episodes, steps, performance = data_pnts[0].index("time/episodes"), data_pnts[0].index("time/total_timesteps"), data_pnts[0].index(metric)
+                    episodes, steps, performance = data_pnts[0].index("time/episodes"), data_pnts[0].index("time/total_timesteps"), data_pnts[0].index(args.metric)
                     data_pnts = np.array(data_pnts[1:]).astype(np.float32)[:num_steps,:]
                     a = np.sum(data_pnts[:,episodes].reshape(-1, m), axis=1)
                     b = np.sum(data_pnts[:,steps].reshape(-1, m), axis=1)
@@ -237,13 +233,13 @@ def plot_sb3(algo):
     plt.legend(loc="lower right")
     # ax.legend_ = None
     plt.xlabel("steps")
-    if metric == "eval total reward": plt.ylabel("Total Discounted Reward")
-    else:                             plt.ylabel(metric)
+    if args.metric == "eval total reward": plt.ylabel("Total Discounted Reward")
+    else:                             plt.ylabel(args.metric)
     #plt.ylim(top=2)
     ax.xaxis.get_major_formatter().set_powerlimits((0, 1))
     #ax.ticklabel_format(axis='y',style='scientific', useOffset=True)
     fig.tight_layout()
-    fig.savefig(f"images/{args.env}_{metric}.pdf", bbox_inches='tight')
+    fig.savefig(f"images/{args.env}_{args.metric}.pdf", bbox_inches='tight')
     # plt.show()
 
 if   args.exp=="office":      plot_office()

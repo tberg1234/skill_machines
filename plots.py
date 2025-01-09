@@ -23,7 +23,7 @@ parser.add_argument(
 parser.add_argument(
     '--metric',
     default="eval total reward",
-    help="Performance metric",
+    help="Logged metric. E.g. eval successes",
 )
 args = parser.parse_args()
 

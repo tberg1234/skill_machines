@@ -87,12 +87,8 @@ class RewardMachine(gym.Env):
         self.build()
         for ap in self.automaton.ap(): assert str(ap) in self.propositions, "'{0}' in the rm specification is not in AP={1}".format(str(ap), self.propositions)
 
-        if max_states: 
-            self.states_eye = np.eye(max_states, dtype=np.uint8)
-            self.observation_space = gym.spaces.Box(low=0, high=1, shape=(max_states,), dtype=np.uint8)
-        else:
-            self.states_eye = np.eye(self.automaton.num_states(), dtype=np.uint8)
-            self.observation_space = gym.spaces.Box(low=0, high=1, shape=(self.automaton.num_states(),), dtype=np.uint8)
+        if max_states: self.observation_space = gym.spaces.Box(low=0, high=1, shape=(max_states,), dtype=np.uint8)
+        else:          self.observation_space = gym.spaces.Box(low=0, high=1, shape=(self.automaton.num_states(),), dtype=np.uint8)
         self.action_space = gym.spaces.Box(low=0, high=1, shape=(self.n_props,), dtype=np.uint8,seed=seed)
     
     def get_reward(self, u, u_next):
@@ -108,7 +104,9 @@ class RewardMachine(gym.Env):
     
     def reset(self, seed=None, **kwargs):
         self.u = self.u0
-        return self.states_eye[self.u], {}
+        state = self.observation_space.low.copy()
+        state[self.u] = 1
+        return state, {}
     
     def step(self, action):
         action = tuple(action)
@@ -125,7 +123,9 @@ class RewardMachine(gym.Env):
         reward = self.delta_r[self.u][exp]
         done = u_next in self.terminal_states
         self.u = u_next
-        return self.states_eye[self.u], reward, done, False, {}
+        state = self.observation_space.low.copy()
+        state[self.u] = 1
+        return state, reward, done, False, {}
     
     def build(self):
         bdict = self.automaton.get_dict()

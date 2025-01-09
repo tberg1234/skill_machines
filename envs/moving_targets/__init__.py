@@ -53,7 +53,7 @@ class MultiTask(gym.Wrapper):
     
     def create_task(self):
         self.idx = np.random.choice(len(self.tasks))
-        return Task(self.environment, self.tasks[self.idx], **self.kwargs)
+        return Task(self.environment, self.tasks[self.idx], max_states=10, **self.kwargs)
     
     def reset(self, *args, **kwargs):
         super().__init__(self.create_task())
@@ -78,7 +78,7 @@ class PartiallyOrderedTask(gym.Wrapper):
         return self.unwrapped.reset(**kwargs)
     
     def create_task(self):
-        return Task(self.environment, self.generate_ltl_task(self.num_conjuncts_range, self.depth_range, self.prob_disjunction), **self.kwargs)
+        return Task(self.environment, self.generate_ltl_task(self.num_conjuncts_range, self.depth_range, self.prob_disjunction), max_states=100, **self.kwargs)
 
     def generate_ltl_task(self, num_conjuncts_range, depth_range, prob_disjunction):
         num_conjuncts = random.randint(*num_conjuncts_range)

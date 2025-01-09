@@ -46,6 +46,9 @@ pip install -r requirements.txt
 ```
 bash baselines_iclr/run_office.sh
 ```
+```
+python plots.py --exp office_iclr --env Office-Coffee-Task-v0 --metric "eval total reward"
+```
 
 ## Getting Started
 

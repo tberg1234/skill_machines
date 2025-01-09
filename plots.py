@@ -175,16 +175,8 @@ def plot_office():
 def plot_sb3(algo):
 
     num_runs = 10
-<<<<<<< HEAD
-    num_steps = 400000//10000
-    m = 1
-=======
     num_steps = 1000000
-    metric = "eval total reward"
     m = 1
-    metric = "eval successes"
-    m = 1
->>>>>>> 3f834b610d49e40991404eed812a7f5d9d986690
 
     labels = ['SM (Ours)',f'{algo} (Baseline)']
     dirs = [(f'sm_{algo}','/wvf_1'),(algo,"/skill")]
@@ -262,11 +254,7 @@ def plot_sb3(algo):
     ax.xaxis.get_major_formatter().set_powerlimits((0, 1))
     #ax.ticklabel_format(axis='y',style='scientific', useOffset=True)
     fig.tight_layout()
-<<<<<<< HEAD
-    fig.savefig(f"images/{args.env}_{args.metric}.pdf", bbox_inches='tight')
-=======
-    fig.savefig(f"images/{args.env}_{metric}.png", bbox_inches='tight')
->>>>>>> 3f834b610d49e40991404eed812a7f5d9d986690
+    fig.savefig(f"images/{args.env}_{args.metric}.png", bbox_inches='tight')
     # plt.show()
 
 if   args.exp=="office":      plot_office()

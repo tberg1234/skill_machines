@@ -134,8 +134,8 @@ def plot_moving_iclr():
                     (3.059915937000483, 1.63931166842678)    # F.shortest(6) 
                     ]
     
-    gamma=1; rmin=-0.1, rmax=2
-    num_runs = 10
+    gamma=1; rmin=-0.1; rmax=2
+    num_runs = 100
     data_sm = np.zeros((num_runs,len(tasks))) 
     data_random = np.zeros((num_runs,len(tasks))) 
     data_optimal = np.zeros((num_runs,len(tasks))) 
@@ -144,17 +144,17 @@ def plot_moving_iclr():
         for j in range(len(tasks)):
             ### Learned            
             eval_total_reward, eval_successes, eval_steps = evaluate(task_envs[j], SM=SM, epsilon=0.1, gamma=gamma, episodes=1, eval_steps=50)
-            data_sm[i,j] = eval_steps*rmin + eval_total_reward if args.metric=="eval total reward" else eval_successes
+            data_sm[i,j] = (eval_steps-len(tasks_goals[j]))*rmin + eval_successes*len(tasks_goals[j])*rmax
             ### Random
             eval_total_reward, eval_successes, eval_steps = evaluate(task_envs[j], epsilon=1, gamma=gamma, episodes=1, eval_steps=50)
-            data_random[i,j] = eval_steps*rmin + eval_total_reward if args.metric=="eval total reward" else eval_successes
+            data_random[i,j] = (eval_steps-len(tasks_goals[j]))*rmin + eval_successes*len(tasks_goals[j])*rmax
             ### Start optimal
             G, steps, t = 0, 0, 0
             while True:
                 mean, std = steps_mean_std[tasks_goals[j][t]-1]
                 step = max(0,np.random.normal(loc=mean, scale=std))
                 steps += step
-                if steps < 50: G += step*rmin + ((t+1)==len(tasks_goals[j]))*rmax
+                if steps < 50: G += (step-1)*rmin + rmax
                 else:          G += (50-(steps-step))*rmin; break
                 t = (t+1)%len(tasks_goals[j])
             data_optimal[i,j] = G

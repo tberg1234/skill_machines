@@ -353,6 +353,8 @@ def evaluate(task_env, SM=None, skill=None, epsilon=0, gamma=1, episodes=100, ev
             state, reward, done, truncated, info = task_env.step(action)       
             if SM: SM.step(task_env.rm, info["true_propositions"])
             
-            rewards += (gamma**step)*reward; step += 1; steps += 1
-            if done or truncated or step>=eval_steps: successes += reward>=task_env.rm.rmax; break
+            rewards += (gamma**step)*reward
+            successes += reward>=task_env.rm.rmax
+            step += 1; steps += 1
+            if done or truncated or step>=eval_steps: break
     return rewards, successes/episodes, steps/episodes

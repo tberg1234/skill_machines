@@ -179,6 +179,6 @@ python enjoy.py --algo td3 --env Safety-Task-4-v0 --sp_dir data/Safety-v0/
   title={Skill Machines: Temporal Logic Skill Composition in Reinforcement Learning},
   author={Tasse, Geraud Nangue and Jarvis, Devon and James, Steven and Rosman, Benjamin},
   booktitle={The Twelfth International Conference on Learning Representations},
-  year = {2023}
+  year = {2024}
 }
 ```

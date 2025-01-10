@@ -142,8 +142,8 @@ python enjoy.py --algo dqn --env MovingTargets-Task-4-v0 --sp_dir data/MovingTar
 
 <table>
   <tr>
-    <td> <div style="position: absolute; top: 50%; right: 50%;">MovingTargets-Task-1-v0 <br> F (circle | square) <br> Pick up any object</div> <img src="images/zeroshot_MovingTargets-Task-1-v0_.gif" alt="" width = 400px height = auto></td>
-    <td> <div style="position: absolute; top: 50%; right: 50%;">MovingTargets-Task-4-v0 <br> F((~square & blue) & X(F(square & ~ blue))) <br> Pick up non-square blue objects, then non-blue squares in that order.</div> <img src="images/zeroshot_MovingTargets-Task-4-v0_.gif" alt="" width = 400px height = auto></td>
+    <td> <div style="position: absolute; top: 50%; right: 50%;">MovingTargets-Task-1-v0 <br> F (circle | square) <br> Pick up any object. Repeat forever.</div> <img src="images/zeroshot_MovingTargets-Task-1-v0_.gif" alt="" width = 400px height = auto></td>
+    <td> <div style="position: absolute; top: 50%; right: 50%;">MovingTargets-Task-4-v0 <br> F((~square & blue) & X(F(square & ~ blue))) <br> Pick up non-square blue objects, then non-blue squares in that order. Repeat forever.</div> <img src="images/zeroshot_MovingTargets-Task-4-v0_.gif" alt="" width = 400px height = auto></td>
   </tr>   
 </table>
 

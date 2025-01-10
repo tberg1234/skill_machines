@@ -252,12 +252,14 @@ def exp_wvf(exp, skill_primitives):
         if type(exp) in [boolalg.Or,boolalg.And]: compound = convert(exp.args[0])
         if type(exp) == Symbol: compound = skill_primitives[str(exp)]
         elif type(exp) == boolalg.Or:
-            for sub in exp.args[1:]:     compound = ComposeSkillPrimitive([compound, convert(sub)], compose="or")
+            for sub in exp.args[1:]:   compound = ComposeSkillPrimitive([compound, convert(sub)], compose="or")
         elif type(exp) == boolalg.And:
-            for sub in exp.args[1:]:     compound = ComposeSkillPrimitive([compound, convert(sub)], compose="and")
-        elif type(exp) == boolalg.Not:   compound = ComposeSkillPrimitive([convert(exp.args[0])], compose="not")
-        elif type(exp) == bool:          compound = skill_primitives["1"] if exp else skill_primitives["0"]
-        else: assert False, "There is an unknown symbol in the expression: "+ str(exp)
+            for sub in exp.args[1:]:   compound = ComposeSkillPrimitive([compound, convert(sub)], compose="and")
+        elif type(exp) == boolalg.Not: compound = ComposeSkillPrimitive([convert(exp.args[0])], compose="not")
+        elif type(exp) in [bool,boolalg.BooleanTrue,boolalg.BooleanFalse]:          
+            compound = skill_primitives["1"] if exp else skill_primitives["0"]
+        else: 
+            assert False, "There is an unknown symbol in the expression: "+ str(exp) + str(type(exp))
         return compound   
     return convert(exp)
 
@@ -338,7 +340,7 @@ class SkillMachine():
 def evaluate(task_env, SM=None, skill=None, epsilon=0, gamma=1, episodes=100, eval_steps=1000, seed=None):
     """Given a temporal logic task (task_env), evaluates the SM possibly combined with a task specific policy (skill)"""
 
-    rewards, successes, episode, all_images = 0, 0, 0, []
+    rewards, successes, steps, episode = 0, 0, 0, 0
     while episode<episodes:
         episode += 1; step = 0
         state, info = task_env.reset(seed=seed)
@@ -348,10 +350,9 @@ def evaluate(task_env, SM=None, skill=None, epsilon=0, gamma=1, episodes=100, ev
             if np.random.random() < epsilon: action = task_env.action_space.sample()
             elif skill:                      action = skill.get_action_value(states)[0][0]
             else:                            action = SM.get_action_value(states)[0][0]
-            state_, reward, done, truncated, info = task_env.step(action)       
+            state, reward, done, truncated, info = task_env.step(action)       
             if SM: SM.step(task_env.rm, info["true_propositions"])
             
-            rewards += (gamma**step)*reward; step += 1
-            if done or (state["env_state"]==state_["env_state"]).all() or truncated or step>=eval_steps: successes += reward>=task_env.rm.rmax; break
-            state = state_
-    return rewards, successes/episodes
+            rewards += (gamma**step)*reward; step += 1; steps += 1
+            if done or truncated or step>=eval_steps: successes += reward>=task_env.rm.rmax; break
+    return rewards, successes/episodes, steps/episodes

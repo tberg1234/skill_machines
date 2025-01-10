@@ -6,12 +6,36 @@ import gymnasium as gym
 from rm import Task
 
 
+class BlueTask(gym.Wrapper):
+    metadata = {'render_modes': ['human','rgb_array'], "render_fps": 10}
+    def __init__(self, **kwargs):
+        """Pick up a blue object. Repeat this forever."""
+        env = gym.make("MovingTargets-v0", render_mode=kwargs['render_mode'] if "render_mode" in kwargs else "human")
+        task = Task(env, "G (F blue)", accept_terminal=False, rmax=2, **kwargs)
+        super().__init__(task)
+        
+class PurpleTask(gym.Wrapper):
+    metadata = {'render_modes': ['human','rgb_array'], "render_fps": 10}
+    def __init__(self, **kwargs):
+        """Pick up a purple object. Repeat this forever."""
+        env = gym.make("MovingTargets-v0", render_mode=kwargs['render_mode'] if "render_mode" in kwargs else "human")
+        task = Task(env, "G (F purple)", accept_terminal=False, rmax=2, **kwargs)
+        super().__init__(task)
+        
+class SquareTask(gym.Wrapper):
+    metadata = {'render_modes': ['human','rgb_array'], "render_fps": 10}
+    def __init__(self, **kwargs):
+        """Pick up any object. Repeat this forever."""
+        env = gym.make("MovingTargets-v0", render_mode=kwargs['render_mode'] if "render_mode" in kwargs else "human")
+        task = Task(env, "G (F square)", accept_terminal=False, rmax=2, **kwargs)
+        super().__init__(task)
+
 class Task1(gym.Wrapper):
     metadata = {'render_modes': ['human','rgb_array'], "render_fps": 10}
     def __init__(self, **kwargs):
         """Pick up any object. Repeat this forever."""
         env = gym.make("MovingTargets-v0", render_mode=kwargs['render_mode'] if "render_mode" in kwargs else "human")
-        task = Task(env, "F (circle | square)", **kwargs)
+        task = Task(env, hoa="envs/moving_targets/MovingTargets-Task-1-v0.hoa", accept_terminal=False, rmax=2, **kwargs)
         super().__init__(task)
 
 class Task2(gym.Wrapper):
@@ -19,7 +43,7 @@ class Task2(gym.Wrapper):
     def __init__(self, **kwargs):
         """Pick up blue then purple objects, then objects that are neither blue nor purple. Repeat this forever."""
         env = gym.make("MovingTargets-v0", render_mode=kwargs['render_mode'] if "render_mode" in kwargs else "human")
-        task = Task(env, "F(blue & X(F(purple & X(F(((circle | square) & ~(blue | purple)))))))", **kwargs)
+        task = Task(env, hoa="envs/moving_targets/MovingTargets-Task-2-v0.hoa", accept_terminal=False, rmax=2, **kwargs)
         super().__init__(task)
 
 class Task3(gym.Wrapper):
@@ -27,7 +51,7 @@ class Task3(gym.Wrapper):
     def __init__(self, **kwargs):
         """Pick up blue objects or squares, but never blue squares. Repeat this forever."""
         env = gym.make("MovingTargets-v0", render_mode=kwargs['render_mode'] if "render_mode" in kwargs else "human")
-        task = Task(env, "(F(blue | square)) & (G ~(blue & square))", **kwargs)
+        task = Task(env, hoa="envs/moving_targets/MovingTargets-Task-3-v0.hoa", accept_terminal=False, rmax=2, **kwargs)
         super().__init__(task)
 
 class Task4(gym.Wrapper):
@@ -35,7 +59,7 @@ class Task4(gym.Wrapper):
     def __init__(self, **kwargs):
         """Pick up non-square blue objects, then nonblue squares in that order. Repeat this forever."""
         env = gym.make("MovingTargets-v0", render_mode=kwargs['render_mode'] if "render_mode" in kwargs else "human")
-        task = Task(env, "F((~square & blue) & X(F(square & ~ blue)))", **kwargs)
+        task = Task(env, hoa="envs/moving_targets/MovingTargets-Task-4-v0.hoa", accept_terminal=False, rmax=2, **kwargs)
         super().__init__(task)
 
 class MultiTask(gym.Wrapper):
@@ -103,6 +127,21 @@ gym.envs.registration.register(
     entry_point='envs.moving_targets.moving_targets:MovingTargets',
 )
 
+gym.envs.registration.register(
+    id='MovingTargets-Blue-Task-v0',
+    max_episode_steps=100, 
+    entry_point=BlueTask,
+)
+gym.envs.registration.register(
+    id='MovingTargets-Purple-Task-v0',
+    max_episode_steps=100, 
+    entry_point=PurpleTask,
+)
+gym.envs.registration.register(
+    id='MovingTargets-Square-Task-v0',
+    max_episode_steps=100, 
+    entry_point=SquareTask,
+)
 gym.envs.registration.register(
     id='MovingTargets-Task-1-v0',
     max_episode_steps=100, 

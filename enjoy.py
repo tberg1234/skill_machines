@@ -48,44 +48,42 @@ if __name__ == "__main__":
     if hasattr(task_env.environment.unwrapped, "start_position"): task_env.environment.unwrapped.start_position = (10,4)
 
     # Load the zeroshot or fewshot skill
-    if args.algo=="ql":    Agent = QLAgent; sb3 = False  
-    elif args.algo=="dqn": Agent = DQNAgent; sb3 = True
-    elif args.algo=="td3": Agent = TD3Agent; sb3 = True
-
     if args.fewshot:
-        skill = torch.load(args.q_dir); SM = skill.SM
+        skill = torch.load(q_dir+"skill"); SM = skill.SM
         save_path = args.save_path if args.save_path else f"./images/fewshot_{args.env}_{args.ltl}.gif"
     else:
-        primitive_env = TaskPrimitive(task_env.environment, sb3=sb3)
-        primitive_env.goals.update(torch.load(args.sp_dir+"goals")) 
-        if args.algo=="ql": SP = {primitive: Agent(primitive, primitive_env, save_dir=sp_dir, load=True) for primitive in ['0','1']}
-        else:               SP = {primitive: Agent("wvf_"+primitive, primitive_env, save_dir=sp_dir, load=True) for primitive in ['0','1']}
+        primitive_env = TaskPrimitive(task_env.environment, sb3=args.algo!="ql")
+        primitive_env.goals.update(torch.load(sp_dir+"goals")) 
+        if args.algo=="ql":    SP = {primitive: QLAgent(primitive, primitive_env, save_dir=sp_dir, load=True) for primitive in ['0','1']}
+        elif args.algo=="dqn": SP = {primitive: DQNAgent("wvf_"+primitive, primitive_env, save_dir=sp_dir, load=True, buffer_size=1) for primitive in ['0','1']}
+        elif args.algo=="td3": SP = {primitive: TD3Agent("wvf_"+primitive, primitive_env, save_dir=sp_dir, load=True, buffer_size=1) for primitive in ['0','1']}
         SM = SkillMachine(primitive_env, SP, vectorised=args.algo!="ql"); skill = SM
         save_path = args.save_path if args.save_path else f"./images/zeroshot_{args.env}_{args.ltl}.gif"
     print("save_path", save_path)
 
     # Visualise the skill solving the given task
-    rewards, successes, episode, all_images, max_width, max_height = 0, 0, 0, [], 0, 0
+    successes, episode, all_images, max_width, max_height = 0, 0, [], 0, 0
     while episode<args.episodes:
-        episode += 1; step = 0; images = []
+        episode += 1; step = 0; rewards = 0; images = []
         state, info = task_env.reset(seed=args.seed)
         SM.reset(task_env.rm, info["true_propositions"])
         images, max_width, max_height = render(state, SM, skill, task_env, images, max_width, max_height)
         
         while True:
             states = {k:np.expand_dims(v,0) for (k,v) in state.items()}
-            action = skill.get_action_value(states)[0][0]
+            action = skill.get_action_value(states)[0][0] if np.random.random() > 0.0 else task_env.action_space.sample()
             state_, reward, done, truncated, info = task_env.step(action)       
             SM.step(task_env.rm, info["true_propositions"])
 
             step += 1; rewards += reward
             images, max_width, max_height = render(state, SM, skill, task_env, images, max_width, max_height)
-            print("episode", episode, "step", step, "skill", SM.exp, "reward", reward, "props", info["true_propositions"], "rm_state", task_env.rm.u)
+            print("episode", episode, "step", step, "skill", SM.exp, "rewards", rewards, "props", info["true_propositions"], "rm_state", task_env.rm.u)
             
-            if done or (state["env_state"]==state_["env_state"]).all() or truncated: successes += reward>=task_env.rm.rmax; break
+            # if done or (state["env_state"]==state_["env_state"]).all() or truncated: successes += reward>=task_env.rm.rmax; break
+            if done or truncated or reward>0: successes += reward>=task_env.rm.rmax; break
             state = state_
             
-        if reward>=task_env.rm.rmax: all_images += images
+        if rewards>=task_env.rm.rmax: all_images += images
         else:                        episode -= 1
     if args.render_mode=="rgb_array": 
         all_images = [np.pad(image, pad_width = [(max(0,d2-d1)//2, max(0,d2-d1) - max(0,d2-d1)//2) 

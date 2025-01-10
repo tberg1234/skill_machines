@@ -132,10 +132,14 @@ class RewardMachine(gym.Env):
         self.u0 = self.automaton.get_init_state_number()
         transitions, self.accept_states, self.terminal_states, self.delta_u, self.delta_r = [], set(), set(), {}, {}
         for u in range(0, self.automaton.num_states()):
-            transitions += list(self.automaton.out(u))
+            U_next = list(self.automaton.out(u))
+            transitions += U_next
             self.delta_u[u], self.delta_r[u], self.delta_u_cached[u] = {}, {}, {}
             if self.automaton.state_is_accepting(u): self.accept_states.add(u)
-            if (len(list(self.automaton.out(u))) <= 1 and self.sink_terminal) or (u in self.accept_states and self.accept_terminal): self.terminal_states.add(u)
+            if (len(U_next) < 1 and self.sink_terminal) \
+            or (len(U_next) == 1 and U_next[0]==u and self.sink_terminal) \
+            or (u in self.accept_states and self.accept_terminal): 
+                self.terminal_states.add(u)
         for t in transitions:
             u, u_next, exp = t.src, t.dst, spot.bdd_format_formula(bdict, t.cond)
             reward = self.get_reward(u, u_next)

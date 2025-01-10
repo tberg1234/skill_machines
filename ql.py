@@ -52,7 +52,7 @@ def learn(task_env, total_steps, q_dir="vf", log_dir="logs", gamma=0.9, lr=0.1, 
             # logging and moving to the next state
             step += 1; state = state_
             if (step-1)%print_freq == 0:       
-                eval_total_reward, eval_successes = evaluate(task_env, skill=Q, episodes=eval_episodes, epsilon=0, gamma=gamma, seed=seed)
+                eval_total_reward, eval_successes, _ = evaluate(task_env, skill=Q, episodes=eval_episodes, epsilon=0, gamma=gamma, seed=seed)
                 if eval_total_reward >= best_total_reward:
                     best_total_reward = eval_total_reward
                     torch.save(Q, q_dir+"skill")

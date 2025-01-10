@@ -85,8 +85,8 @@ def learn(primitive_env, task_env, total_steps, zeroshot=False, fewshot=False, q
             step += 1; state = state_
             if (step-1)%print_freq == 0:       
                 if task_env: 
-                    if fewshot: eval_total_reward, eval_successes = evaluate(task_env, SM=SM, skill=Q, epsilon=0, gamma=gamma, episodes=eval_episodes, seed=seed)
-                    else:       eval_total_reward, eval_successes = evaluate(task_env, SM=SM, epsilon=0, gamma=gamma, episodes=eval_episodes, seed=seed)
+                    if fewshot: eval_total_reward, eval_successes, _ = evaluate(task_env, SM=SM, skill=Q, epsilon=0, gamma=gamma, episodes=eval_episodes, seed=seed)
+                    else:       eval_total_reward, eval_successes, _ = evaluate(task_env, SM=SM, epsilon=0, gamma=gamma, episodes=eval_episodes, seed=seed)
                     if eval_total_reward >= best_total_reward:
                         best_total_reward = eval_total_reward
                         if fewshot:

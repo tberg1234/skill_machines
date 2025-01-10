@@ -103,8 +103,8 @@ class EvaluateSaveCallback(BaseCallback):
         
     def _on_step(self) -> bool:        
         if (self.n_calls-1) % self.print_freq == 0:
-            if self.task_env: self.rewards, self.successes = evaluate(self.task_env, SM=self.SM, skill=self.skill, gamma=0.99, eval_steps=self.eval_steps, seed=self.seed) 
-            else:             self.rewards, self.successes = np.sum(self.primitive_env.rewards), np.sum(self.primitive_env.successes)/100
+            if self.task_env: self.rewards, self.successes, _ = evaluate(self.task_env, SM=self.SM, skill=self.skill, gamma=0.99, eval_steps=self.eval_steps, seed=self.seed) 
+            else:             self.rewards, self.successes, _ = np.sum(self.primitive_env.rewards), np.sum(self.primitive_env.successes)/100
             if self.rewards >= self.best:
                 self.best = self.rewards
                 if self.SM:    self.model.save(self.save_dir+"wvf_"+self.primitive_env.primitive)   
@@ -117,7 +117,7 @@ class EvaluateSaveCallback(BaseCallback):
 
 
 class DQNAgent(BaseAgent):
-    def __init__(self, name, env, save_dir=None, log_dir=None, load=False, use_her=16):
+    def __init__(self, name, env, save_dir=None, log_dir=None, load=False, buffer_size=1000000, use_her=16):
         self.name, self.action_space, self.observation_space = name, env.action_space, env.observation_space
         self.model_class = DQN
         self.model = self.model_class(
@@ -126,10 +126,10 @@ class DQNAgent(BaseAgent):
                     replay_buffer_class = None if not use_her else WVFReplayBuffer,
                     replay_buffer_kwargs = None if not use_her else dict(n_sampled_goal = use_her, goal_selection_strategy = "future", ),
                     # learning_rate = 1e-5, gamma = 0.99, learning_starts = 10000, target_update_interval = 1000, train_freq = 1,
-                    exploration_fraction = 0.5, exploration_final_eps = 0.1,
+                    exploration_fraction = 0.5, exploration_final_eps = 0.1, buffer_size=buffer_size
                 )
         if log_dir: self.model.set_logger(configure(log_dir+self.name, ["stdout", "csv", "tensorboard"]))
-        if load: self.model = self.model_class.load(save_dir+self.name, env=env)
+        if load: self.model = self.model_class.load(save_dir+self.name, env=env, buffer_size=buffer_size)
         os.makedirs(save_dir, exist_ok=True)
 
     def get_action_value(self, states):
@@ -144,7 +144,7 @@ class DQNAgent(BaseAgent):
         
 
 class TD3Agent(BaseAgent):
-    def __init__(self, name, env, save_dir=None, log_dir=None, load=False, use_her=0):
+    def __init__(self, name, env, save_dir=None, log_dir=None, load=False, buffer_size=1000000, use_her=0):
         self.name, self.action_space, self.observation_space = name, env.action_space, env.observation_space
         self.model_class = TD3
         self.model = self.model_class(
@@ -153,10 +153,10 @@ class TD3Agent(BaseAgent):
                     replay_buffer_class = None if not use_her else WVFReplayBuffer,
                     replay_buffer_kwargs = None if not use_her else dict(n_sampled_goal = use_her, goal_selection_strategy = "future", ),
                     action_noise = NormalActionNoise(mean=np.zeros(self.action_space.shape[-1]), sigma=0.2 * np.ones(self.action_space.shape[-1])),
-                    learning_rate=1e-5, gamma=0.99, batch_size=32, learning_starts=1000, train_freq=50, gradient_steps=50,
+                    learning_rate=1e-5, gamma=0.99, batch_size=32, learning_starts=1000, train_freq=50, gradient_steps=50, buffer_size=buffer_size
                 )
         if log_dir: self.model.set_logger(configure(log_dir+self.name, ["stdout", "csv", "tensorboard"]))
-        if load: self.model = self.model_class.load(save_dir+self.name, env=env)
+        if load: self.model = self.model_class.load(save_dir+self.name, env=env, buffer_size=buffer_size)
         os.makedirs(save_dir, exist_ok=True)
     
     def get_action_value(self, states):

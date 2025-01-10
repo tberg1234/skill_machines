@@ -68,9 +68,9 @@ task_env = Task(gym.make("Office-v0"), hao="example_task_automata.hao") # Coffee
 
 **Manual control using keyboard:** Examples
 ```
-python manual_control.py --env Office-v0 
+python manual_control.py --env Safety-v0 
+python manual_control.py --env MovingTargets-Task-2-v0
 python manual_control.py --env Office-v0 --ltl "F(c & X(F o)) & G(~d)"
-python manual_control.py --env Office-Coffee-Task-v0
 ```
 <img src="images/Office-Coffee-Task-v0.png" alt="Manual control Office Coffee Task" width = auto height = auto>
 

@@ -82,6 +82,7 @@ class SafetyEnv(gym.Env):
         self.config.update(config)
         self.env = Engine(self.config)
         self.all_states, self.skill_title, self.skill_image = None, None, None
+        self.agent_pos, self.agent_rot = (0,0), 0
 
         self.observation_space = gym.spaces.Box(low=self.env.observation_space.low, high=self.env.observation_space.high, shape=(self.env.observation_space.shape[0],), dtype=self.env.observation_space.dtype)
         self.action_space = gym.spaces.Box(low=self.env.action_space.low, high=self.env.action_space.high, shape=(self.env.action_space.shape[0],), dtype=self.env.action_space.dtype)
@@ -128,6 +129,7 @@ class SafetyEnv(gym.Env):
     def step(self, action):
         obs, reward, done, info = self.env.step(action)
         self.agent_pos = self.env.world.robot_pos()[:2]
+        self.agent_rot = np.arctan2(action[0], action[1])*180/np.pi
         reward = self.get_reward(info)
         return obs, reward, done, False, info
     
@@ -190,7 +192,7 @@ class SafetyEnv(gym.Env):
         else:
             if type(self.all_states) == type(None):
                 config = self.config.copy()
-                config.update({'hazards_locations': [], 'buttons_locations': [], 'robot_locations': [(0,0)], 'robot_rot': 0*np.pi/180})
+                config.update({'hazards_locations': [], 'buttons_locations': [], 'robot_locations': [(0,0)], 'robot_rot': 0})
                 for name in ['hazard','button']:
                     for num in range(self.config[name+"s_num"]):
                         obj = name+str(num)

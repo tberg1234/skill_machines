@@ -353,7 +353,7 @@ class MovingTargets(gym.core.ObservationWrapper):
         state = copy.deepcopy(state)
         position = self.player.position
         actions, values = self.skill_image
-        if self.skill_title != skill_title:
+        if True: # self.skill_title != skill_title:
             actions, values = np.zeros(self.board.shape), np.zeros(self.board.shape)+float("-inf")  
             for x in range(self.env.board.shape[0]):
                 for y in range(self.env.board.shape[1]):

@@ -166,7 +166,7 @@ python enjoy.py --algo td3 --env Safety-Task-4-v0 --sp_dir data/Safety-v0/
 
 <table>
   <tr>
-    <td> <div style="position: absolute; top: 50%; right: 50%;">Safety-Task-3-v0 <br> F(buttons & X(F (( goal & ~hazards )&X(F(( buttons & hazards )&X(F goal)))))) : Navigate to a button, then to a cylinder without entering blue regions, then to a button inside a blue region, and finally to a cylinder again.</div> <img src="images/zeroshot_Safety-Task-3-v0_.gif" alt="" width = 400px height = auto></td>
+    <td> <div style="position: absolute; top: 50%; right: 50%;">Safety-Task-3-v0 <br> F(buttons & X(F (( goal & ~hazards )&X(F(( buttons & hazards )&X(F goal)))))) <br> Navigate to a button, then to a cylinder without entering blue regions, then to a button inside a blue region, and finally to a cylinder again.</div> <img src="images/zeroshot_Safety-Task-3-v0_.gif" alt="" width = 400px height = auto></td>
     <td> <div style="position: absolute; top: 50%; right: 50%;">Safety-Task-6-v0 <br> F(hazards & X(F(( buttons & goal) & X ((F goal) & (G ~hazards))))) <br> Navigate to a blue region, then to a button with a cylinder, and finally to a cylinder while avoiding blue regions.</div> <img src="images/zeroshot_Safety-Task-6-v0_.gif" alt="" width = 400px height = auto></td>
   </tr>   
 </table>

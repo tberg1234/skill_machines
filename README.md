@@ -34,7 +34,7 @@ To be able to run them, instead install the following required packages:
 ```
 conda env create -f baselines_iclr/environment.yml
 conda activate sm
-pip install -e baselines_iclr/src/baselines/
+pip install -e git+https://github.com/openai/baselines.git@ea25b9e8b234e6ee1bca43083f8f3cf974143998#egg=baselines
 ```
 
 ## Reproduce Experiments from Paper

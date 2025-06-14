@@ -34,6 +34,7 @@ To be able to run them, instead install the following required packages:
 ```
 conda env create -f baselines_iclr/environment.yml
 conda activate sm
+pip install -e baselines_iclr/src/baselines/
 ```
 
 ## Reproduce Experiments from Paper

@@ -18,14 +18,8 @@ This code has been tested in Ubuntu >= 20.04 LTS
 
 Install the required packages:
 ```
-conda create --name sm python==3.8
+conda env create -f environment.yml
 conda activate sm
-pip install -r requirements.txt
-```
-
-Install the spot library for handling LTL and automata task specifications:
-```
-conda install -c conda-forge spot
 ```
 
 To run the Safety-Gym experiments, you need to install Openai mujoco-py by following the instructions in: [https://github.com/openai/mujoco-py](https://github.com/openai/mujoco-py). 
@@ -38,8 +32,8 @@ pip install -e .
 The baselines in the paper use the code base from Icarte et al.: [https://github.com/RodrigoToroIcarte/reward_machines](https://github.com/RodrigoToroIcarte/reward_machines).  
 To be able to run them, instead install the following required packages:
 ```
-cd baselines_iclr
-pip install -r requirements.txt
+conda env create -f baselines_iclr/environment.yml
+conda activate sm
 ```
 
 ## Reproduce Experiments from Paper
@@ -108,7 +102,7 @@ python ql.py --env Office-CoffeeMail-Task-v0 --total_steps 400000 --log_dir data
 
 **To visualise trained policies:**
 ```
-python enjoy.py --algo ql --env Office-CoffeeMail-Task-v0 --sp_dir data/Office-v0/
+python enjoy.py --algo ql --env Office-CoffeeMail-Task-v0 --sp_dir data/sp_ql/Office-v0/
 python enjoy.py --algo ql --env Office-CoffeeMail-Task-v0 --q_dir data/sm_ql/Office-CoffeeMail-Task-v0/ --fewshot
 ```
 <table>

@@ -1,4 +1,4 @@
-name: sm
+name: sm_nobaseline
 channels:
   - menpo
   - conda-forge

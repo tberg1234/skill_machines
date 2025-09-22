@@ -227,18 +227,27 @@ def main(args):
     if not args.play:
         logger.log("Training model")
 
+        start_time = time.clock()
+
         model, env = train(args, extra_args)
+
+        end_time = time.clock()
+        training_time = end_time-start_time
+        print(f"time to train RM: {training_time}")
 
         if args.save_path is not None and rank == 0:
             save_path = osp.expanduser(args.save_path)
-            model.save(save_path)
+            model.save(save_path+ 'model.pkl')
+            f = open(save_path + 'time_to_train_rm' + '.txt', "w")
+            f.write(str(training_time))
+            f.close()
     else:
         logger.log("Running trained model")
         
         env = build_env(args)
         if args.save_video_interval != 0:
             env = VecVideoRecorder(env, osp.join(logger.get_dir(), "videos"), record_video_trigger=lambda x: x % args.save_video_interval == 0, video_length=args.save_video_length)
-
+            
         model = get_alg_module(args.alg).load(args.save_path)
 
         obs = env.reset()

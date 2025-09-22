@@ -23,10 +23,13 @@ conda activate sm
 ```
 
 To run the Safety-Gym experiments, you need to install Openai mujoco-py by following the instructions in: [https://github.com/openai/mujoco-py](https://github.com/openai/mujoco-py). 
-Then install [Safety-Gym](https://github.com/openai/safety-gym) as follows:
+Then install [Safety-Gym](https://github.com/openai/safety-gym) with python 3.9 as follows:
 ```
+conda env create -f baselines_iclr/environment_py39.yml
 cd envs/safety_gym/safety-gym
 pip install -e .
+conda install -c conda-forge tensorboard
+pip3 install torch torchvision --index-url https://download.pytorch.org/whl/cu129
 ```
 
 The baselines in the paper use the code base from Icarte et al.: [https://github.com/RodrigoToroIcarte/reward_machines](https://github.com/RodrigoToroIcarte/reward_machines).  

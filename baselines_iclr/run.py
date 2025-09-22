@@ -64,6 +64,9 @@ def train(args, extra_args):
     total_timesteps = int(args.num_timesteps)
     seed = args.seed
 
+    print(f"args: {args}")
+    print(f"extra_args: {extra_args}")
+
     learn = get_learn_function(args.alg)
     alg_kwargs = get_learn_function_defaults(args.alg, env_type)
     alg_kwargs.update(extra_args)
@@ -227,11 +230,21 @@ def main(args):
     if not args.play:
         logger.log("Training model")
 
+        start_time = time.clock()
+
         model, env = train(args, extra_args)
 
-        if args.save_path is not None and rank == 0:
-            save_path = osp.expanduser(args.save_path)
-            model.save(save_path)
+        end_time = time.clock()
+        training_time = end_time-start_time
+        logger.log("Time to train RM/SM: " + str(training_time))
+
+        # if args.save_path is not None and rank == 0:
+        #     save_path = osp.expanduser(args.save_path)
+        #     model.save(save_path + 'model.pkl')
+        #     f = open(save_path + 'time_to_train_rm' + '.txt', "w")
+        #     f.write(str(training_time))
+        #     f.close()
+
     else:
         logger.log("Running trained model")
         

@@ -493,3 +493,24 @@ class GridWorldRM5Env(RewardMachineEnv):
         rm_files = ["./envs/office_world_modified/reward_machines/t5.txt"]
         env = Task(GridWorld())
         super().__init__(env, rm_files)
+
+class GridWorldRM6Env(RewardMachineEnv):
+    def __init__(self): #(self, env, rm_files):
+        # (F c)
+        rm_files = ["./envs/office_world_modified/reward_machines/t6.txt"]
+        env = Task(GridWorld())
+        super().__init__(env, rm_files)
+
+class GridWorldRM7Env(RewardMachineEnv):
+    def __init__(self): #(self, env, rm_files):
+        # F(A) & F(D)
+        rm_files = ["./envs/office_world_modified/reward_machines/t7.txt"]
+        env = Task(GridWorld())
+        super().__init__(env, rm_files)
+
+class GridWorldRM8Env(RewardMachineEnv):
+    def __init__(self): #(self, env, rm_files):
+        # G(~B)) & (F(XXd)
+        rm_files = ["./envs/office_world_modified/reward_machines/t8.txt"]
+        env = Task(GridWorld())
+        super().__init__(env, rm_files)

@@ -1,8 +1,7 @@
-import argparse, numpy as np, torch, gymnasium as gym, envs
+import argparse, numpy as np, torch, time, gymnasium as gym, envs
 from sb3_utils import EvaluateSaveCallback, TD3Agent, DQNAgent
 from sm import TaskPrimitive, SkillMachine
 from rm import Task
-
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--env", help="The agent's environment, or the RM augmented environment for a predefined task distribution.", default='Safety-v0')
@@ -32,7 +31,23 @@ if __name__ == "__main__":
     elif args.algo=="td3": SP = {primitive: TD3Agent("wvf_"+primitive, primitive_env, sp_dir, log_dir, args.load) for primitive in ["0","1"]}
     SM = SkillMachine(primitive_env, SP, vectorised=True) 
 
+    start_time = time.clock()
+    training_times = list()
+
     # Start Training
     for primitive, sp in SP.items():
+        prim_start_time = time.clock()
         primitive_env.primitive = primitive; total_steps = args.total_steps*(0.1 if primitive=="0" else 0.9)
         sp.model.learn(total_steps, EvaluateSaveCallback(primitive_env, eval_task_env, SM, None, sp_dir, args.eval_steps))
+        prim_end_time = time.clock()
+        prim_total_time = prim_end_time - prim_start_time
+        training_times.append(prim_total_time)
+
+    end_time = time.clock()
+
+    train_time = end_time-start_time
+    print(f"Time to train: {train_time}")
+
+    f = open(log_dir+"train_time.txt", "w")
+    f.write("Total training time: " + str(train_time) +"\nPrimitive training times: " + str(training_times))
+    f.close()

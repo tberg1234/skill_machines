@@ -1,0 +1,63 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "SMQL Office Baselines: Primitives",
+            "type": "python",
+            "justMyCode": false,
+            "request": "launch",
+            "cwd": "/home/taylor/Dissertation/skill_machines/baselines_iclr",
+            "program": "run.py",
+            "console": "integratedTerminal",
+            "python": "/home/taylor/miniconda3/envs/sm_with_safety_gym/bin/python",
+            "args": ["--alg","smql","--env","Office-new-v0","--num_timesteps","100000", "--qinit", "0.001", "--gamma", "0.9", "--epsilon", "0.5", "--print_freq", "10000", "--sp", "data/spql/test/", "--log_path", "data/logs/sp-ql/Office-v0/test/"]
+        },
+        {
+            "name": "SMQL Moving Targets: Primitives",
+            "type": "python",
+            "justMyCode": false,
+            "request": "launch",
+            "cwd": "/home/taylor/Dissertation/skill_machines",
+            "program": "sm_sb3.py",
+            "console": "integratedTerminal",
+            "python": "/home/taylor/miniconda3/envs/sm_with_safety_gym/bin/python",
+            "args": ["--alg","dqn","--env","MovingTargets-v0", "--sp_dir", "data/sp_dqn/MovingTargets-v0/test/", "--log_dir", "data/logs/sp_dqn/test/"]
+        },
+        {
+            "name": "SMQL Static Targets (Test)",
+            "type": "python",
+            "justMyCode": false,
+            "request": "launch",
+            "cwd": "/home/taylor/Dissertation/skill_machines",
+            "program": "sm_sb3.py",
+            "console": "integratedTerminal",
+            "python": "/home/taylor/miniconda3/envs/sm_with_safety_gym/bin/python",
+            "args": ["--alg","dqn","--env","TestCollectEnv-v0", "--sp_dir", "data/sp_dqn/MovingTargets-v0/test/", "--log_dir", "data/logs/sp_dqn/test/"]
+        },
+        {
+            "name": "SMQL Static Targets Blue",
+            "type": "python",
+            "justMyCode": false,
+            "request": "launch",
+            "cwd": "/home/taylor/Dissertation/skill_machines",
+            "program": "enjoy.py",
+            "console": "integratedTerminal",
+            "python": "/home/taylor/miniconda3/envs/sm_with_safety_gym/bin/python",
+            "args": ["--alg","dqn","--env","StaticTargets-Blue-Task-v0", "--sp_dir", "data/sp_dqn/MovingTargets-v0/test/"]
+        },
+        {
+            "name": "SMQL Static Targets Purple Circle",
+            "type": "python",
+            "justMyCode": false,
+            "request": "launch",
+            "cwd": "/home/taylor/Dissertation/skill_machines",
+            "program": "enjoy.py",
+            "console": "integratedTerminal",
+            "python": "/home/taylor/miniconda3/envs/sm_with_safety_gym/bin/python",
+            "args": ["--alg","dqn","--env","StaticTargets-PurpleCircleTask-v0", "--sp_dir", "data/sp_dqn/MovingTargets-v0/test/"]
+        },
+    ]
+}

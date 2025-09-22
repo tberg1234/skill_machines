@@ -72,6 +72,29 @@ class OfficeModCoffeeStrictTask(gym.Wrapper):
         task = Task(env, "(F o) & (~o U c)", **kwargs)
         super().__init__(task)
 
+class OfficeGetCoffeeTask(gym.Wrapper):
+    metadata = {'render_modes': ['human','rgb_array'], "render_fps": 10}
+    def __init__(self, *args, **kwargs):
+        """Get coffee"""
+        env = gym.make("Office-Mod-v0", render_mode=kwargs['render_mode'] if "render_mode" in kwargs else "human")
+        task = Task(env, "(F c)", **kwargs)
+        super().__init__(task)
+
+class OfficeGoAandDTask(gym.Wrapper):
+    metadata = {'render_modes': ['human','rgb_array'], "render_fps": 10}
+    def __init__(self, *args, **kwargs):
+        """Visit offices a and d"""
+        env = gym.make("Office-Mod-v0", render_mode=kwargs['render_mode'] if "render_mode" in kwargs else "human")
+        task = Task(env, "F(A) & F(D)", **kwargs)
+        super().__init__(task)
+
+class OfficeAvoidBAndIn2TasksGetDecorator(gym.Wrapper):
+    metadata = {'render_modes': ['human','rgb_array'], "render_fps": 10}
+    def __init__(self, *args, **kwargs):
+        """Visit 2 locations that are not B and then go to n"""
+        env = gym.make("Office-Mod-v0", render_mode=kwargs['render_mode'] if "render_mode" in kwargs else "human")
+        task = Task(env, "(G(~B)) & (F(XXd))", **kwargs)
+        super().__init__(task)
 
 gym.envs.registration.register(
     id='Office-v0',
@@ -116,4 +139,20 @@ gym.envs.registration.register(
     id='Office-Mod-CoffeeStrict-Task-v0',
     max_episode_steps=1000, 
     entry_point=OfficeModCoffeeStrictTask,
+)
+
+gym.envs.registration.register(
+    id='Office-Mod-Get-Coffee-Task-v0',
+    max_episode_steps=1000, 
+    entry_point=OfficeGetCoffeeTask,
+)
+gym.envs.registration.register(
+    id='Office-Mod-A-And-D-Task-v0',
+    max_episode_steps=1000, 
+    entry_point=OfficeGoAandDTask,
+)
+gym.envs.registration.register(
+    id='Office-Mod-Not-B-Fn-Task-v0',
+    max_episode_steps=1000, 
+    entry_point=OfficeAvoidBAndIn2TasksGetDecorator,
 )

@@ -135,5 +135,16 @@ if __name__ == "__main__":
         primitive_env = TaskPrimitive(gym.make(args.env))
         task_env = Task(gym.make(args.env), args.ltl) if args.ltl else None
 
+    start_time = time.clock()
+
     # Train primitive skill (skill_primitive), and optionally task specific skill fewshot
     skill_primitive = learn(primitive_env, task_env, args.total_steps, args.zeroshot, args.fewshot, q_dir, sp_dir, log_dir, args.load, qinit=args.qinit, seed=args.seed)
+
+    end_time = time.clock()
+
+    train_time = end_time-start_time
+    print(f"Time to train: {train_time}")
+
+    f = open(log_dir+"train_time.txt", "w")
+    f.write("Total training time: " + str(train_time))
+    f.close()

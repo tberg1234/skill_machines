@@ -13,6 +13,14 @@ class BlueTask(gym.Wrapper):
         env = gym.make("MovingTargets-v0", render_mode=kwargs['render_mode'] if "render_mode" in kwargs else "human")
         task = Task(env, "G (F blue)", accept_terminal=False, rmax=2, **kwargs)
         super().__init__(task)
+
+class BlueStaticTask(gym.Wrapper):
+    metadata = {'render_modes': ['human','rgb_array'], "render_fps": 10}
+    def __init__(self, **kwargs):
+        """Pick up a blue object. Repeat this forever."""
+        env = gym.make("StaticTargets-v0", render_mode=kwargs['render_mode'] if "render_mode" in kwargs else "human")
+        task = Task(env, "F blue", accept_terminal=False, rmax=2, **kwargs)
+        super().__init__(task)
         
 class PurpleTask(gym.Wrapper):
     metadata = {'render_modes': ['human','rgb_array'], "render_fps": 10}
@@ -22,6 +30,14 @@ class PurpleTask(gym.Wrapper):
         task = Task(env, "G (F purple)", accept_terminal=False, rmax=2, **kwargs)
         super().__init__(task)
         
+class SquareTask(gym.Wrapper):
+    metadata = {'render_modes': ['human','rgb_array'], "render_fps": 10}
+    def __init__(self, **kwargs):
+        """Pick up any object. Repeat this forever."""
+        env = gym.make("MovingTargets-v0", render_mode=kwargs['render_mode'] if "render_mode" in kwargs else "human")
+        task = Task(env, "G (F square)", accept_terminal=False, rmax=2, **kwargs)
+        super().__init__(task)
+
 class SquareTask(gym.Wrapper):
     metadata = {'render_modes': ['human','rgb_array'], "render_fps": 10}
     def __init__(self, **kwargs):
@@ -61,6 +77,39 @@ class Task4(gym.Wrapper):
         env = gym.make("MovingTargets-v0", render_mode=kwargs['render_mode'] if "render_mode" in kwargs else "human")
         task = Task(env, hoa="envs/moving_targets/MovingTargets-Task-4-v0.hoa", accept_terminal=False, rmax=2, **kwargs)
         super().__init__(task)
+
+class BlueSquareTask(gym.Wrapper):
+    metadata = {'render_modes': ['human','rgb_array'], "render_fps": 10}
+    def __init__(self, **kwargs):
+        """Pick up a blue square object."""
+        env = gym.make("StaticTargets-v0", render_mode=kwargs['render_mode'] if "render_mode" in kwargs else "human")
+        task = Task(env, "F (blue & square)", accept_terminal=False, rmax=2, **kwargs)
+        super().__init__(task)
+
+class PurpleCircleTask(gym.Wrapper):
+    metadata = {'render_modes': ['human','rgb_array'], "render_fps": 10}
+    def __init__(self, **kwargs):
+        """Pick up a purple circle object."""
+        env = gym.make("StaticTargets-v0", render_mode=kwargs['render_mode'] if "render_mode" in kwargs else "human")
+        task = Task(env, "F (purple & circle)", accept_terminal=False, rmax=2, **kwargs)
+        super().__init__(task)
+
+class BlueNotSquareTask(gym.Wrapper):
+    metadata = {'render_modes': ['human','rgb_array'], "render_fps": 10}
+    def __init__(self, **kwargs):
+        """Pick up a blue object not a square."""
+        env = gym.make("StaticTargets-v0", render_mode=kwargs['render_mode'] if "render_mode" in kwargs else "human")
+        task = Task(env, "(F blue) & (G ! square)", accept_terminal=False, rmax=2, **kwargs)
+        super().__init__(task)
+
+class BlueSquareAndPurpleCircleTask(gym.Wrapper):
+    metadata = {'render_modes': ['human','rgb_array'], "render_fps": 10}
+    def __init__(self, **kwargs):
+        """Pick up a blue square and a purple circle objects."""
+        env = gym.make("StaticTargets-v0", render_mode=kwargs['render_mode'] if "render_mode" in kwargs else "human")
+        task = Task(env, "F (blue & square) & F (purple & circle)", accept_terminal=False, rmax=2, **kwargs)
+        super().__init__(task)
+
 
 class MultiTask(gym.Wrapper):
     metadata = {'render_modes': ['human','rgb_array'], "render_fps": 10}
@@ -125,12 +174,28 @@ gym.envs.registration.register(
 gym.envs.registration.register(
     id='MovingTargets-v0',
     entry_point='envs.moving_targets.moving_targets:MovingTargets',
+) #moving targets has random player and moving targets
+
+gym.envs.registration.register(
+    id='StaticTargets-v0',
+    entry_point='envs.moving_targets.moving_targets:StaticTargets',
+)
+
+gym.envs.registration.register(
+    id='TestCollectEnv-v0',
+    entry_point='envs.moving_targets.moving_targets:CollectEnv',
+    kwargs={"start_positions": [(2, 7),(2, 5),(3, 6),(2, 6),(1, 6),(5,6)],"random_objects": False, "random_player": False},
 )
 
 gym.envs.registration.register(
     id='MovingTargets-Blue-Task-v0',
     max_episode_steps=100, 
     entry_point=BlueTask,
+)
+gym.envs.registration.register(
+    id='StaticTargets-Blue-Task-v0',
+    max_episode_steps=100,
+    entry_point=BlueStaticTask,
 )
 gym.envs.registration.register(
     id='MovingTargets-Purple-Task-v0',
@@ -161,6 +226,26 @@ gym.envs.registration.register(
     id='MovingTargets-Task-4-v0',
     max_episode_steps=100, 
     entry_point=Task4,
+)
+gym.envs.registration.register(
+    id='StaticTargets-BlueSquareTask-v0',
+    max_episode_steps=100, 
+    entry_point=BlueSquareTask,
+)
+gym.envs.registration.register(
+    id='StaticTargets-PurpleCircleTask-v0',
+    max_episode_steps=100, 
+    entry_point=PurpleCircleTask,
+)
+gym.envs.registration.register(
+    id='StaticTargets-BlueNotSquareTask-v0',
+    max_episode_steps=100, 
+    entry_point=BlueNotSquareTask,
+)
+gym.envs.registration.register(
+    id='StaticTargets-BlueSquareAndPurpleCircleTask-v0',
+    max_episode_steps=100, 
+    entry_point=BlueSquareAndPurpleCircleTask,
 )
 gym.envs.registration.register(
     id='MovingTargets-Multi-Task-v0',

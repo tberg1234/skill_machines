@@ -113,6 +113,23 @@ register(
     max_episode_steps=1000
 )
 
+register(
+    id='Office-new-rm6-v0',
+    entry_point='envs.office_world_modified.GridWorld:GridWorldRM6Env',
+    max_episode_steps=1000
+)
+
+register(
+    id='Office-new-rm7-v0',
+    entry_point='envs.office_world_modified.GridWorld:GridWorldRM7Env',
+    max_episode_steps=1000
+)
+
+register(
+    id='Office-new-rm8-v0',
+    entry_point='envs.office_world_modified.GridWorld:GridWorldRM8Env',
+    max_episode_steps=1000
+)
 
 register(
     id='Office-new-ue-v0',

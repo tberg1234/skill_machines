@@ -90,6 +90,11 @@ def learn(env, total_timesteps=100000, zeroshot=False, fewshot=False, q_dir="vf"
     
     os.makedirs(sp_dir, exist_ok=True); os.makedirs(q_dir, exist_ok=True)
 
+    print(f"sp_dir: {sp_dir}")
+    print(f"q_dir: {q_dir}")
+
+    print(f"OH HELLO :)")
+
     # Initialise MDP for the primitives (primitive_env), and MDP for the given temporal logic task (task_env)
     if zeroshot or fewshot:
         load = True

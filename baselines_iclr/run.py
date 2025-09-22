@@ -230,11 +230,11 @@ def main(args):
     if not args.play:
         logger.log("Training model")
 
-        start_time = time.clock()
+        start_time = time.perf_counter()
 
         model, env = train(args, extra_args)
 
-        end_time = time.clock()
+        end_time = time.perf_counter()
         training_time = end_time-start_time
         logger.log("Time to train RM/SM: " + str(training_time))
 

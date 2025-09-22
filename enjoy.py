@@ -53,7 +53,7 @@ if __name__ == "__main__":
     if hasattr(task_env.environment.unwrapped, "start_position"): task_env.environment.unwrapped.start_position = (10,4)
 
     # Load the zeroshot or fewshot skill
-    start_time = time.clock() 
+    start_time = time.perf_counter() 
     if args.fewshot:
         skill = torch.load(q_dir+"skill"); SM = skill.SM
         save_path = args.save_path if args.save_path else f"./images/fewshot_{args.env}_{args.ltl}.gif"
@@ -79,7 +79,7 @@ if __name__ == "__main__":
         state, info = task_env.reset(seed=args.seed)
         SM.reset(task_env.rm, info["true_propositions"])
 
-        end_time = time.clock()
+        end_time = time.perf_counter()
 
         process_time = end_time-start_time
         print(f"Time to execute: {process_time}")

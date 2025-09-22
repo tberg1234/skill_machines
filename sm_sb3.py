@@ -31,19 +31,19 @@ if __name__ == "__main__":
     elif args.algo=="td3": SP = {primitive: TD3Agent("wvf_"+primitive, primitive_env, sp_dir, log_dir, args.load) for primitive in ["0","1"]}
     SM = SkillMachine(primitive_env, SP, vectorised=True) 
 
-    start_time = time.clock()
+    start_time = time.perf_counter()
     training_times = list()
 
     # Start Training
     for primitive, sp in SP.items():
-        prim_start_time = time.clock()
+        prim_start_time = time.perf_counter()
         primitive_env.primitive = primitive; total_steps = args.total_steps*(0.1 if primitive=="0" else 0.9)
         sp.model.learn(total_steps, EvaluateSaveCallback(primitive_env, eval_task_env, SM, None, sp_dir, args.eval_steps))
-        prim_end_time = time.clock()
+        prim_end_time = time.perf_counter()
         prim_total_time = prim_end_time - prim_start_time
         training_times.append(prim_total_time)
 
-    end_time = time.clock()
+    end_time = time.perf_counter()
 
     train_time = end_time-start_time
     print(f"Time to train: {train_time}")

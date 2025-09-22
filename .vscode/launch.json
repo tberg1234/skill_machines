@@ -12,7 +12,7 @@
             "cwd": "/home/taylor/Dissertation/skill_machines/baselines_iclr",
             "program": "run.py",
             "console": "integratedTerminal",
-            "python": "/home/taylor/miniconda3/envs/sm_with_safety_gym/bin/python",
+            "python": "/home/taylor/miniconda3/envs/sm_py39/bin/python",
             "args": ["--alg","smql","--env","Office-new-v0","--num_timesteps","100000", "--qinit", "0.001", "--gamma", "0.9", "--epsilon", "0.5", "--print_freq", "10000", "--sp", "data/spql/test/", "--log_path", "data/logs/sp-ql/Office-v0/test/"]
         },
         {
@@ -20,10 +20,10 @@
             "type": "python",
             "justMyCode": false,
             "request": "launch",
-            "cwd": "/home/taylor/Dissertation/skill_machines",
+            "cwd": "/home/taylor/skill_machines",
             "program": "sm_sb3.py",
             "console": "integratedTerminal",
-            "python": "/home/taylor/miniconda3/envs/sm_with_safety_gym/bin/python",
+            "python": "/home/taylor/miniconda3/envs/sm_py39/bin/python",
             "args": ["--alg","dqn","--env","MovingTargets-v0", "--sp_dir", "data/sp_dqn/MovingTargets-v0/test/", "--log_dir", "data/logs/sp_dqn/test/"]
         },
         {
@@ -34,7 +34,7 @@
             "cwd": "/home/taylor/Dissertation/skill_machines",
             "program": "sm_sb3.py",
             "console": "integratedTerminal",
-            "python": "/home/taylor/miniconda3/envs/sm_with_safety_gym/bin/python",
+            "python": "/home/taylor/miniconda3/envs/sm_py39/bin/python",
             "args": ["--alg","dqn","--env","TestCollectEnv-v0", "--sp_dir", "data/sp_dqn/MovingTargets-v0/test/", "--log_dir", "data/logs/sp_dqn/test/"]
         },
         {
@@ -45,7 +45,7 @@
             "cwd": "/home/taylor/Dissertation/skill_machines",
             "program": "enjoy.py",
             "console": "integratedTerminal",
-            "python": "/home/taylor/miniconda3/envs/sm_with_safety_gym/bin/python",
+            "python": "/home/taylor/miniconda3/envs/sm_py39/bin/python",
             "args": ["--alg","dqn","--env","StaticTargets-Blue-Task-v0", "--sp_dir", "data/sp_dqn/MovingTargets-v0/test/"]
         },
         {
@@ -56,7 +56,7 @@
             "cwd": "/home/taylor/Dissertation/skill_machines",
             "program": "enjoy.py",
             "console": "integratedTerminal",
-            "python": "/home/taylor/miniconda3/envs/sm_with_safety_gym/bin/python",
+            "python": "/home/taylor/miniconda3/envs/sm_py39/bin/python",
             "args": ["--alg","dqn","--env","StaticTargets-PurpleCircleTask-v0", "--sp_dir", "data/sp_dqn/MovingTargets-v0/test/"]
         },
     ]

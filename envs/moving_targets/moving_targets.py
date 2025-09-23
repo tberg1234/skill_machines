@@ -133,6 +133,7 @@ class CollectEnv(gym.Env):
 
     SPRITE_SIZE = 50
 
+
     def __init__(self, board='original', obs_scale=5, available_collectibles=None, start_positions=None, random_objects=False, random_player=True, seed=None, render_mode="rgb_array"):
         """
         Create a new instance of the RepoMan environment. The observation space is a single RGB image of size 400x400,
@@ -164,6 +165,7 @@ class CollectEnv(gym.Env):
         self.board = np.array([list(row) for row in self._BOARDS[board]])
         self.free_spaces = list(map(tuple, np.argwhere(self.board != '#')))
         self.SCREEN_SIZE = (self.board.shape[0]*self.SPRITE_SIZE, self.board.shape[1]*self.SPRITE_SIZE)
+        # self.SCREEN_SIZE = (400, 400)
         self._bestdepth = pygame.display.mode_ok(self.SCREEN_SIZE, 0, 32)
         self.surface = pygame.Surface(self.SCREEN_SIZE, 0, self._bestdepth)
         self._background = pygame.Surface(self.SCREEN_SIZE)
@@ -186,6 +188,7 @@ class CollectEnv(gym.Env):
         
         # Gym spaces for observation and action space
         self.observation_space = Box(low=0, high=255, shape=[self.SCREEN_SIZE[0]//self.obs_scale, self.SCREEN_SIZE[1]//self.obs_scale, 3], dtype=np.uint8)
+        # self.observation_space = Box(0, 255, [self.SCREEN_SIZE[0], self.SCREEN_SIZE[1], 3], dtype=int)
         self.actions = dict(up = 0, right = 1, down = 2, left = 3)
         self.action_space = Discrete(len(self.actions),seed=seed)
 
@@ -216,6 +219,7 @@ class CollectEnv(gym.Env):
         return observation
 
     def get_obs(self):
+        # return self.draw_screen(self.surface)
         return self.draw_screen(self.surface,size=self.observation_space.shape[:2])
 
     def reset(self, seed=None, **kwargs):
@@ -257,6 +261,7 @@ class CollectEnv(gym.Env):
                 
         obs = self.draw_screen(self.surface,size=self.observation_space.shape[:2])
         return obs, {}
+        # return self.draw_screen(self.surface), {}
 
     def step(self, action):    
         self.collected = []
@@ -267,11 +272,11 @@ class CollectEnv(gym.Env):
             self.player.step(direction)
         
         self.collected = pygame.sprite.spritecollide(self.player, self.collectibles, False)
-        if self.collected and self.random_objects:
-            position = tuple(self.np_random.choice(list(self.free_spaces)))
-            self.free_spaces = self.free_spaces - set([position])
-            self.free_spaces.add(self.player.position)
-            self.collected[0].reset(position)
+        # if self.collected and self.random_objects:
+        #     position = tuple(self.np_random.choice(list(self.free_spaces)))
+        #     self.free_spaces = self.free_spaces - set([position])
+        #     self.free_spaces.add(self.player.position)
+        #     self.collected[0].reset(position)
              
         obs = self.get_obs()
         return obs, 0, False, False, {}
@@ -306,28 +311,29 @@ class MovingTargets(gym.core.ObservationWrapper):
     def observation(self, obs): 
         """Make the observations egocentric""" 
          
-        s = obs.shape[0]
-        st = self.env.unwrapped.SPRITE_SIZE//self.obs_scale
-        y, x = self.env.unwrapped.player.position[0]*st, self.env.unwrapped.player.position[1]*st
+        # s = obs.shape[0]
+        # st = self.env.unwrapped.SPRITE_SIZE//self.obs_scale
+        # y, x = self.env.unwrapped.player.position[0]*st, self.env.unwrapped.player.position[1]*st
 
-        # Egocentric position
-        ox = s//2-x    
-        rgb_img = obs.copy()
-        if ox>=0:
-            rgb_img[:,ox:s//2,:] = obs[:,:x,:]    
-            rgb_img[:,s//2:,:] = obs[:,x:x+s//2+s%2,:]   
-            rgb_img[:,:ox,:] = obs[:,x+s//2+s%2:,:]   
-        else:
-            ox = s+ox
-            rgb_img[:,s//2:ox,:] = obs[:,x:,:]    
-            rgb_img[:,:s//2,:] = obs[:,x-s//2:x,:]   
-            rgb_img[:,ox:,:] = obs[:,:x-s//2,:]    
-        obs = rgb_img.copy()
-        rgb_img[s-(y+st):,:,:] = obs[:y+st,:,:] 
-        rgb_img[:s-(y+st),:,:] = obs[y+st:,:,:] 
+        # # Egocentric position
+        # ox = s//2-x    
+        # rgb_img = obs.copy()
+        # if ox>=0:
+        #     rgb_img[:,ox:s//2,:] = obs[:,:x,:]    
+        #     rgb_img[:,s//2:,:] = obs[:,x:x+s//2+s%2,:]   
+        #     rgb_img[:,:ox,:] = obs[:,x+s//2+s%2:,:]   
+        # else:
+        #     ox = s+ox
+        #     rgb_img[:,s//2:ox,:] = obs[:,x:,:]    
+        #     rgb_img[:,:s//2,:] = obs[:,x-s//2:x,:]   
+        #     rgb_img[:,ox:,:] = obs[:,:x-s//2,:]    
+        # obs = rgb_img.copy()
+        # rgb_img[s-(y+st):,:,:] = obs[:y+st,:,:] 
+        # rgb_img[:s-(y+st),:,:] = obs[y+st:,:,:] 
         
-        return cv2.resize(rgb_img, dsize=self.observation_space.shape[:2], interpolation=cv2.INTER_AREA)
-    
+        # return cv2.resize(rgb_img, dsize=self.observation_space.shape[:2], interpolation=cv2.INTER_AREA)
+        return cv2.resize(obs, dsize=self.observation_space.shape[:2], interpolation=cv2.INTER_AREA)
+
     def render(self, *args, **kwargs):    
         if self.render_params["skill"]: 
             return self.render_skill(self.render_params["skill"], self.render_params["state"], self.render_params["task_title"], self.render_params["skill_title"], self.render_params["dpi"])
@@ -409,28 +415,28 @@ class StaticTargets(gym.core.ObservationWrapper):
 
     def observation(self, obs): 
         """Make the observations egocentric""" 
-         
-        s = obs.shape[0]
-        st = self.env.unwrapped.SPRITE_SIZE//self.obs_scale
-        y, x = self.env.unwrapped.player.position[0]*st, self.env.unwrapped.player.position[1]*st
 
-        # Egocentric position
-        ox = s//2-x    
-        rgb_img = obs.copy()
-        if ox>=0:
-            rgb_img[:,ox:s//2,:] = obs[:,:x,:]    
-            rgb_img[:,s//2:,:] = obs[:,x:x+s//2+s%2,:]   
-            rgb_img[:,:ox,:] = obs[:,x+s//2+s%2:,:]   
-        else:
-            ox = s+ox
-            rgb_img[:,s//2:ox,:] = obs[:,x:,:]    
-            rgb_img[:,:s//2,:] = obs[:,x-s//2:x,:]   
-            rgb_img[:,ox:,:] = obs[:,:x-s//2,:]    
-        obs = rgb_img.copy()
-        rgb_img[s-(y+st):,:,:] = obs[:y+st,:,:] 
-        rgb_img[:s-(y+st),:,:] = obs[y+st:,:,:] 
+        # s = obs.shape[0]
+        # st = self.env.unwrapped.SPRITE_SIZE//self.obs_scale
+        # y, x = self.env.unwrapped.player.position[0]*st, self.env.unwrapped.player.position[1]*st
+
+        # # Egocentric position
+        # ox = s//2-x    
+        # rgb_img = obs.copy()
+        # if ox>=0:
+        #     rgb_img[:,ox:s//2,:] = obs[:,:x,:]    
+        #     rgb_img[:,s//2:,:] = obs[:,x:x+s//2+s%2,:]   
+        #     rgb_img[:,:ox,:] = obs[:,x+s//2+s%2:,:]   
+        # else:
+        #     ox = s+ox
+        #     rgb_img[:,s//2:ox,:] = obs[:,x:,:]    
+        #     rgb_img[:,:s//2,:] = obs[:,x-s//2:x,:]   
+        #     rgb_img[:,ox:,:] = obs[:,:x-s//2,:]    
+        # obs = rgb_img.copy()
+        # rgb_img[s-(y+st):,:,:] = obs[:y+st,:,:] 
+        # rgb_img[:s-(y+st),:,:] = obs[y+st:,:,:] 
         
-        return cv2.resize(rgb_img, dsize=self.observation_space.shape[:2], interpolation=cv2.INTER_AREA)
+        return cv2.resize(obs, dsize=self.observation_space.shape[:2], interpolation=cv2.INTER_AREA)
     
     def render(self, *args, **kwargs):    
         if self.render_params["skill"]: 

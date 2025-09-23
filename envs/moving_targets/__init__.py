@@ -38,11 +38,11 @@ class SquareTask(gym.Wrapper):
         task = Task(env, "G (F square)", accept_terminal=False, rmax=2, **kwargs)
         super().__init__(task)
 
-class SquareTask(gym.Wrapper):
+class SquareStaticTask(gym.Wrapper):
     metadata = {'render_modes': ['human','rgb_array'], "render_fps": 10}
     def __init__(self, **kwargs):
         """Pick up any object. Repeat this forever."""
-        env = gym.make("MovingTargets-v0", render_mode=kwargs['render_mode'] if "render_mode" in kwargs else "human")
+        env = gym.make("StaticTargets-v0", render_mode=kwargs['render_mode'] if "render_mode" in kwargs else "human")
         task = Task(env, "G (F square)", accept_terminal=False, rmax=2, **kwargs)
         super().__init__(task)
 
@@ -206,6 +206,11 @@ gym.envs.registration.register(
     id='MovingTargets-Square-Task-v0',
     max_episode_steps=100, 
     entry_point=SquareTask,
+)
+gym.envs.registration.register(
+    id='StaticTargets-Square-Task-v0',
+    max_episode_steps=100, 
+    entry_point=SquareStaticTask,
 )
 gym.envs.registration.register(
     id='MovingTargets-Task-1-v0',

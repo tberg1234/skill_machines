@@ -59,7 +59,7 @@ if __name__ == "__main__":
         save_path = args.save_path if args.save_path else f"./images/fewshot_{args.env}_{args.ltl}.gif"
     else:
         primitive_env = TaskPrimitive(task_env.environment, sb3=args.algo!="ql")
-        primitive_env.goals.update(torch.load(sp_dir+"goals")) 
+        primitive_env.goals.update(torch.load(sp_dir+"goals", weights_only=False)) 
         if args.algo=="ql":    SP = {primitive: QLAgent(primitive, primitive_env, save_dir=sp_dir, load=True) for primitive in ['0','1']}
         elif args.algo=="dqn": SP = {primitive: DQNAgent("wvf_"+primitive, primitive_env, save_dir=sp_dir, load=True, buffer_size=1) for primitive in ['0','1']}
         elif args.algo=="td3": SP = {primitive: TD3Agent("wvf_"+primitive, primitive_env, save_dir=sp_dir, load=True, buffer_size=1) for primitive in ['0','1']}
